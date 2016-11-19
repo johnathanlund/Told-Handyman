@@ -9,17 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var router_1 = require('@angular/router');
+var told_handyman_component_1 = require('./told-handyman.component');
+var admin_handyman_component_1 = require('./admin-handyman.component');
+var routes = [
+    { path: '', redirectTo: '/ToldHandyman', pathMatch: 'full' },
+    { path: 'ToldHandyman', component: told_handyman_component_1.ToldHandymanComponent },
+    { path: 'AdminHandyman', component: admin_handyman_component_1.AdminHandymanComponent }
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'handyman-app',
-            template: "\n    <h1>Told Handyman App!</h1>\n    <router-outlet></router-outlet>\n  ",
+    AppRoutingModule = __decorate([
+        core_1.NgModule({
+            imports: [router_1.RouterModule.forRoot(routes)],
+            exports: [router_1.RouterModule]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], AppRoutingModule);
+    return AppRoutingModule;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.AppRoutingModule = AppRoutingModule;
+//# sourceMappingURL=app-routing.module.js.map

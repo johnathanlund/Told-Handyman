@@ -8,18 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var core_1 = require("@angular/core");
+var ToldHandymanComponent = (function () {
+    function ToldHandymanComponent() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'handyman-app',
-            template: "\n    <h1>Told Handyman App!</h1>\n    <router-outlet></router-outlet>\n  ",
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    return ToldHandymanComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+ToldHandymanComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'my-handyman',
+        templateUrl: 'told-handyman.component.html',
+        styleUrls: ['told-handyman.component.css']
+    }),
+    __metadata("design:paramtypes", [])
+], ToldHandymanComponent);
+exports.ToldHandymanComponent = ToldHandymanComponent;
+//# sourceMappingURL=told-handyman.component.js.map
