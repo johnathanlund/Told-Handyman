@@ -8,20 +8,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
+var core_1 = require('@angular/core');
 var ToldHandymanComponent = (function () {
     function ToldHandymanComponent() {
     }
+    ToldHandymanComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'my-handyman',
+            templateUrl: 'told-handyman.component.html',
+            styleUrls: [
+                './styles/told-handyman.component.css',
+                './styles/told-handyman-top_title.component.css',
+                './styles/told-handyman-top_menu.component.css',
+                './styles/told-handyman-top_gallery.component.css',
+                './styles/told-handyman-mid_services.component.css',
+                './styles/told-handyman-mid_about.component.css',
+                './styles/told-handyman-mid_reviews.component.css',
+                './styles/told-handyman-bottom_contact.component.css',
+                './styles/told-handyman-bottom_footer.component.css'
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToldHandymanComponent);
     return ToldHandymanComponent;
 }());
-ToldHandymanComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'my-handyman',
-        templateUrl: 'told-handyman.component.html',
-        styleUrls: ['told-handyman.component.css']
-    }),
-    __metadata("design:paramtypes", [])
-], ToldHandymanComponent);
 exports.ToldHandymanComponent = ToldHandymanComponent;
 //# sourceMappingURL=told-handyman.component.js.map

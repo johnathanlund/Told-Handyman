@@ -8,11 +8,14 @@ import { AppComponent }   from './app.component';
 import { ToldHandymanComponent }  from './told-handyman.component';
 import { AdminHandymanComponent } from './admin-handyman.component';
 
+import {Ng2PageScrollModule} from 'ng2-page-scroll/ng2-page-scroll';
+
 @NgModule({
   imports:      [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2PageScrollModule.forRoot()
   ],
   declarations: [
     AppComponent,
