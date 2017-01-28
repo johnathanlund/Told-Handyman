@@ -1,14 +1,16 @@
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { NgModule }               from '@angular/core';
+import { BrowserModule }          from '@angular/platform-browser';
+import { FormsModule }            from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
+import {Component}                from '@angular/core';
 
-import { AppComponent }   from './app.component';
+import { AppRoutingModule }       from './app-routing.module';
+
+import { AppComponent }           from './app.component';
 import { ToldHandymanComponent }  from './told-handyman.component';
 import { AdminHandymanComponent } from './admin-handyman.component';
 
-import {Ng2PageScrollModule} from 'ng2-page-scroll/ng2-page-scroll';
+import {Ng2PageScrollModule}      from 'ng2-page-scroll/ng2-page-scroll';
 
 @NgModule({
   imports:      [
@@ -22,6 +24,6 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll/ng2-page-scroll';
     ToldHandymanComponent,
     AdminHandymanComponent
   ],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent ],
 })
 export class AppModule { }

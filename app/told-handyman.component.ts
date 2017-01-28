@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PageScroll } from 'ng2-simple-page-scroll';
+import { PageScroll } from 'ng2-page-scroll';
 
 @Component ({
   moduleId: module.id,
