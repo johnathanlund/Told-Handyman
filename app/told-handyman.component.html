@@ -20,18 +20,45 @@
     </span>
   </div>
   <div class="top_title_container">
-    <h1 id="title_handyman">TOLD <br> HANDYMAN SERVICE</h1>
+    <h2 id="title_handyman">TOLD <br> HANDYMAN SERVICE</h2>
     <h4 id="title_slogan">"Fast friendly service with a name you can trust"</h4>
   </div>
   <div class="top_gallery_container">
-    Gallery info
+    <!-- Gallery info
     Go to this website for a bootstrap gallery:
     http://www.angulartypescript.com/angular-2-carousel/
-    <a href="http://www.angulartypescript.com/angular-2-carousel/">Click here to go there now!</a>
+    <a href="http://www.angulartypescript.com/angular-2-carousel/">Click here to go there now!</a> -->
     <!-- <carousel-gallery></carousel-gallery> -->
+    <div class="swiper-wrapper">
+      <swiper [config]="config">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide slide1">Slide 1</div>
+          <div class="swiper-slide slide2">Slide 2</div>
+          <div class="swiper-slide slide3">Slide 3</div>
+          <div class="swiper-slide">Slide 4</div>
+          <div class="swiper-slide">Slide 5</div>
+          <div class="swiper-slide">Slide 6</div>
+          <div class="swiper-slide">Slide 7</div>
+          <div class="swiper-slide">Slide 8</div>
+          <div class="swiper-slide">Slide 9</div>
+          <div class="swiper-slide">Slide 10</div>
+        </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    </swiper>
   </div>
+  <!-- <div class="gallery_description">
+    Description of each slide here.
+  </div> -->
+</div>
   <div id="mid_services_container">
-    Services info
+    <div class="services_heading_container">
+      <h2>HANDYMAN SERVICES</h2>
+      <p>Licensed and Insured * Free Estimates * Don't Hide from your fix-it list</p>
+    </div>
   </div>
   <div id="mid_about_container">
     About info

@@ -2,7 +2,7 @@ import { NgModule }               from '@angular/core';
 import { BrowserModule }          from '@angular/platform-browser';
 import { FormsModule }            from '@angular/forms';
 
-import {Component}                from '@angular/core';
+import { Component }                from '@angular/core';
 
 import { AppRoutingModule }       from './app-routing.module';
 
@@ -10,14 +10,17 @@ import { AppComponent }           from './app.component';
 import { ToldHandymanComponent }  from './told-handyman.component';
 import { AdminHandymanComponent } from './admin-handyman.component';
 
-import {Ng2PageScrollModule}      from 'ng2-page-scroll/ng2-page-scroll';
+import { Ng2PageScrollModule }      from 'ng2-page-scroll/ng2-page-scroll';
+
+import { SwiperModule }           from 'angular2-useful-swiper';
 
 @NgModule({
   imports:      [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    Ng2PageScrollModule.forRoot()
+    Ng2PageScrollModule.forRoot(),
+    SwiperModule
   ],
   declarations: [
     AppComponent,

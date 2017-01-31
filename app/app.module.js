@@ -13,6 +13,7 @@ var app_component_1 = require("./app.component");
 var told_handyman_component_1 = require("./told-handyman.component");
 var admin_handyman_component_1 = require("./admin-handyman.component");
 var ng2_page_scroll_1 = require("ng2-page-scroll/ng2-page-scroll");
+var angular2_useful_swiper_1 = require("angular2-useful-swiper");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,8 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             app_routing_module_1.AppRoutingModule,
-            ng2_page_scroll_1.Ng2PageScrollModule.forRoot()
+            ng2_page_scroll_1.Ng2PageScrollModule.forRoot(),
+            angular2_useful_swiper_1.SwiperModule
         ],
         declarations: [
             app_component_1.AppComponent,

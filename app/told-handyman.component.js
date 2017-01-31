@@ -8,6 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var ToldHandymanComponent = (function () {
     function ToldHandymanComponent() {
+        this.config = {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            spaceBetween: 30,
+            loop: true
+        };
     }
     return ToldHandymanComponent;
 }());
@@ -25,7 +33,7 @@ ToldHandymanComponent = __decorate([
             './styles/told-handyman-mid_about.component.css',
             './styles/told-handyman-mid_reviews.component.css',
             './styles/told-handyman-bottom_contact.component.css',
-            './styles/told-handyman-bottom_footer.component.css'
+            './styles/told-handyman-bottom_footer.component.css',
         ]
     })
 ], ToldHandymanComponent);

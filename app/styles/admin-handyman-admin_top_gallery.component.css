@@ -1,0 +1,14 @@
+.admin_top_gallery_container {
+  width: 100%;
+  height: 50vh;
+  /*background-color: blue;*/
+  border-top: 2px solid black;
+}
+
+/*.admin_top_gallery_container h3 {
+  width: 30%;
+  margin: 0 0 0 35%;
+  text-align: center;
+  font-size: 150%;
+  border: 2px solid white;
+}*/
