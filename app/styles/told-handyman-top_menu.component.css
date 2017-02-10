@@ -4,8 +4,11 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgb(180, 21, 17);
-  border-bottom: 5px white solid;
+  z-index: 3;
+  /*background-color: rgb(180, 21, 17);*/
+  background-color: rgba(180, 21, 17, 0);
+  /*border-bottom: 5px white solid;*/
+  op
 }
 @media (min-device-width: 1024px) {
   .top_menu_container {
@@ -16,7 +19,7 @@
 
 #btn-menu-label {
   display: block;
-  margin: 11px 0 0 2px;
+  margin: 11px 0 0 6px;
   background: yellow;
   /*background-image: url('../images/circle-ham-menu.png');
   background-size: cover;*/
@@ -43,8 +46,9 @@
 }
 
 #btn-menu {
-  width: 30px;
+  width: 60px;
   height: 30px;
+  /*background-color: red;*/
   /*margin: 10px 0 0 10px;*/
   visibility: hidden;
 }
@@ -105,17 +109,20 @@
 }
 
 .top_menu_logo {
-  width: 40vw;
-  height: 90%;
+  width: 40%;
+  /*height: 90%;*/
   color: white;
+  /*background-color: blue;*/
   font-style: italic;
   display: inline-block;
   text-align: right;
-  margin: -30px 0 0 0;
-  padding: 0 0 0 55%;
+  margin: -30px 0 0 55%;
+  /*padding: 0 0 0 55%;*/
 }
 @media (min-device-width: 1024px) {
   .top_menu_logo {
+    width: 40vw;
     margin: -18px 0 0 -80%;
+    padding: 0 0 0 55%;
   }
 }
