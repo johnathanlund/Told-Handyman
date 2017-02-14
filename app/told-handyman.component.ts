@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageScroll } from 'ng2-page-scroll';
-
+import { ModalModule } from 'ng2-modal';
 import { SwiperModule } from 'angular2-useful-swiper';
 
 @Component ({

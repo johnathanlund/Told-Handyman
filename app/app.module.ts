@@ -11,6 +11,7 @@ import { ToldHandymanComponent }  from './told-handyman.component';
 import { AdminHandymanComponent } from './admin-handyman.component';
 
 import { Ng2PageScrollModule }      from 'ng2-page-scroll/ng2-page-scroll';
+import { ModalModule }            from 'ng2-modal';
 
 import { SwiperModule }           from 'angular2-useful-swiper';
 
@@ -20,7 +21,8 @@ import { SwiperModule }           from 'angular2-useful-swiper';
     FormsModule,
     AppRoutingModule,
     Ng2PageScrollModule.forRoot(),
-    SwiperModule
+    SwiperModule,
+    ModalModule,
   ],
   declarations: [
     AppComponent,

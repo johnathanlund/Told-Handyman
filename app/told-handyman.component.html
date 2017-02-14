@@ -156,12 +156,71 @@
         </div></div>
     </div>
 </div>
+<div class="rowModal">
+    <button (click)="myModal.open()" class="modalButton">open my modal</button>
+    <modal #myModal class="modal_box">
+        <modal-header class="modal_header">
+            <h1>Modal header</h1>
+        </modal-header>
+        <modal-content>
+            Hello Modal!
+        </modal-content>
+        <modal-footer>
+            <button class="btn btn-primary" (click)="myModal.close()">close</button>
+        </modal-footer>
+    </modal>
+</div>
   </div>
   <div id="mid_about_container">
-    About info
+    <div class="about_heading">
+      <h3>WHO WE ARE:</h3>
+    </div>
+    <div class="about_body">
+    <div class="about_image"></div>
+      <div class="about_text">
+        <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+          that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
+        <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+          that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
+        <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+          that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
+        <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+          that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
+        <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+          that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
+
+      </div>
+    </div>
+    <div class="about_link">
+      <a href="http://toldplumbing.com/">Told Plumbing</a>
+    <a class="link_home" pageScroll href="#handyman_container">Told Plumbing Facebook</a>
+    </div>
   </div>
   <div class="mid_reviews_container">
-    Reviews info
+    <div class="reviews_heading">
+      <h3>Customer Reviews</h3>
+    </div>
+    <div class="reviews_body">
+      <div class="reviews_wrapper">
+        <h1 class="reviews_title">The Handyman Life</h1>
+        <div class="job">doors</div>
+        <div class="work_type">build doors</div>
+        <div class="job">stairs</div>
+        <div class="work_type">build stairs that work</div>
+        <div class="job">decking</div>
+        <div class="work_type">custom decks, right for every job</div>
+        <div class="job">remodel bathroom</div>
+        <div class="work_type">custom bathroom anywhere, cabin, master, etc.</div>
+        <div class="job">remodel kitchen</div>
+        <div class="work_type">time for that rustic italian kitchen</div>
+        <div class="job">windows</div>
+        <div class="work_type">want them bigger? we can do that</div>
+        <div class="job">garage</div>
+        <div class="work_type">dream garage fit for an italian classic</div>
+        <div class="job">house remodel</div>
+        <div class="work_type">want to update your look? best looking house in town!</div>
+      </div>
+    </div>
   </div>
   <div id="bottom_contact_container">
     Contact info

@@ -10,7 +10,7 @@
 }
 @media (min-device-width: 1024px) {
   #mid_services_container {
-    height: 125vh;
+    height: 225vh;
   }
 }
 
@@ -123,4 +123,26 @@
 .painting_image {
   background-image: url('https://s-media-cache-ak0.pinimg.com/originals/40/ad/fb/40adfb3d964c9760307e973639ca300c.jpg');
   background-size: cover;
+}
+
+.rowModal {
+  /*background-color: lawngreen;*/
+}
+.modal_box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  /*border: 5px solid yellow;*/
+  background: pink;
+}
+/*#myModal {
+  background-color: white;
+}*/
+modal-header {
+  background-color: grey;
+  color: blue;
+}
+.modalButton {
+  background-color: black;
+  color: white;
 }
