@@ -1,6 +1,6 @@
 .mid_reviews_container {
   width: 100%;
-  height: 60vh;
+  height: 80vh;
   background-color: blue;
   /*border-top: 5px orange solid;*/
   border-bottom: 5px white solid;
@@ -58,24 +58,27 @@
   position: relative;
   top: 300%;
   left: 50%;
-  width: 400px;
-  margin: 0 0 0 -200px;
-  font: 300 30px/1 'Open Sans Condensed', sans-serif;
+  width: 80%;
+  margin: 0 0 0 -160px;
+  /*font: 300 30px/1 'Open Sans Condensed', sans-serif;*/
   text-align: center;
   text-transform: uppercase;
   color: white;
-  animation: 20s credits linear infinite;
+  animation: 40s credits linear infinite;
   animation-name:
 }
 @media (min-device-width: 1024px) {
     .reviews_wrapper {
-
+      width: 50%;
+      margin: 0 0 0 -300px;
     }
 }
 
 .reviews_title {
   margin-bottom: 50px;
-  font-size: 50px;
+  font-size: 200%;
+  font-style: italic;
+  /*color: white;*/
 }
 @media (min-device-width: 1024px) {
   .reviews_title {
@@ -83,24 +86,46 @@
   }
 }
 
-.job {
+.reviews_author {
   margin-bottom: 5px;
   font-size: 18px;
+  font-style: italic;
+  /*color: red;*/
 }
 @media (min-device-width: 1024px) {
-    .job {
+    .reviews_author {
 
     }
 }
 
-.work_type {
-  margin-bottom: 50px;
-  font-size: 35px;
+/* Add a height & width to create a single size
+for the review consistently vs sized to content.*/
+.work_review {
+  margin: 0 0 50 0;
+  font-size: 70%;
+  /*color: white;*/
+  border-bottom: 3px solid orange;
 }
 @media (min-device-width: 1024px) {
-    .work_type {
-
+    .work_review {
+      font-size: 70%;
+      margin: 0 0 80 0;
     }
+}
+
+.review_image {
+  float: right;
+  width: 30vw;
+  height: 18vh;
+  background-image: url('http://www.diamondcertified.org/sites/diamondcertified.org/files/imagecache/large/Alex%20Maxwell/Diaz%20Handyman%20example%20of%20work%2039.JPG');
+  background-size: cover;
+  /*margin: 0 0 50px 0;*/
+}
+@media (min-device-width: 1024px) {
+  .review_image {
+    width: 25vw;
+    height: 25vh;
+  }
 }
 
 @keyframes credits {
