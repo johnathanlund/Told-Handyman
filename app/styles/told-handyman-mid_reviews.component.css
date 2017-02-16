@@ -3,14 +3,14 @@
   height: 80vh;
   background-color: #fff;
   /*border-top: 5px orange solid;*/
-  border-bottom: 5px #fff solid;
+  border-bottom: 5px #000 solid;
   text-align: center;
   margin: -3vh 0 0 0;
   padding: 0;
 }
 @media (min-device-width: 1024px) {
   .mid_reviews_container {
-
+    height: 85vh;
   }
 }
 
@@ -19,13 +19,13 @@
   height: 10%;
   color: #000;
   text-align: center;
-  margin: 2vh 0 0 0;
+  /*margin: 2vh 0 0 0;*/
   padding: 0;
-  border-bottom: 5px #000 solid;
+  border-bottom: 1px #000 solid;
 }
 @media (min-device-width: 1024px)  {
   .reviews_heading {
-    height: 10%;
+    height: 7%;
   }
 }
 
@@ -65,7 +65,6 @@
   text-transform: uppercase;
   color: #000;
   animation: 40s credits linear infinite;
-  animation-name:
 }
 @media (min-device-width: 1024px) {
     .reviews_wrapper {
@@ -139,91 +138,6 @@ for the review consistently vs sized to content.*/
 
 
 
-#creditsToggle {
-  display: none;
-  visibility: hidden;
-}
-#creditsLabel {
-  display: block;
-  padding: 0.5em;
-  text-align: center;
-  border-bottom: 1px solid #CCC;
-  color: #666;
-}
-#creditsLabel:hover {
-  color: #000;
-  cursor: pointer;
-}
-#creditsLabel::before {
-  /*font-family: Consolas, monaco, monospace;*/
-  font-weight: bold;
-  font-size: 15px;
-  content: "+";
-  vertical-align: text-top;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 3px;
-  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
-}
-
-#expand {
-  height: 0px;
-  overflow: hidden;
-  transition: height 0.5s;
-  /*background: url(http://placekitten.com/g/600/300);*/
-  background: #fff;
-}
-#creditsToggle:checked ~ #expand {
-  height: 80%;
-}
-#creditsToggle:checked ~ #creditsLabel::before {
-  content: "-";
-}
-
-#normalToggle {
-  display: none;
-  visibility: hidden;
-}
-#normalLabel {
-  display: block;
-  padding: 0.5em;
-  text-align: center;
-  border-bottom: 1px solid #CCC;
-  color: #666;
-}
-#normalLabel:hover {
-  color: #000;
-  cursor: pointer;
-}
-#normalLabel::before {
-  /*font-family: Consolas, monaco, monospace;*/
-  font-weight: bold;
-  font-size: 15px;
-  content: "+";
-  vertical-align: text-top;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 3px;
-  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
-}
-
-#normalExpand {
-  height: 0px;
-  overflow: hidden;
-  transition: height 0.5s;
-  /*background: url(http://placekitten.com/g/600/300);*/
-  background: #fff;
-  overflow: scroll;
-}
-#normalToggle:checked ~ #normalExpand {
-  height: 75%;
-}
-#normalToggle:checked ~ #normalLabel::before {
-  content: "-";
-}
-
 .reviews_normal_wrapper {
   width: 80%;
   text-align: center;
@@ -234,7 +148,109 @@ for the review consistently vs sized to content.*/
 }
 @media (min-device-width: 1024px) {
     .reviews_normal_wrapper {
-      width: 50%;
-      margin: 0 0 0 25%;
+      width: 80%;
+      /*margin: 0 0 0 25%;*/
     }
 }
+
+.reviews_normal_container {
+  height: 100%;
+  overflow: scroll;
+}
+.reviews_credits_container {
+  height: 100%;
+  /*position: relative;*/
+  overflow: hidden;
+}
+
+#tab-content1 {
+  /*position: relative;*/
+}
+#tab-content2 {
+  margin: 0 10% 0 -33%;
+}
+@media (min-device-width: 1024px) {
+  #tab-content2 {
+    margin: 0 10% 0 -23%
+  }
+}
+
+.tabs {
+  width: 100%;
+  float: none;
+  list-style: none;
+  position: relative;
+  margin: 0 0 0 -10%;
+  text-align: left;
+}
+@media (min-device-width: 1024px) {
+  .tabs {
+    margin: 0 0 0 10px;
+  }
+}
+
+.tabs li {
+    float: left;
+    display: block;
+  }
+
+.tabs input[type="radio"] {
+    position: absolute;
+    /*top: 0;*/
+    left: -9999px;
+  }
+
+.tabs label {
+  width: 35vw;
+  height: 5%;
+    display: block;
+    /*padding: 14px 21px;*/
+    border-radius: 5px 5px 0 0;
+    font-size: 17px;
+    font-weight: normal;
+    text-transform: uppercase;
+    background: rgb(180, 11, 17);
+    box-shadow:
+    cursor: pointer;
+    /*position: relative;*/
+    top: 4px;
+    transition: all 0.2s ease-in-out;
+    /*@include transition(all 0.2s ease-in-out);*/
+    box-shadow: 0 6px 20px black;
+  }
+.tabs label:hover {
+  background: rgb(180, 21, 17);
+  color: #fff;
+}
+@media (min-device-width: 1024px) {
+  .tabs label {
+    padding: 14px 21px;
+    width: 10vw;
+    height: 3%;
+  }
+}
+
+.tab-content{
+  height: 65vh;
+  /*width: 100%;*/
+  z-index: 2;
+  display: none;
+  /*overflow: hidden;*/
+  position: absolute;
+  /*background: rgb(105, 137, 163);*/
+}
+@media (min-device-width: 1024px) {
+  .tab-content {
+    height: 70vh;
+  }
+}
+
+   /*The Magic*/
+[id^="tab"]:checked + label {
+     /*top: 0;*/
+     /*padding-top: 17px;*/
+     background: rgb(180, 21, 17);
+   }
+[id^="tab"]:checked ~ [id^="tab-content"] {
+     display: block;
+   }
