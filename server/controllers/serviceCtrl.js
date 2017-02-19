@@ -52,7 +52,7 @@ module.exports = {
 
   readById: function(req, res, next) {
 
-    Service.findById(req.params.id, function(err, response) {
+    ServiceModel.findById(req.params.id, function(err, response) {
       if (err) {
         console.log("readById Service error just happened");
         res.status(500).send(err);
@@ -64,7 +64,7 @@ module.exports = {
 
   update: function(req,res, next) {
 
-    Service.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
+    ServiceModel.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
       if (err) {
         console.log("Update Service error just happened");
         res.status(500).send(err);
@@ -76,7 +76,7 @@ module.exports = {
 
   delete: function(req, res, next) {
 
-    Service.findByIdAndRemove(req.params.id, function(err, response) {
+    ServiceModel.findByIdAndRemove(req.params.id, function(err, response) {
       if (err) {
         console.log("Delete Service error just happened");
         res.status(500).send(err);

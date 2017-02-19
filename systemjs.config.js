@@ -25,7 +25,6 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'ng2-page-scroll/ng2-page-scroll': 'npm:ng2-page-scroll/bundles/ng2-page-scroll.umd.js',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'angular2-useful-swiper': 'npm:angular2-useful-swiper/lib',
       'ng2-modal': 'npm:ng2-modal',
     },

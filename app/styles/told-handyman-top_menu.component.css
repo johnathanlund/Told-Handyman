@@ -6,7 +6,7 @@
   top: 0;
   z-index: 3;
   /*background-color: rgb(180, 21, 17);*/
-  background-color: rgba(180, 21, 17, 0);
+  background-color: rgba(0, 0, 0, 0.3);
   /*border-bottom: 5px white solid;*/
   op
 }
@@ -74,7 +74,7 @@
 
 .top_menu_container a {
   text-decoration: none;
-  color: white;
+  color: #000;
 }
 .top_menu_container a:hover {
   cursor: pointer;
@@ -112,7 +112,7 @@
 .top_menu_logo {
   width: 40%;
   /*height: 90%;*/
-  color: white;
+  color: #000;
   /*background-color: blue;*/
   font-style: italic;
   display: inline-block;

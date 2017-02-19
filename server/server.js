@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
+var cors = require('cors');
 // var path = require('path');
 
 // CONFIG
@@ -23,7 +24,8 @@ var isAuthed = function(req, res, next) {
 var app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + './../public'));
+app.use(cors());
+// app.use(express.static(__dirname + './../public'));
 // app.use(session({
 //   secret: config.SESSION_SECRET,
 //   saveUninitialized: false,

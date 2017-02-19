@@ -9,9 +9,11 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var app_routing_module_1 = require("./app-routing.module");
+var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var told_handyman_component_1 = require("./told-handyman.component");
 var admin_handyman_component_1 = require("./admin-handyman.component");
+var data_service_1 = require("./services/data.service");
 var ng2_page_scroll_1 = require("ng2-page-scroll/ng2-page-scroll");
 var ng2_modal_1 = require("ng2-modal");
 var angular2_useful_swiper_1 = require("angular2-useful-swiper");
@@ -25,7 +27,9 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
+            forms_1.ReactiveFormsModule,
             app_routing_module_1.AppRoutingModule,
+            http_1.HttpModule,
             ng2_page_scroll_1.Ng2PageScrollModule.forRoot(),
             angular2_useful_swiper_1.SwiperModule,
             ng2_modal_1.ModalModule,
@@ -35,6 +39,8 @@ AppModule = __decorate([
             told_handyman_component_1.ToldHandymanComponent,
             admin_handyman_component_1.AdminHandymanComponent
         ],
+        providers: [data_service_1.DataService],
+        schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
         bootstrap: [app_component_1.AppComponent],
     })
 ], AppModule);
