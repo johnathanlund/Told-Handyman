@@ -27,14 +27,15 @@ var AdminHandymanComponent = (function () {
     AdminHandymanComponent.prototype.ngOnInit = function () {
         this.readServices();
         this.addServiceForm = this.formBuilder.group({
-            name: this.serviceName,
-            desc: this.serviceDescription
+            serviceName: this.serviceName,
+            serviceDescription: this.serviceDescription
         });
     };
     AdminHandymanComponent.prototype.createService = function () {
         var _this = this;
         this.dataService.createService(this.addServiceForm.value).subscribe(function (res) {
             var newService = res.json();
+            console.log("AdminHandymanComponent new service is: " + JSON.stringify(newService));
             _this.services.push(newService);
             console.log('Create service successfull at Admin-Handyman.component');
             _this.addServiceForm.reset();
@@ -61,10 +62,10 @@ var AdminHandymanComponent = (function () {
     AdminHandymanComponent.prototype.updateService = function (service) {
         var _this = this;
         this.dataService.updateService(service).subscribe(function (res) {
-            console.log('Update service successfull at Admin-Handyman.component');
             _this.isEditing = false;
             _this.service = service;
-        }, function (error) { return console.log('Update service Failed at Admin-Handyman.component. error: ' + error); });
+            console.log('Update service successfull at Admin-Handyman.component, service:  ' + JSON.stringify(_this.service));
+        }, function (error) { return console.log('Update service Failed at Admin-Handyman.component. error: ' + error + "THIS IS THE SERVICE:  " + +JSON.stringify(_this.service)); });
     };
     AdminHandymanComponent.prototype.deleteService = function (service) {
         var _this = this;

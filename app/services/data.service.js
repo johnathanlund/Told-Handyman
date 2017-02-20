@@ -19,25 +19,25 @@ var DataService = (function () {
         this.http = http;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=UTF-8' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
-        this._adminUrl = 'http://localhost:8000/services';
+        this._adminUrl = 'http://localhost:8000';
     }
     DataService.prototype.createService = function (service) {
         console.log("Create service successfull at data.service");
-        return this.http.post('/service', JSON.stringify(service), this.options);
+        return this.http.post('http://localhost:8000/service', JSON.stringify(service), this.options);
     };
     DataService.prototype.readServices = function () {
         console.log("Starting to Read service successfull at data.service");
-        return this.http.get(this._adminUrl).map(function (res) { return res.json(); })
+        return this.http.get('http://localhost:8000/services').map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
         // console.log('Read read please reeeeeaaaaaad.....');
     };
     DataService.prototype.updateService = function (service) {
         console.log("Update service successfull at data.service");
-        return this.http.put('/service/${service._id}', JSON.stringify(service), this.options);
+        return this.http.put('http://localhost:8000/service/' + service._id, JSON.stringify(service), this.options);
     };
     DataService.prototype.deleteService = function (service) {
         console.log("Delete service successfull at data.service");
-        return this.http.delete('/service/${service._id}', this.options);
+        return this.http.delete('http://localhost:8000/service/' + service._id, this.options);
     };
     return DataService;
 }());

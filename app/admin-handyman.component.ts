@@ -37,8 +37,8 @@ export class AdminHandymanComponent implements OnInit {
     this.readServices();
 
     this.addServiceForm = this.formBuilder.group({
-      name: this.serviceName,
-      desc: this.serviceDescription
+      serviceName: this.serviceName,
+      serviceDescription: this.serviceDescription
     });
   }
 
@@ -46,6 +46,7 @@ export class AdminHandymanComponent implements OnInit {
     this.dataService.createService(this.addServiceForm.value).subscribe(
       res => {
         let newService = res.json();
+        console.log("AdminHandymanComponent new service is: " + JSON.stringify(newService));
         this.services.push(newService);
         console.log('Create service successfull at Admin-Handyman.component');
         this.addServiceForm.reset();
@@ -80,11 +81,11 @@ export class AdminHandymanComponent implements OnInit {
   updateService(service) {
     this.dataService.updateService(service).subscribe(
       res => {
-        console.log('Update service successfull at Admin-Handyman.component');
         this.isEditing = false;
         this.service = service;
+        console.log('Update service successfull at Admin-Handyman.component, service:  ' + JSON.stringify(this.service));
       },
-      error => console.log('Update service Failed at Admin-Handyman.component. error: '+ error)
+      error => console.log('Update service Failed at Admin-Handyman.component. error: '+ error + "THIS IS THE SERVICE:  " + + JSON.stringify(this.service))
     );
   }
 

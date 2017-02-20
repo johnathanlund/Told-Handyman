@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageScroll } from 'ng2-page-scroll';
 import { ModalModule } from 'ng2-modal';
 import { SwiperModule } from 'angular2-useful-swiper';
+
+import { Http } from '@angular/http';
+import { DataService }  from './services/data.service';
 
 @Component ({
   moduleId: module.id,
@@ -28,7 +31,7 @@ import { SwiperModule } from 'angular2-useful-swiper';
 //         prevButton: '.swiper-button-prev',
 //         spaceBetween: 30
 // }
-export class ToldHandymanComponent {
+export class ToldHandymanComponent implements OnInit {
   config: Object = {
           pagination: '.swiper-pagination',
           paginationClickable: true,
@@ -37,4 +40,20 @@ export class ToldHandymanComponent {
           spaceBetween: 30,
           loop: true
   };
+
+  constructor(private http: Http,
+              private dataService: DataService){ }
+
+  ngOnInit() {
+    this.readServices();
+  }
+
+  readServices() {
+    this.dataService.readServices().subscribe(
+      data => this.services = data,
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+  }
+
 }

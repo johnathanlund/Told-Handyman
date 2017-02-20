@@ -13,28 +13,28 @@ export class DataService {
   private options = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http) { }
-  private _adminUrl = 'http://localhost:8000/services'
+  private _adminUrl = 'http://localhost:8000'
 
   createService(service): Observable<any> {
     console.log("Create service successfull at data.service");
-    return this.http.post('/service', JSON.stringify(service), this.options);
+    return this.http.post('http://localhost:8000/service', JSON.stringify(service), this.options);
   }
 
   readServices(): Observable<any> {
     console.log("Starting to Read service successfull at data.service");
-    return this.http.get(this._adminUrl).map((res:Response) => res.json())
+    return this.http.get('http://localhost:8000/services').map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().error || 'Server Error'));
     // console.log('Read read please reeeeeaaaaaad.....');
   }
 
   updateService(service): Observable<any> {
     console.log("Update service successfull at data.service");
-    return this.http.put('/service/${service._id}', JSON.stringify(service), this.options);
+    return this.http.put('http://localhost:8000/service/' + service._id, JSON.stringify(service), this.options);
   }
 
   deleteService(service): Observable<any> {
     console.log("Delete service successfull at data.service");
-    return this.http.delete('/service/${service._id}', this.options);
+    return this.http.delete('http://localhost:8000/service/' + service._id, this.options);
   }
 
 }

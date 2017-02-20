@@ -163,7 +163,12 @@
             <h1>Modal header</h1>
         </modal-header>
         <modal-content>
-            Hello Modal!
+          <tbody>
+            <tr *ngFor="let service of services">
+              <td>{{service.serviceName}}</td>
+              <td>{{service.serviceDescription}}</td>
+            </tr>
+          </tbody>
         </modal-content>
         <modal-footer>
             <button class="btn btn-primary" (click)="myModal.close()">close</button>
