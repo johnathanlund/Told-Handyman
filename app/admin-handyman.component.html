@@ -8,13 +8,6 @@
   </div>
   <div class="admin_services_container">
     <h3>Handyman Services Information</h3>
-    <h4>services are below:</h4>
-    <tbody>
-      <tr *ngFor="let service of services">
-        <td>{{service.serviceName}}</td>
-        <td>{{service.serviceDescription}}</td>
-      </tr>
-    </tbody>
 
     <div class="card" *ngIf="!isLoading">
       <h4 class="card-header">Current Services ({{services.length}})</h4>

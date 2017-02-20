@@ -32,6 +32,7 @@ import { DataService }  from './services/data.service';
 //         spaceBetween: 30
 // }
 export class ToldHandymanComponent implements OnInit {
+// export class ToldHandymanComponent {
   config: Object = {
           pagination: '.swiper-pagination',
           paginationClickable: true,
@@ -40,6 +41,12 @@ export class ToldHandymanComponent implements OnInit {
           spaceBetween: 30,
           loop: true
   };
+
+  services = [];
+  isLoading = true;
+
+  service = {};
+  isEditing = false;
 
   constructor(private http: Http,
               private dataService: DataService){ }

@@ -15,6 +15,7 @@ var ToldHandymanComponent = (function () {
     function ToldHandymanComponent(http, dataService) {
         this.http = http;
         this.dataService = dataService;
+        // export class ToldHandymanComponent {
         this.config = {
             pagination: '.swiper-pagination',
             paginationClickable: true,
@@ -23,6 +24,10 @@ var ToldHandymanComponent = (function () {
             spaceBetween: 30,
             loop: true
         };
+        this.services = [];
+        this.isLoading = true;
+        this.service = {};
+        this.isEditing = false;
     }
     ToldHandymanComponent.prototype.ngOnInit = function () {
         this.readServices();
