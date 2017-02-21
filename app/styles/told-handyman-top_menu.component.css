@@ -78,6 +78,7 @@
 }
 .top_menu_container a:hover {
   cursor: pointer;
+  color: #fff;
   /*color: rgb(180, 201, 47);*/
   background-color: rgba(0, 0, 0, 0.3);
 }
