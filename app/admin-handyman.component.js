@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
+var ng2_file_upload_1 = require("ng2-file-upload");
 var data_service_1 = require("./services/data.service");
 var AdminHandymanComponent = (function () {
     function AdminHandymanComponent(http, dataService, formBuilder) {
@@ -23,6 +24,9 @@ var AdminHandymanComponent = (function () {
         this.isEditing = false;
         this.serviceName = new forms_1.FormControl('', forms_1.Validators.required);
         this.serviceDescription = new forms_1.FormControl('', forms_1.Validators.required);
+        this.uploader = new ng2_file_upload_1.FileUploader({
+            url: 'http://localhost:8000/upload'
+        });
     }
     AdminHandymanComponent.prototype.ngOnInit = function () {
         this.readServices();

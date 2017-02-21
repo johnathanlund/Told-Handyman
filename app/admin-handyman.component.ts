@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
 
 import { DataService }  from './services/data.service';
 
@@ -101,5 +102,15 @@ export class AdminHandymanComponent implements OnInit {
       );
     }
   }
+
+  public uploader: FileUploader = new FileUploader({
+    url:'http://localhost:8000/upload'
+  });
+  // class MyUploader extends FileUploader {
+  //   onAfterAddingFile(file: any) {
+  //     file.withCredentials = false;
+  //   }
+  // }
+  // this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
 
  }

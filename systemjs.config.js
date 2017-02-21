@@ -27,6 +27,7 @@
       'ng2-page-scroll/ng2-page-scroll': 'npm:ng2-page-scroll/bundles/ng2-page-scroll.umd.js',
       'angular2-useful-swiper': 'npm:angular2-useful-swiper/lib',
       'ng2-modal': 'npm:ng2-modal',
+      'ng2-file-upload':  'npm:ng2-file-upload',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -43,6 +44,10 @@
       },
       'ng2-modal': {
         main: 'index.js',
+        defaultExtension: 'js'
+      },
+      'ng2-file-upload': {
+        main: 'ng2-file-upload.js',
         defaultExtension: 'js'
       },
     }

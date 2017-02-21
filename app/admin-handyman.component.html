@@ -5,6 +5,16 @@
   </div>
   <div class="admin_top_gallery_container">
     <h3>Handyman Top Page Gallery</h3>
+
+    <div class="form-group">
+       <label for="single">single</label>
+       <input type="file" class="form-control" name="file" ng2FileSelect [uploader]="uploader" />
+    </div>
+    <button type="button" class="btn btn-success btn-s"
+   (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+    <span class="glyphicon glyphicon-upload"></span> Upload all
+    </button><br />
+
   </div>
   <div class="admin_services_container">
     <h3>Handyman Services Information</h3>

@@ -17,6 +17,7 @@ var data_service_1 = require("./services/data.service");
 var ng2_page_scroll_1 = require("ng2-page-scroll/ng2-page-scroll");
 var ng2_modal_1 = require("ng2-modal");
 var angular2_useful_swiper_1 = require("angular2-useful-swiper");
+var ng2_file_upload_1 = require("ng2-file-upload");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,7 +38,8 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             told_handyman_component_1.ToldHandymanComponent,
-            admin_handyman_component_1.AdminHandymanComponent
+            admin_handyman_component_1.AdminHandymanComponent,
+            ng2_file_upload_1.FileSelectDirective,
         ],
         providers: [data_service_1.DataService],
         schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],

@@ -16,6 +16,7 @@ import { Ng2PageScrollModule }      from 'ng2-page-scroll/ng2-page-scroll';
 import { ModalModule }            from 'ng2-modal';
 
 import { SwiperModule }           from 'angular2-useful-swiper';
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
 @NgModule({
   imports:      [
@@ -31,7 +32,8 @@ import { SwiperModule }           from 'angular2-useful-swiper';
   declarations: [
     AppComponent,
     ToldHandymanComponent,
-    AdminHandymanComponent
+    AdminHandymanComponent,
+    FileSelectDirective,
   ],
   providers: [ DataService ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

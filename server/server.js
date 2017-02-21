@@ -38,7 +38,7 @@ var isAuthed = function(req, res, next) {
 var app = express();
 
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 // app.use(express.static(__dirname + './../public'));
 // app.use(session({
 //   secret: config.SESSION_SECRET,
@@ -50,6 +50,19 @@ app.use(cors());
 mongoose.set('debug', true);
 
 // HEADERS
+var permitCrossDomainRequests = function(req, res, next) {
+res.header('Access-Control-Allow-Origin', '*');
+res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+res.header('Access-Control-Allow-Headers', 'Content-Type');
+// some browsers send a pre-flight OPTIONS request to check if CORS is enabled so you have to also respond to that
+if ('OPTIONS' === req.method) {
+  res.sendStatus(200);
+}
+else {
+  next();
+}
+};
+app.use(permitCrossDomainRequests);
 // app.use(function (req, res, next) {
 //   res.setHeader('Access-Control-Allow-Origin', 'http://valor-software.github.io');
 //   res.setHeader('Access-Control-Allow-Methods', 'POST');
@@ -84,7 +97,9 @@ app.post('/upload', function (req, res) {
     if (err) {
       return res.end(err.toString());
     }
+    console.log('Past the IF statement for file Upload');
     res.end('File is uploaded');
+    console.log('The file has been successfully uploaded!');
   });
 });
 //===========User Endpoints============================================
