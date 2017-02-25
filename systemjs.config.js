@@ -27,7 +27,8 @@
       'ng2-page-scroll/ng2-page-scroll': 'npm:ng2-page-scroll/bundles/ng2-page-scroll.umd.js',
       'angular2-useful-swiper': 'npm:angular2-useful-swiper/lib',
       'ng2-modal': 'npm:ng2-modal',
-      'ng2-file-upload':  'npm:ng2-file-upload',
+      'angular2-dropzone-wrapper': 'npm:angular2-dropzone-wrapper/bundles/angular2-dropzone-wrapper.umd.min.js',
+      // 'dropzone': 'dropzone.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -35,7 +36,7 @@
         main: './main.js',
         defaultExtension: 'js'
       },
-      rxjs: {
+      'rxjs': {
         defaultExtension: 'js'
       },
       'angular2-useful-swiper': {
@@ -46,10 +47,10 @@
         main: 'index.js',
         defaultExtension: 'js'
       },
-      'ng2-file-upload': {
-        main: 'ng2-file-upload.js',
-        defaultExtension: 'js'
-      },
+      // 'dropzone': {
+      //   main: 'dropzone.js',
+      //   defaultExtension: 'js'
+      // },
     }
   });
 })(this);

@@ -11,12 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
-var ng2_file_upload_1 = require("ng2-file-upload");
 var data_service_1 = require("./services/data.service");
+var upload_service_1 = require("./services/upload.service");
 var AdminHandymanComponent = (function () {
-    function AdminHandymanComponent(http, dataService, formBuilder) {
+    function AdminHandymanComponent(http, dataService, uploadService, formBuilder) {
         this.http = http;
         this.dataService = dataService;
+        this.uploadService = uploadService;
         this.formBuilder = formBuilder;
         this.services = [];
         this.isLoading = true;
@@ -24,9 +25,6 @@ var AdminHandymanComponent = (function () {
         this.isEditing = false;
         this.serviceName = new forms_1.FormControl('', forms_1.Validators.required);
         this.serviceDescription = new forms_1.FormControl('', forms_1.Validators.required);
-        this.uploader = new ng2_file_upload_1.FileUploader({
-            url: 'http://localhost:8000/upload'
-        });
     }
     AdminHandymanComponent.prototype.ngOnInit = function () {
         this.readServices();
@@ -93,11 +91,12 @@ AdminHandymanComponent = __decorate([
             './styles/admin-handyman-top_title.component.css',
             './styles/admin-handyman-admin_top_gallery.component.css',
             './styles/admin-handyman-admin_services.component.css',
-            './styles/admin-handyman-admin_reviews.component.css'
+            './styles/admin-handyman-admin_reviews.component.css',
         ]
     }),
     __metadata("design:paramtypes", [http_1.Http,
         data_service_1.DataService,
+        upload_service_1.UploadService,
         forms_1.FormBuilder])
 ], AdminHandymanComponent);
 exports.AdminHandymanComponent = AdminHandymanComponent;

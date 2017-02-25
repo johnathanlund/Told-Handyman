@@ -24,13 +24,6 @@ import { DataService }  from './services/data.service';
   ]
 })
 
-// config: Object = {
-//         pagination: '.swiper-pagination',
-//         paginationClickable: true,
-//         nextButton: '.swiper-button-next',
-//         prevButton: '.swiper-button-prev',
-//         spaceBetween: 30
-// }
 export class ToldHandymanComponent implements OnInit {
 // export class ToldHandymanComponent {
   config: Object = {

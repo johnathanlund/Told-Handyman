@@ -1,8 +1,8 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA }               from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders } from '@angular/core';
 import { BrowserModule }          from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }            from '@angular/forms';
-
-import { Component }                from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule }           from '@angular/common';
+import { Component }              from '@angular/core';
 
 import { AppRoutingModule }       from './app-routing.module';
 import { HttpModule }             from '@angular/http';
@@ -10,13 +10,24 @@ import { HttpModule }             from '@angular/http';
 import { AppComponent }           from './app.component';
 import { ToldHandymanComponent }  from './told-handyman.component';
 import { AdminHandymanComponent } from './admin-handyman.component';
-import { DataService } from './services/data.service';
+import { DataService }            from './services/data.service';
+import { FileUploadComponent }    from './fileUpload.component';
+import { DropzoneModule }         from 'angular2-dropzone-wrapper';
+import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
+import { UploadService }          from './services/upload.service';
+// import { Dropzone }               from 'dropzone';
 
-import { Ng2PageScrollModule }      from 'ng2-page-scroll/ng2-page-scroll';
+import { Ng2PageScrollModule }    from 'ng2-page-scroll/ng2-page-scroll';
 import { ModalModule }            from 'ng2-modal';
 
 import { SwiperModule }           from 'angular2-useful-swiper';
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+
+const DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+  server: 'https://localhost:8000/upload',
+  maxFilesize: 10,
+  acceptedFiles: 'image/*'
+};
 
 @NgModule({
   imports:      [
@@ -28,15 +39,17 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
     Ng2PageScrollModule.forRoot(),
     SwiperModule,
     ModalModule,
+    CommonModule,
+    DropzoneModule.forRoot(DROPZONE_CONFIG),
   ],
   declarations: [
     AppComponent,
     ToldHandymanComponent,
     AdminHandymanComponent,
-    FileSelectDirective,
+    FileUploadComponent,
   ],
-  providers: [ DataService ],
+  providers: [ DataService, UploadService ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap:    [ AppComponent ],
 })
-export class AppModule { }
+export class AppModule {}
