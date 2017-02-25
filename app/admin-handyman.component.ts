@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 
 import { DataService }  from './services/data.service';
-import { FileUploadComponent }  from './fileUpload.component';
-import { UploadService }  from './services/upload.service';
-import { DropzoneModule }         from 'angular2-dropzone-wrapper';
+// import { FileUploadComponent }  from './fileUpload.component';
+// import { UploadService }  from './services/upload.service';
+// import { DropzoneModule }         from 'angular2-dropzone-wrapper';
+import { DropzoneComponent }  from './dropzone.component';
 
 @Component ({
   moduleId: module.id,
@@ -18,7 +19,9 @@ import { DropzoneModule }         from 'angular2-dropzone-wrapper';
     './styles/admin-handyman-admin_top_gallery.component.css',
     './styles/admin-handyman-admin_services.component.css',
     './styles/admin-handyman-admin_reviews.component.css',
-  ]
+    './styles/dropzone.css',
+  ],
+  directives: [ DropzoneComponent ]
 })
 export class AdminHandymanComponent implements OnInit {
 
@@ -34,7 +37,7 @@ export class AdminHandymanComponent implements OnInit {
 
   constructor(private http: Http,
               private dataService: DataService,
-              private uploadService: UploadService,
+              // private uploadService: UploadService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {

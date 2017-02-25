@@ -12,12 +12,16 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var data_service_1 = require("./services/data.service");
-var upload_service_1 = require("./services/upload.service");
+// import { FileUploadComponent }  from './fileUpload.component';
+// import { UploadService }  from './services/upload.service';
+// import { DropzoneModule }         from 'angular2-dropzone-wrapper';
+var dropzone_component_1 = require("./dropzone.component");
 var AdminHandymanComponent = (function () {
-    function AdminHandymanComponent(http, dataService, uploadService, formBuilder) {
+    function AdminHandymanComponent(http, dataService, 
+        // private uploadService: UploadService,
+        formBuilder) {
         this.http = http;
         this.dataService = dataService;
-        this.uploadService = uploadService;
         this.formBuilder = formBuilder;
         this.services = [];
         this.isLoading = true;
@@ -92,11 +96,12 @@ AdminHandymanComponent = __decorate([
             './styles/admin-handyman-admin_top_gallery.component.css',
             './styles/admin-handyman-admin_services.component.css',
             './styles/admin-handyman-admin_reviews.component.css',
-        ]
+            './styles/dropzone.css',
+        ],
+        directives: [dropzone_component_1.DropzoneComponent]
     }),
     __metadata("design:paramtypes", [http_1.Http,
         data_service_1.DataService,
-        upload_service_1.UploadService,
         forms_1.FormBuilder])
 ], AdminHandymanComponent);
 exports.AdminHandymanComponent = AdminHandymanComponent;

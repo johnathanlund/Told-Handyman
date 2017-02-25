@@ -11,23 +11,24 @@ import { AppComponent }           from './app.component';
 import { ToldHandymanComponent }  from './told-handyman.component';
 import { AdminHandymanComponent } from './admin-handyman.component';
 import { DataService }            from './services/data.service';
-import { FileUploadComponent }    from './fileUpload.component';
-import { DropzoneModule }         from 'angular2-dropzone-wrapper';
-import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
-import { UploadService }          from './services/upload.service';
+// import { FileUploadComponent }    from './fileUpload.component';
+// import { DropzoneModule }         from 'angular2-dropzone-wrapper';
+// import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
+// import { UploadService }          from './services/upload.service';
 // import { Dropzone }               from 'dropzone';
+import { DropzoneComponent }      from './dropzone.component';
 
 import { Ng2PageScrollModule }    from 'ng2-page-scroll/ng2-page-scroll';
 import { ModalModule }            from 'ng2-modal';
 
 import { SwiperModule }           from 'angular2-useful-swiper';
 
-const DROPZONE_CONFIG: DropzoneConfigInterface = {
-  // Change this to your upload POST address:
-  server: 'https://localhost:8000/upload',
-  maxFilesize: 10,
-  acceptedFiles: 'image/*'
-};
+// const DROPZONE_CONFIG: DropzoneConfigInterface = {
+//   // Change this to your upload POST address:
+//   server: 'https://localhost:8000/upload',
+//   maxFilesize: 10,
+//   acceptedFiles: 'image/*'
+// };
 
 @NgModule({
   imports:      [
@@ -40,15 +41,16 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     SwiperModule,
     ModalModule,
     CommonModule,
-    DropzoneModule.forRoot(DROPZONE_CONFIG),
+    // DropzoneModule.forRoot(DROPZONE_CONFIG),
   ],
   declarations: [
     AppComponent,
     ToldHandymanComponent,
     AdminHandymanComponent,
-    FileUploadComponent,
+    DropzoneComponent,
+    // FileUploadComponent,
   ],
-  providers: [ DataService, UploadService ],
+  providers: [ DataService ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap:    [ AppComponent ],
 })
