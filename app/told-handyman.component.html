@@ -101,58 +101,18 @@
             <div class="col-4.1 homeRepairs_image"><p>Home Repairs picture</p></div>
         </div></div>
     </div>
+
     <div class="row services_row">
-        <div class="col-4" id="services">
+        <div class="col-4" id="services" *ngFor="let service of services">
           <div class="row">
-            <div class="col-4 services_title"><h5>Kitchens & Bathrooms</h5>
+            <div class="col-4 services_title"><h5>{{service.serviceName}}</h5>
               <div class="row">
                 <div class="col-4">
-                  <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
-                    that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
+                  <p>{{service.serviceDescription}}</p>
                 </div>
                 <!-- <div class="col-4"><p>col-4.2</p></div> -->
           </div></div>
-            <div class="col-4.1 kitchenBath_image"><p>Kitchen & Bathrooms picture</p></div>
-        </div></div>
-        <!-- <div class="col-4"><p>col-4</p></div> -->
-        <div class="col-4" id="services">
-          <div class="row">
-            <div class="col-4 services_title"><h5>Drywall Repair</h5>
-              <div class="row">
-                <div class="col-4">
-                  <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
-                    that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
-                </div>
-                <!-- <div class="col-4"><p>col-4.2</p></div> -->
-          </div></div>
-            <div class="col-4.1 drywall_image"><p>Drywall Repair picture</p></div>
-        </div></div>
-    </div>
-    <div class="row services_row">
-        <div class="col-4" id="services">
-          <div class="row">
-            <div class="col-4 services_title"><h5>Custom Doors</h5>
-              <div class="row">
-                <div class="col-4">
-                  <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
-                    that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
-                </div>
-                <!-- <div class="col-4"><p>col-4.2</p></div> -->
-          </div></div>
-            <div class="col-4.1 customDoors_image"><p>Custom Doors picture</p></div>
-        </div></div>
-        <!-- <div class="col-4"><p>col-4</p></div> -->
-        <div class="col-4" id="services">
-          <div class="row">
-            <div class="col-4 services_title"><h5>Painting</h5>
-              <div class="row">
-                <div class="col-4">
-                  <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
-                    that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
-                </div>
-                <!-- <div class="col-4"><p>col-4.2</p></div> -->
-          </div></div>
-            <div class="col-4.1 painting_image"><p>painting picture</p></div>
+            <div class="col-4.1 customDoors_image"></div>
         </div></div>
     </div>
 </div>

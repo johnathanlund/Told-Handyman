@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
@@ -19,8 +20,6 @@ var data_service_1 = require("./services/data.service");
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
 // import { UploadService }          from './services/upload.service';
-// import { Dropzone }               from 'dropzone';
-var dropzone_component_1 = require("./dropzone.component");
 var ng2_page_scroll_1 = require("ng2-page-scroll/ng2-page-scroll");
 var ng2_modal_1 = require("ng2-modal");
 var angular2_useful_swiper_1 = require("angular2-useful-swiper");
@@ -52,7 +51,6 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             told_handyman_component_1.ToldHandymanComponent,
             admin_handyman_component_1.AdminHandymanComponent,
-            dropzone_component_1.DropzoneComponent,
         ],
         providers: [data_service_1.DataService],
         schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],

@@ -30,6 +30,7 @@
 }
 .services_row {
   flex-flow: column wrap;
+  flex-wrap: wrap;
 }
 @media (min-device-width: 1024px) {
   .services_row {

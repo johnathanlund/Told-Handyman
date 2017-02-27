@@ -7,7 +7,7 @@ import { DataService }  from './services/data.service';
 // import { FileUploadComponent }  from './fileUpload.component';
 // import { UploadService }  from './services/upload.service';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
-import { DropzoneComponent }  from './dropzone.component';
+// import { DropzoneComponent }  from './dropzone.component';
 
 @Component ({
   moduleId: module.id,
@@ -21,7 +21,7 @@ import { DropzoneComponent }  from './dropzone.component';
     './styles/admin-handyman-admin_reviews.component.css',
     './styles/dropzone.css',
   ],
-  directives: [ DropzoneComponent ]
+  // directives: [ DropzoneComponent ]
 })
 export class AdminHandymanComponent implements OnInit {
 

@@ -15,8 +15,6 @@ import { DataService }            from './services/data.service';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
 // import { UploadService }          from './services/upload.service';
-// import { Dropzone }               from 'dropzone';
-import { DropzoneComponent }      from './dropzone.component';
 
 import { Ng2PageScrollModule }    from 'ng2-page-scroll/ng2-page-scroll';
 import { ModalModule }            from 'ng2-modal';
@@ -47,7 +45,7 @@ import { SwiperModule }           from 'angular2-useful-swiper';
     AppComponent,
     ToldHandymanComponent,
     AdminHandymanComponent,
-    DropzoneComponent,
+    // DropzoneComponent,
     // FileUploadComponent,
   ],
   providers: [ DataService ],

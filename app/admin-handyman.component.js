@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
@@ -15,7 +16,7 @@ var data_service_1 = require("./services/data.service");
 // import { FileUploadComponent }  from './fileUpload.component';
 // import { UploadService }  from './services/upload.service';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
-var dropzone_component_1 = require("./dropzone.component");
+// import { DropzoneComponent }  from './dropzone.component';
 var AdminHandymanComponent = (function () {
     function AdminHandymanComponent(http, dataService, 
         // private uploadService: UploadService,
@@ -98,7 +99,6 @@ AdminHandymanComponent = __decorate([
             './styles/admin-handyman-admin_reviews.component.css',
             './styles/dropzone.css',
         ],
-        directives: [dropzone_component_1.DropzoneComponent]
     }),
     __metadata("design:paramtypes", [http_1.Http,
         data_service_1.DataService,

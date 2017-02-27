@@ -29,7 +29,6 @@
       'ng2-modal': 'npm:ng2-modal',
       // 'angular2-dropzone-wrapper': 'npm:angular2-dropzone-wrapper/bundles/angular2-dropzone-wrapper.umd.min.js',
       // 'angular2-dropzone-wrapper':  'npm:angular2-dropzone-wrapper',
-      // 'dropzone': 'dropzone.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -50,10 +49,6 @@
       },
       // 'angular2-dropzone-wrapper': {
       //   main: 'bundles/angular2-dropzone-wrapper.umd.js',
-      //   defaultExtension: 'js'
-      // },
-      // 'dropzone': {
-      //   main: 'dropzone.js',
       //   defaultExtension: 'js'
       // },
     }
