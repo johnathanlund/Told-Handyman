@@ -22,6 +22,7 @@ var DataService = (function () {
         this.options = new http_1.RequestOptions({ headers: this.headers });
         this._adminUrl = 'http://localhost:8000';
     }
+    //=============Service Connections=============================================
     DataService.prototype.createService = function (service) {
         console.log("Create service successfull at data.service");
         return this.http.post('http://localhost:8000/service', JSON.stringify(service), this.options);
@@ -39,6 +40,25 @@ var DataService = (function () {
     DataService.prototype.deleteService = function (service) {
         console.log("Delete service successfull at data.service");
         return this.http.delete('http://localhost:8000/service/' + service._id, this.options);
+    };
+    //==============Service List Connections=======================================
+    DataService.prototype.createServiceList = function (serviceList) {
+        console.log("Create service list successfull at data.service");
+        return this.http.post('http://localhost:8000/serviceList', JSON.stringify(serviceList), this.options);
+    };
+    DataService.prototype.readServiceLists = function () {
+        console.log("Starting to Read service list successfull at data.service");
+        return this.http.get('http://localhost:8000/serviceLists').map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
+        // console.log('Read read please reeeeeaaaaaad.....');
+    };
+    DataService.prototype.updateServiceList = function (serviceList) {
+        console.log("Update service list successfull at data.service");
+        return this.http.put('http://localhost:8000/serviceList/' + serviceList._id, JSON.stringify(serviceList), this.options);
+    };
+    DataService.prototype.deleteServiceList = function (serviceList) {
+        console.log("Delete service list successfull at data.service");
+        return this.http.delete('http://localhost:8000/serviceList/' + serviceList._id, this.options);
     };
     return DataService;
 }());

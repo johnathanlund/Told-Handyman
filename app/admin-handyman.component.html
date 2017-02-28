@@ -12,9 +12,10 @@
 
   </div>
   <div class="admin_services_container">
+    <div class="service_section">
     <h3>Handyman Services Information</h3>
 
-    <div class="card" *ngIf="!isLoading">
+    <div class="card service_card" *ngIf="!isLoading">
       <h4 class="card-header">Current Services ({{services.length}})</h4>
       <div class="card-block">
         <table class="table table-bordered table-striped">
@@ -58,8 +59,9 @@
       </div>
     </div>
 
+    <div class="add_card">
     <div class="card" *ngIf="!isEditing">
-      <h4 class="card-header">Add new service</h4>
+      <h4 class="card-header service_card_header">Add new service</h4>
       <div class="card-block">
         <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
           <div class="form-group">
@@ -72,7 +74,73 @@
         </form>
       </div>
     </div>
+  </div>
+  </div>
 
+<div class="serviceList_section">
+    <h3>Handyman Service List Items</h3>
+
+    <div class="card service_card" *ngIf="!serviceListIsLoading">
+      <h4 class="card-header">Current Service List items ({{serviceLists.length}})</h4>
+      <div class="card-block">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-default">
+            <tr>
+              <th>List Item Name</th>
+              <th>List Item Description</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="serviceLists.length === 0">
+            <tr>
+              <td colspan="4">There are no service list items in the DB. Add a new service list item below.</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="!serviceListIsEditing">
+            <tr *ngFor="let serviceList of serviceLists">
+              <td>{{serviceList.serviceListName}}</td>
+              <td>{{serviceList.serviceListDescription}}</td>
+              <td>
+                <button class="btn btn-sm btn-warning" (click)="enableServiceListEditing(serviceList)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteServiceList(serviceList)"><i class="fa fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="serviceListIsEditing">
+            <tr>
+              <td colspan="4">
+                <form class="form-inline" #form="ngForm" (ngSubmit)="updateServiceList(serviceList)" style="display:inline">
+                  <div class="form-group">
+                      <input class="form-control" type="text" name="serviceListName" [(ngModel)]="serviceList.serviceListName" placeholder="Name" required>
+                  </div>
+                  <div class="form-group">
+                    <textarea rows="4" cols="70" class="form-control" type="text" name="serviceListDescription" [(ngModel)]="serviceList.serviceListDescription" placeholder="Description" required></textarea>
+                  </div>
+                  <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+                </form>
+                <button class="btn btn-sm btn-warning" (click)="cancelServiceListEditing()"><i class="fa fa-times"></i> Cancel</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="add_list_card">
+    <div class="card" *ngIf="!serviceListIsEditing">
+      <h4 class="card-header service_card_header">Add new service list item</h4>
+      <div class="card-block">
+        <form class="form-inline" [formGroup]="addServiceListForm" (ngSubmit)="createServiceList()" style="text-align:center">
+          <div class="form-group">
+              <input class="form-control" type="text" name="name" formControlName="serviceListName" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="description" formControlName="serviceListDescription" placeholder="Description">
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="!addServiceListForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
   </div>
   <div class="admin_reviews_container">
     <h3>Handyman Reviews Selection</h3>

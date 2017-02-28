@@ -35,6 +35,16 @@ export class AdminHandymanComponent implements OnInit {
   serviceName = new FormControl('', Validators.required);
   serviceDescription = new FormControl('', Validators.required);
 
+  serviceLists = [];
+  serviceListIsLoading = true;
+
+  serviceList = {};
+  serviceListIsEditing = false;
+
+  addServiceListForm: FormGroup;
+  serviceListName = new FormControl('', Validators.required);
+  serviceListDescription = new FormControl('', Validators.required);
+
   constructor(private http: Http,
               private dataService: DataService,
               // private uploadService: UploadService,
@@ -42,13 +52,19 @@ export class AdminHandymanComponent implements OnInit {
 
   ngOnInit() {
     this.readServices();
+    this.readServiceLists();
 
     this.addServiceForm = this.formBuilder.group({
       serviceName: this.serviceName,
       serviceDescription: this.serviceDescription
     });
+    this.addServiceListForm = this.formBuilder.group({
+      serviceListName: this.serviceListName,
+      serviceListDescription: this.serviceListDescription
+    });
   }
 
+//=====================Service Data Connections==================================
   createService() {
     this.dataService.createService(this.addServiceForm.value).subscribe(
       res => {
@@ -109,6 +125,67 @@ export class AdminHandymanComponent implements OnInit {
     }
   }
 
+//==========================Service List Data Connections========================
+createServiceList() {
+  this.dataService.createServiceList(this.addServiceListForm.value).subscribe(
+    res => {
+      let newServiceList = res.json();
+      console.log("AdminHandymanComponent new service list is: " + JSON.stringify(newServiceList));
+      this.serviceLists.push(newServiceList);
+      console.log('Create service list successfull at Admin-Handyman.component');
+    },
+    error => console.log('Create error at service list in Admin-handyman.component. error:  ' + error)
+  );
+  // readServiceLists();
+  this.addServiceListForm.reset();
+}
+
+readServiceLists() {
+  this.dataService.readServiceLists().subscribe(
+    // data => {
+    //   console.log('Read services succesfull at Admin-Handyman.component');
+    //   this.services = data;
+    // },
+    data => this.serviceLists = data,
+    error => console.log(error),
+    () => this.serviceListIsLoading = false
+  );
+}
+
+enableServiceListEditing(serviceList) {
+  this.serviceListIsEditing = true;
+  this.serviceList = serviceList;
+}
+
+cancelServiceListEditing() {
+  this.serviceListIsEditing = false;
+  this.serviceList = {};
+  this.readServiceLists();
+}
+
+updateServiceList(serviceList) {
+  this.dataService.updateServiceList(serviceList).subscribe(
+    res => {
+      this.serviceListIsEditing = false;
+      this.serviceList = serviceList;
+      console.log('Update service list successfull at Admin-Handyman.component, service:  ' + JSON.stringify(this.serviceList));
+    },
+    error => console.log('Update service list Failed at Admin-Handyman.component. error: '+ error + "THIS IS THE SERVICE:  " + + JSON.stringify(this.serviceList))
+  );
+}
+
+deleteServiceList(serviceList) {
+  if (window.confirm('Are you sure you want to permanently delete this service list item?')) {
+    this.dataService.deleteServiceList(serviceList).subscribe(
+      res => {
+        console.log('Delete service list successfull at Admin-Handyman.component.');
+        let pos = this.serviceLists.map(elem => { return elem._id; }).indexOf(serviceList._id);
+        this.serviceLists.splice(pos, 1);
+      },
+      error => console.log('Delete service list Failed at Admin-Handyman.component. error: '+ error)
+    );
+  }
+}
 
 
  }

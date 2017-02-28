@@ -29,13 +29,22 @@ var ToldHandymanComponent = (function () {
         this.isLoading = true;
         this.service = {};
         this.isEditing = false;
+        this.serviceLists = [];
+        this.isLoading = true;
+        this.serviceList = {};
+        this.isEditing = false;
     }
     ToldHandymanComponent.prototype.ngOnInit = function () {
         this.readServices();
+        this.readServiceLists();
     };
     ToldHandymanComponent.prototype.readServices = function () {
         var _this = this;
         this.dataService.readServices().subscribe(function (data) { return _this.services = data; }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
+    };
+    ToldHandymanComponent.prototype.readServiceLists = function () {
+        var _this = this;
+        this.dataService.readServiceLists().subscribe(function (data) { return _this.serviceLists = data; }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
     };
     return ToldHandymanComponent;
 }());

@@ -2,6 +2,7 @@
   width: 100%;
   height: 50vh;
   /*background-color: blue;*/
+  background: linear-gradient(grey, white);
   border-top: 2px solid black;
 }
 

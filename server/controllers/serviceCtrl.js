@@ -15,30 +15,8 @@ module.exports = {
     };
     });
   },
-  // create: function(req, res, next) {
-  //
-  //     Service.create(req.body, function(err, response) {
-  //         if (err) {
-  //           return res.status(500).send(err);
-  //         }
-  //         res.status(200).send(response);
-  //     });
-  // },
-// create: function(req, res) {
-//     var newService = new Service(req.body);
-//     newService.save(function(err, response) {
-//       if(err) {
-//         console.log('Error has occured on create');
-//         res.status(500).json(err)
-//       }else {
-//         console.log("Success in creating new Service");
-//         res.status(200).send(response);
-//       }
-//     });
-// },
 
   read: function(req, res, next) {
-
     ServiceModel.find(req.query)
       .exec(function(err, response) {
         if (err) {
@@ -51,7 +29,6 @@ module.exports = {
     },
 
   readById: function(req, res, next) {
-
     ServiceModel.findById(req.params.id, function(err, response) {
       if (err) {
         console.log("readById Service error just happened");
@@ -63,7 +40,6 @@ module.exports = {
   },
 
   update: function(req,res, next) {
-
     ServiceModel.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
       if (err) {
         console.log("Update Service error just happened");
@@ -75,7 +51,6 @@ module.exports = {
   },
 
   delete: function(req, res, next) {
-
     ServiceModel.findByIdAndRemove(req.params.id, function(err, response) {
       if (err) {
         console.log("Delete Service error just happened");

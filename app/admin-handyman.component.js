@@ -30,14 +30,26 @@ var AdminHandymanComponent = (function () {
         this.isEditing = false;
         this.serviceName = new forms_1.FormControl('', forms_1.Validators.required);
         this.serviceDescription = new forms_1.FormControl('', forms_1.Validators.required);
+        this.serviceLists = [];
+        this.serviceListIsLoading = true;
+        this.serviceList = {};
+        this.serviceListIsEditing = false;
+        this.serviceListName = new forms_1.FormControl('', forms_1.Validators.required);
+        this.serviceListDescription = new forms_1.FormControl('', forms_1.Validators.required);
     }
     AdminHandymanComponent.prototype.ngOnInit = function () {
         this.readServices();
+        this.readServiceLists();
         this.addServiceForm = this.formBuilder.group({
             serviceName: this.serviceName,
             serviceDescription: this.serviceDescription
         });
+        this.addServiceListForm = this.formBuilder.group({
+            serviceListName: this.serviceListName,
+            serviceListDescription: this.serviceListDescription
+        });
     };
+    //=====================Service Data Connections==================================
     AdminHandymanComponent.prototype.createService = function () {
         var _this = this;
         this.dataService.createService(this.addServiceForm.value).subscribe(function (res) {
@@ -82,6 +94,54 @@ var AdminHandymanComponent = (function () {
                 var pos = _this.services.map(function (elem) { return elem._id; }).indexOf(service._id);
                 _this.services.splice(pos, 1);
             }, function (error) { return console.log('Delete service Failed at Admin-Handyman.component. error: ' + error); });
+        }
+    };
+    //==========================Service List Data Connections========================
+    AdminHandymanComponent.prototype.createServiceList = function () {
+        var _this = this;
+        this.dataService.createServiceList(this.addServiceListForm.value).subscribe(function (res) {
+            var newServiceList = res.json();
+            console.log("AdminHandymanComponent new service list is: " + JSON.stringify(newServiceList));
+            _this.serviceLists.push(newServiceList);
+            console.log('Create service list successfull at Admin-Handyman.component');
+        }, function (error) { return console.log('Create error at service list in Admin-handyman.component. error:  ' + error); });
+        // readServiceLists();
+        this.addServiceListForm.reset();
+    };
+    AdminHandymanComponent.prototype.readServiceLists = function () {
+        var _this = this;
+        this.dataService.readServiceLists().subscribe(
+        // data => {
+        //   console.log('Read services succesfull at Admin-Handyman.component');
+        //   this.services = data;
+        // },
+        function (data) { return _this.serviceLists = data; }, function (error) { return console.log(error); }, function () { return _this.serviceListIsLoading = false; });
+    };
+    AdminHandymanComponent.prototype.enableServiceListEditing = function (serviceList) {
+        this.serviceListIsEditing = true;
+        this.serviceList = serviceList;
+    };
+    AdminHandymanComponent.prototype.cancelServiceListEditing = function () {
+        this.serviceListIsEditing = false;
+        this.serviceList = {};
+        this.readServiceLists();
+    };
+    AdminHandymanComponent.prototype.updateServiceList = function (serviceList) {
+        var _this = this;
+        this.dataService.updateServiceList(serviceList).subscribe(function (res) {
+            _this.serviceListIsEditing = false;
+            _this.serviceList = serviceList;
+            console.log('Update service list successfull at Admin-Handyman.component, service:  ' + JSON.stringify(_this.serviceList));
+        }, function (error) { return console.log('Update service list Failed at Admin-Handyman.component. error: ' + error + "THIS IS THE SERVICE:  " + +JSON.stringify(_this.serviceList)); });
+    };
+    AdminHandymanComponent.prototype.deleteServiceList = function (serviceList) {
+        var _this = this;
+        if (window.confirm('Are you sure you want to permanently delete this service list item?')) {
+            this.dataService.deleteServiceList(serviceList).subscribe(function (res) {
+                console.log('Delete service list successfull at Admin-Handyman.component.');
+                var pos = _this.serviceLists.map(function (elem) { return elem._id; }).indexOf(serviceList._id);
+                _this.serviceLists.splice(pos, 1);
+            }, function (error) { return console.log('Delete service list Failed at Admin-Handyman.component. error: ' + error); });
         }
     };
     return AdminHandymanComponent;

@@ -41,16 +41,30 @@ export class ToldHandymanComponent implements OnInit {
   service = {};
   isEditing = false;
 
+  serviceLists = [];
+  isLoading = true;
+
+  serviceList = {};
+  isEditing = false;
+
   constructor(private http: Http,
               private dataService: DataService){ }
 
   ngOnInit() {
     this.readServices();
+    this.readServiceLists();
   }
 
   readServices() {
     this.dataService.readServices().subscribe(
       data => this.services = data,
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+  }
+  readServiceLists() {
+    this.dataService.readServiceLists().subscribe(
+      data => this.serviceLists = data,
       error => console.log(error),
       () => this.isLoading = false
     );

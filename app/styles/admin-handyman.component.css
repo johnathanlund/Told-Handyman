@@ -1,9 +1,11 @@
 .admin_container {
   width: 100%;
   height: 300%;
-  background-color: rgb(180, 21, 17);
-  border: 5px white solid;
-  color: white;
+  /*background-color: rgb(180, 21, 17);*/
+  background-color: white;
+  /*background: linear-gradient(grey, white);*/
+  border: 5px black solid;
+  /*color: white;*/
 }
 
 .admin_container h3 {
@@ -11,7 +13,7 @@
   margin: 0 0 0 35%;
   text-align: center;
   font-size: 120%;
-  border: 2px solid white;
+  border: 2px solid rgb(180, 21, 17);
 
 }
 @media (min-device-width: 1024px) {

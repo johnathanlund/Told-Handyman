@@ -2,5 +2,6 @@
   width: 100vw;
   height: 50vh;
   border-top: 2px solid black;
+  background: linear-gradient(grey, white);
   /*background-color: green;*/
 }

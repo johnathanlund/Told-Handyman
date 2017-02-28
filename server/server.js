@@ -24,6 +24,7 @@ var config = require('./config');
 
 // CONTROLLERS
 var serviceCtrl = require('./controllers/serviceCtrl.js');
+var serviceListCtrl = require('./controllers/serviceListCtrl.js')
 
 // SERVICES
 // var passport = require('./services/passport');
@@ -115,6 +116,12 @@ app.get('/services', serviceCtrl.read);
 app.get('/service/:id', serviceCtrl.readById);
 app.put('/service/:id', serviceCtrl.update);
 app.delete('/service/:id', serviceCtrl.delete);
+//===========Service List Endpoints===================================
+app.post('/serviceList', serviceListCtrl.create);
+app.get('/serviceLists', serviceListCtrl.read);
+app.get('/serviceList/:id', serviceListCtrl.readById);
+app.put('/serviceList/:id', serviceListCtrl.update);
+app.delete('/serviceList/:id', serviceListCtrl.delete);
 
 // CONNECTIONS
 // var port: number = process.env.PORT || 8000;
