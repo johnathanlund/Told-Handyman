@@ -35,11 +35,44 @@
               <td>{{service.serviceName}}</td>
               <td>{{service.serviceDescription}}</td>
               <td>
-                <button class="btn btn-sm btn-warning" (click)="enableEditing(service)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteService(service)"><i class="fa fa-trash"></i> Delete</button>
+                <!-- <button class="btn btn-sm btn-warning" (click)="enableEditing(service)"><i class="fa fa-pencil"></i> Edit</button> -->
+
+
+                <div class="rowModal">
+                <button (click)="myModal.open()" class="modalButton btn edit_modalButton"><i class="fa fa-pencil"></i>Edit</button>
+                <modal #myModal class="modal_box">
+                    <modal-header class="modal_header">
+                        <h1>Edit <strong>{{service.serviceName}}</strong> Service</h1>
+                    </modal-header>
+                    <modal-content>
+                      <tbody>
+                        <tr>
+                          <td colspan="4">
+                            <form class="form-inline" #form="ngForm" (ngSubmit)="updateService(service)" style="display:inline">
+                              <div class="form-group">
+                                  <h5>Service Name:  </h5><input class="form-control" type="text" name="serviceName" [(ngModel)]="service.serviceName" placeholder="Name" required>
+                              </div>
+                              <div class="form-group">
+                                <h5>Service Description:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="serviceDescription" [(ngModel)]="service.serviceDescription" placeholder="Description" required></textarea>
+                              </div>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </modal-content>
+                    <modal-footer>
+                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelEditing()">cancel</button>
+                    </modal-footer>
+                </modal>
+                </div>
+
+
+                <button class="btn btn-sm btn-danger" (click)="deleteService(service)"><i class="fa fa-trash"></i> Delete</button>
               </td>
             </tr>
           </tbody>
-          <tbody *ngIf="isEditing">
+          <!-- <tbody *ngIf="isEditing">
             <tr>
               <td colspan="4">
                 <form class="form-inline" #form="ngForm" (ngSubmit)="updateService(service)" style="display:inline">
@@ -54,12 +87,12 @@
                 <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
               </td>
             </tr>
-          </tbody>
+          </tbody> -->
         </table>
       </div>
     </div>
 
-    <div class="add_card">
+    <!-- <div class="add_card">
     <div class="card" *ngIf="!isEditing">
       <h4 class="card-header service_card_header">Add new service</h4>
       <div class="card-block">
@@ -75,7 +108,39 @@
       </div>
     </div>
   </div>
+  </div> -->
+
+  <div class="add_card">
+  <div class="card" *ngIf="!isEditing">
+    <div class="rowModal">
+    <button (click)="myModal.open()" class="modalButton btn">Add new service</button>
+    <modal #myModal class="modal_box">
+        <modal-header class="modal_header">
+            <h1>Told Handyman Services</h1>
+        </modal-header>
+        <modal-content>
+          <div class="card-block">
+            <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="description" formControlName="serviceDescription" placeholder="Description">
+              </div>
+              <button class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+            </form>
+          </div>
+        </modal-content>
+        <modal-footer>
+            <button class="btn btn-primary" (click)="myModal.close()">close</button>
+        </modal-footer>
+    </modal>
+    </div>
   </div>
+</div>
+</div>
+
+
 
 <div class="serviceList_section">
     <h3>Handyman Service List Items</h3>
@@ -100,11 +165,58 @@
               <td>{{serviceList.serviceListName}}</td>
               <td>{{serviceList.serviceListDescription}}</td>
               <td>
-                <button class="btn btn-sm btn-warning" (click)="enableServiceListEditing(serviceList)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteServiceList(serviceList)"><i class="fa fa-trash"></i> Delete</button>
+                <!-- <button class="btn btn-sm btn-warning" (click)="enableServiceListEditing(serviceList)"><i class="fa fa-pencil"></i> Edit</button>  -->
+
+                <div class="rowModal">
+                <button (click)="myModal.open()" class="modalButton btn edit_modalButton"><i class="fa fa-pencil"></i>Edit</button>
+                <modal #myModal class="modal_box">
+                    <modal-header class="modal_header">
+                        <h1>Edit <strong>{{serviceList.serviceListName}}</strong> Service Item</h1>
+                    </modal-header>
+                    <modal-content>
+                      <tbody>
+                        <tr>
+                          <td colspan="4">
+                            <form class="form-inline" #form="ngForm" (ngSubmit)="updateServiceList(serviceList)" style="display:inline">
+                              <div class="form-group">
+                                  <h5>Service List Name:  </h5><input class="form-control" type="text" name="serviceListName" [(ngModel)]="serviceList.serviceListName" placeholder="Name" required>
+                              </div>
+                              <div class="form-group">
+                                <h5>Service List Description:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="serviceListDescription" [(ngModel)]="serviceList.serviceListDescription" placeholder="Description" required></textarea>
+                              </div>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+
+                      <!-- <tbody>
+                        <tr>
+                          <td colspan="4">
+                            <form class="form-inline" #form="ngForm" (ngSubmit)="updateService(service)" style="display:inline">
+                              <div class="form-group">
+                                  <h5>Service Name:  </h5><input class="form-control" type="text" name="serviceName" [(ngModel)]="service.serviceName" placeholder="Name" required>
+                              </div>
+                              <div class="form-group">
+                                <h5>Service Description:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="serviceDescription" [(ngModel)]="service.serviceDescription" placeholder="Description" required></textarea>
+                              </div>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody> -->
+                    </modal-content>
+                    <modal-footer>
+                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelServiceListEditing()">cancel</button>
+                    </modal-footer>
+                </modal>
+                </div>
+
+                <button class="btn btn-sm btn-danger" (click)="deleteServiceList(serviceList)"><i class="fa fa-trash"></i> Delete</button>
               </td>
             </tr>
           </tbody>
-          <tbody *ngIf="serviceListIsEditing">
+          <!-- <tbody *ngIf="serviceListIsEditing">
             <tr>
               <td colspan="4">
                 <form class="form-inline" #form="ngForm" (ngSubmit)="updateServiceList(serviceList)" style="display:inline">
@@ -119,12 +231,12 @@
                 <button class="btn btn-sm btn-warning" (click)="cancelServiceListEditing()"><i class="fa fa-times"></i> Cancel</button>
               </td>
             </tr>
-          </tbody>
+          </tbody> -->
         </table>
       </div>
     </div>
 
-    <div class="add_list_card">
+    <!-- <div class="add_list_card">
     <div class="card" *ngIf="!serviceListIsEditing">
       <h4 class="card-header service_card_header">Add new service list item</h4>
       <div class="card-block">
@@ -139,7 +251,40 @@
         </form>
       </div>
     </div>
+  </div> -->
+
+  <div class="add_list_card">
+  <div class="card" *ngIf="!serviceListIsEditing">
+    <div class="rowModal">
+    <button (click)="myModal.open()" class="modalButton btn">Add new service list item</button>
+    <modal #myModal class="modal_box">
+        <modal-header class="modal_header">
+            <h1>Told Handyman Service List</h1>
+        </modal-header>
+        <modal-content>
+          <div class="card-block">
+            <form class="form-inline" [formGroup]="addServiceListForm" (ngSubmit)="createServiceList()" style="text-align:center">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="name" formControlName="serviceListName" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="description" formControlName="serviceListDescription" placeholder="Description">
+              </div>
+              <button class="btn btn-primary" type="submit" [disabled]="!addServiceListForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+            </form>
+          </div>
+        </modal-content>
+        <modal-footer>
+            <button class="btn btn-primary" (click)="myModal.close()">close</button>
+        </modal-footer>
+    </modal>
+    </div>
   </div>
+</div>
+
+
+
+
   </div>
   </div>
   <div class="admin_reviews_container">

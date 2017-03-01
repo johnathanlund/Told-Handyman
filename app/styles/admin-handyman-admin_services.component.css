@@ -29,6 +29,22 @@
   margin: 35vh 0 0 0;
 }
 
+.modalButton {
+  background: radial-gradient( rgb(180, 21, 17), #fff);
+  color: white;
+}
+.edit_modalButton {
+  background: orange;
+}
+
+modal-header {
+  background-color: grey;
+  color: rgb(180, 21, 17);
+}
+modal-header strong {
+  text-decoration: underline;
+}
+
 .service_card_header {
   color: rgb(180, 21, 17);
 }
