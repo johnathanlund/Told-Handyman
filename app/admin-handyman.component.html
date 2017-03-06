@@ -6,6 +6,8 @@
   <div class="admin_top_gallery_container">
     <h3>Handyman Top Page Gallery</h3>
 
+    <upload-image>Loading.....image uploader.....</upload-image>
+
     <!-- <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone> -->
     <!-- <div [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)">Add Images/Files by clicking here.</div> -->
     <!-- <dropzone></dropzone> -->
@@ -17,7 +19,7 @@
 
     <div class="card service_card" *ngIf="!isLoading">
       <h4 class="card-header">Current Services ({{services.length}})</h4>
-      <div class="card-block">
+      <div class="card-block card_table_block">
         <table class="table table-bordered table-striped">
           <thead class="thead-default">
             <tr>
@@ -62,7 +64,7 @@
                       </tbody>
                     </modal-content>
                     <modal-footer>
-                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelEditing()">cancel</button>
+                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelEditing()">Cancel</button>
                     </modal-footer>
                 </modal>
                 </div>
@@ -122,17 +124,20 @@
           <div class="card-block">
             <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
               <div class="form-group">
-                  <input class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
+                  <h5>Service Name:  </h5><input class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
               </div>
+              <br>
               <div class="form-group">
-                <input class="form-control" type="text" name="description" formControlName="serviceDescription" placeholder="Description">
-              </div>
-              <button class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+                <h5>Service Description:  </h5>
+                <!-- <input class="form-control" type="text" name="description" formControlName="serviceDescription" placeholder="Description"> -->
+                <textarea rows="2" cols="30" class="form-control" type="text" name="serviceDescription" formControlName="serviceDescription" [(ngModel)]="serviceList.serviceDescription" placeholder="Description" required></textarea>
+              </div><br>
+              <button class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
             </form>
           </div>
         </modal-content>
         <modal-footer>
-            <button class="btn btn-primary" (click)="myModal.close()">close</button>
+            <button class="btn btn-primary" (click)="myModal.close()">Cancel</button>
         </modal-footer>
     </modal>
     </div>
@@ -147,7 +152,7 @@
 
     <div class="card service_card" *ngIf="!serviceListIsLoading">
       <h4 class="card-header">Current Service List items ({{serviceLists.length}})</h4>
-      <div class="card-block">
+      <div class="card-block card_table_block">
         <table class="table table-bordered table-striped">
           <thead class="thead-default">
             <tr>
@@ -207,7 +212,7 @@
                       </tbody> -->
                     </modal-content>
                     <modal-footer>
-                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelServiceListEditing()">cancel</button>
+                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelServiceListEditing()">Cancel</button>
                     </modal-footer>
                 </modal>
                 </div>
@@ -263,19 +268,22 @@
         </modal-header>
         <modal-content>
           <div class="card-block">
-            <form class="form-inline" [formGroup]="addServiceListForm" (ngSubmit)="createServiceList()" style="text-align:center">
+            <form class="form-inline" [formGroup]="addServiceListForm" (ngSubmit)="createServiceList()" style="text-align:left;">
               <div class="form-group">
-                  <input class="form-control" type="text" name="name" formControlName="serviceListName" placeholder="Name">
+                <h5>Service List Item Name:  </h5>  <input class="form-control" type="text" name="name" formControlName="serviceListName" placeholder="Name">
               </div>
+              <br>
               <div class="form-group">
-                <input class="form-control" type="text" name="description" formControlName="serviceListDescription" placeholder="Description">
-              </div>
-              <button class="btn btn-primary" type="submit" [disabled]="!addServiceListForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+                <h5>Service List Item Description:  </h5>
+                <!-- <input class="form-control" type="text" name="description" formControlName="serviceListDescription" placeholder="Description"> -->
+                <textarea rows="2" cols="30" class="form-control" type="text" name="serviceListDescription" formControlName="serviceListDescription" [(ngModel)]="serviceList.serviceListDescription" placeholder="Description" required></textarea>
+              </div><br>
+              <button class="btn btn-primary" type="submit" [disabled]="!addServiceListForm.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
             </form>
           </div>
         </modal-content>
         <modal-footer>
-            <button class="btn btn-primary" (click)="myModal.close()">close</button>
+            <button class="btn btn-primary" (click)="myModal.close()">Cancel</button>
         </modal-footer>
     </modal>
     </div>

@@ -5,19 +5,6 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var multer = require('multer');
 var fs = require('fs');
-// var path = require('path');
-
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './server/uploads/');
-  },
-  filename: function (req, file, cb) {
-    var datetimestamp = Date.now();
-    cb(null, file.originalname + '-' + datetimestamp);
-  }
-});
-
-var upload = multer({storage: storage}).single('file');
 
 // CONFIG
 var config = require('./config');
@@ -28,6 +15,19 @@ var serviceListCtrl = require('./controllers/serviceListCtrl.js')
 
 // SERVICES
 // var passport = require('./services/passport');
+
+// Multer settings for handling file uploads.
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function (req, file, cb) {
+    var datetimestamp = Date.now();
+    cb(null, file.originalname + '-' + datetimestamp);
+  }
+});
+
+var upload = multer({storage: storage}).single('photo');
 
 // POLICIES
 var isAuthed = function(req, res, next) {
@@ -52,10 +52,9 @@ mongoose.set('debug', true);
 
 // HEADERS
 var permitCrossDomainRequests = function(req, res, next) {
-res.header('Access-Control-Allow-Origin', '*');
-res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH, OPTIONS');
-res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-res.header('Access-Control-Allow-Credentials', 'true');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 // some browsers send a pre-flight OPTIONS request to check if CORS is enabled so you have to also respond to that
 if ('OPTIONS' === req.method) {
   res.sendStatus(200);
@@ -65,45 +64,31 @@ else {
 }
 };
 app.use(permitCrossDomainRequests);
-// app.use(function (req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', 'http://valor-software.github.io');
-//   res.setHeader('Access-Control-Allow-Methods', 'POST');
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-//   res.setHeader('Access-Control-Allow-Credentials', true);
-//   next();
-// });
-
-// MULTER SETTINGS
-// app.use(multer({
-//   dest: DIR,
-//   rename: function (fieldname, filename) {
-//     return filename + Date.now();
-//   },
-//   onFileUploadStart: function (file) {
-//     console.log(file.originalname + ' is starting ...');
-//   },
-//   onFileUploadComplete: function (file) {
-//     console.log(file.fieldname + ' uploaded to  ' + file.path + ' is complete!');
-//   }
-// }));
 
 // ENDPOINTS
 
 //===========Upload Endpoints=========================================
-app.get('/upload', function (req, res) {
-  res.end('File catcher example');
+app.get('/uploads', function(req, res, next) {
+// render the index page, and pass data to it.
+  res.render('index', { title: 'Express' });
 });
-app.post('/upload', function (req, res) {
-  upload(req, res, function (err) {
-    console.log('This is the file being uploaded on server. req.file:  ' + req.filename);
-    if (err) {
-      return res.end(err.toString());
-    }
-    console.log('Past the IF statement for file Upload');
-    res.end('File is uploaded');
-    console.log('The file has been successfully uploaded!');
+
+//our file upload function.
+app.post('/upload', function (req, res, next) {
+    console.log("In the Server Post function.");
+     upload(req, res, function (err) {
+       console.log('Inside the upload function within Post.');
+          // req.file.filename = req.file.originalname + '-' + Date.now();
+        if (err) {
+          // An error occurred when uploading
+          console.log(err);
+          return res.status(422).send("an Error occured")
+        }
+        console.log('This is the UPLOAD file json of req.file:   ' + JSON.stringify(req.file));
+       // No error occured.
+        return res.send("Upload TOTALLY Completed for "+ req.file.filename);
   });
-});
+})
 //===========User Endpoints============================================
 
 

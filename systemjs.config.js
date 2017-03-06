@@ -27,6 +27,7 @@
       'ng2-page-scroll/ng2-page-scroll': 'npm:ng2-page-scroll/bundles/ng2-page-scroll.umd.js',
       'angular2-useful-swiper': 'npm:angular2-useful-swiper/lib',
       'ng2-modal': 'npm:ng2-modal',
+      'ng2-file-upload': 'npm:ng2-file-upload',
       // 'angular2-dropzone-wrapper': 'npm:angular2-dropzone-wrapper/bundles/angular2-dropzone-wrapper.umd.min.js',
       // 'angular2-dropzone-wrapper':  'npm:angular2-dropzone-wrapper',
     },
@@ -45,6 +46,9 @@
       },
       'ng2-modal': {
         main: 'index.js',
+        defaultExtension: 'js'
+      },
+      'ng2-file-upload': {
         defaultExtension: 'js'
       },
       // 'angular2-dropzone-wrapper': {

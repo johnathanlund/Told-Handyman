@@ -29,7 +29,7 @@ var DataService = (function () {
     };
     DataService.prototype.readServices = function () {
         console.log("Starting to Read service successfull at data.service");
-        return this.http.get('http://localhost:8000/services').map(function (res) { return res.json(); })
+        return this.http.get('http://localhost:8000/services').timeout(2000).map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
         // console.log('Read read please reeeeeaaaaaad.....');
     };

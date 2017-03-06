@@ -30,9 +30,9 @@ var ToldHandymanComponent = (function () {
         this.service = {};
         this.isEditing = false;
         this.serviceLists = [];
-        this.isLoading = true;
+        this.isLoadingList = true;
         this.serviceList = {};
-        this.isEditing = false;
+        this.isEditingList = false;
     }
     ToldHandymanComponent.prototype.ngOnInit = function () {
         this.readServices();

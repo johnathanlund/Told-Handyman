@@ -15,13 +15,16 @@ var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var told_handyman_component_1 = require("./told-handyman.component");
 var admin_handyman_component_1 = require("./admin-handyman.component");
+var uploadImage_component_1 = require("./UploadImage/uploadImage.component");
 var data_service_1 = require("./services/data.service");
+var image_preview_directive_1 = require("./directives/image-preview.directive");
 // import { FileUploadComponent }    from './fileUpload.component';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
 // import { UploadService }          from './services/upload.service';
 var ng2_page_scroll_1 = require("ng2-page-scroll/ng2-page-scroll");
 var ng2_modal_1 = require("ng2-modal");
+var file_upload_module_1 = require("ng2-file-upload/file-upload/file-upload.module");
 var angular2_useful_swiper_1 = require("angular2-useful-swiper");
 // const DROPZONE_CONFIG: DropzoneConfigInterface = {
 //   // Change this to your upload POST address:
@@ -44,6 +47,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             ng2_page_scroll_1.Ng2PageScrollModule.forRoot(),
             angular2_useful_swiper_1.SwiperModule,
+            file_upload_module_1.FileUploadModule,
             ng2_modal_1.ModalModule,
             common_1.CommonModule,
         ],
@@ -51,6 +55,8 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             told_handyman_component_1.ToldHandymanComponent,
             admin_handyman_component_1.AdminHandymanComponent,
+            uploadImage_component_1.UploadImageComponent,
+            image_preview_directive_1.ImagePreview,
         ],
         providers: [data_service_1.DataService],
         schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],

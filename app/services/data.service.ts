@@ -24,7 +24,7 @@ export class DataService {
 
   readServices(): Observable<any> {
     console.log("Starting to Read service successfull at data.service");
-    return this.http.get('http://localhost:8000/services').map((res:Response) => res.json())
+    return this.http.get('http://localhost:8000/services').timeout(2000).map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().error || 'Server Error'));
     // console.log('Read read please reeeeeaaaaaad.....');
   }

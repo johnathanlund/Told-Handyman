@@ -42,10 +42,10 @@ export class ToldHandymanComponent implements OnInit {
   isEditing = false;
 
   serviceLists = [];
-  isLoading = true;
+  isLoadingList = true;
 
   serviceList = {};
-  isEditing = false;
+  isEditingList = false;
 
   constructor(private http: Http,
               private dataService: DataService){ }

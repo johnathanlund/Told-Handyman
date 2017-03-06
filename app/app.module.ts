@@ -10,7 +10,10 @@ import { HttpModule }             from '@angular/http';
 import { AppComponent }           from './app.component';
 import { ToldHandymanComponent }  from './told-handyman.component';
 import { AdminHandymanComponent } from './admin-handyman.component';
+import { UploadImageComponent }   from './UploadImage/uploadImage.component';
+
 import { DataService }            from './services/data.service';
+import { ImagePreview }           from './directives/image-preview.directive';
 // import { FileUploadComponent }    from './fileUpload.component';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
@@ -18,7 +21,7 @@ import { DataService }            from './services/data.service';
 
 import { Ng2PageScrollModule }    from 'ng2-page-scroll/ng2-page-scroll';
 import { ModalModule }            from 'ng2-modal';
-
+import { FileUploadModule }       from 'ng2-file-upload/file-upload/file-upload.module';
 import { SwiperModule }           from 'angular2-useful-swiper';
 
 // const DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -37,6 +40,7 @@ import { SwiperModule }           from 'angular2-useful-swiper';
     HttpModule,
     Ng2PageScrollModule.forRoot(),
     SwiperModule,
+    FileUploadModule,
     ModalModule,
     CommonModule,
     // DropzoneModule.forRoot(DROPZONE_CONFIG),
@@ -45,6 +49,8 @@ import { SwiperModule }           from 'angular2-useful-swiper';
     AppComponent,
     ToldHandymanComponent,
     AdminHandymanComponent,
+    UploadImageComponent,
+    ImagePreview,
     // DropzoneComponent,
     // FileUploadComponent,
   ],
