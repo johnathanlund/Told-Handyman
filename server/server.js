@@ -23,7 +23,8 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     var datetimestamp = Date.now();
-    cb(null, file.originalname + '-' + datetimestamp);
+    cb(null, file.originalname);
+    // cb(null, file.originalname + '-' + datetimestamp);
   }
 });
 
