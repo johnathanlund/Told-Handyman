@@ -11,18 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
+var platform_browser_1 = require("@angular/platform-browser");
 var data_service_1 = require("./services/data.service");
 // import { FileUploadComponent }  from './fileUpload.component';
 // import { UploadService }  from './services/upload.service';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneComponent }  from './dropzone.component';
 var AdminHandymanComponent = (function () {
-    function AdminHandymanComponent(http, dataService, 
-        // private uploadService: UploadService,
-        formBuilder) {
+    function AdminHandymanComponent(http, dataService, router, sanitizer, renderer, formBuilder) {
         this.http = http;
         this.dataService = dataService;
+        this.router = router;
+        this.sanitizer = sanitizer;
+        this.renderer = renderer;
         this.formBuilder = formBuilder;
         this.services = [];
         this.isLoading = true;
@@ -36,10 +39,74 @@ var AdminHandymanComponent = (function () {
         this.serviceListIsEditing = false;
         this.serviceListName = new forms_1.FormControl('', forms_1.Validators.required);
         this.serviceListDescription = new forms_1.FormControl('', forms_1.Validators.required);
+        this.url = 'http://localhost:8000/service';
+        this.progress = 0;
+        this.onClear = new core_1.EventEmitter();
     }
+    // event fired when the user selects an image
+    AdminHandymanComponent.prototype.onFileSelect = function (event) {
+        this.clear();
+        var files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (this.isImage(file)) {
+                file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
+                this.files.push(files[i]);
+            }
+            else if (!this.isImage(file)) {
+                // this.toastr.error('Only images are allowed');
+                console.log('Only images are allowed.');
+            }
+        }
+    };
+    // check if the image is actually an image by checking the mime type
+    AdminHandymanComponent.prototype.isImage = function (file) {
+        if (!file.type.match('image/*')) {
+            // this.toastr.error('Only images are allowed');
+            console.log('Only images are allowed.');
+            return false;
+        }
+        return true;
+    };
+    // check if the form has files ready to be uploaded
+    AdminHandymanComponent.prototype.hasFiles = function () {
+        return this.files && this.files.length > 0;
+    };
+    // clears the form
+    AdminHandymanComponent.prototype.clear = function () {
+        this.files = [];
+        this.onClear.emit();
+    };
+    // remove the image from the preview
+    AdminHandymanComponent.prototype.remove = function (index) {
+        this.files.splice(index, 1);
+        this.fileInput.nativeElement.value = '';
+    };
+    // check the image file size
+    // validate(file: File): boolean {
+    //     if (this.maxSize && file.size > this.maxSize) {
+    //         this.toastr.error(this.invalidFileSizeMessageDetail.replace('{0}', this.formatSize(this.maxSize)),
+    //             this.invalidFileSizeMessage.replace('{0}', file.name));
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    // format the size to display it in toastr in case the user uploaded a file bigger than 5MB
+    // formatSize(bytes) {
+    //     if (bytes === 0) {
+    //         return '0 B';
+    //     }
+    //     let k = 1000,
+    //         dm = 3,
+    //         sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+    //         i = Math.floor(Math.log(bytes) / Math.log(k));
+    //
+    //     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    // }
     AdminHandymanComponent.prototype.ngOnInit = function () {
         this.readServices();
         this.readServiceLists();
+        this.files = [];
         this.addServiceForm = this.formBuilder.group({
             serviceName: this.serviceName,
             serviceDescription: this.serviceDescription
@@ -50,15 +117,57 @@ var AdminHandymanComponent = (function () {
         });
     };
     //=====================Service Data Connections==================================
+    // createService() {
+    //     this.dataService.createService(this.addServiceForm.value).subscribe(
+    //         res => {
+    //             let newService = res.json();
+    //             console.log("AdminHandymanComponent new service is: " + JSON.stringify(newService));
+    //             this.services.push(newService);
+    //             console.log('Create service successfull at Admin-Handyman.component');
+    //             this.addServiceForm.reset();
+    //         },
+    //         error => console.log('Create error at Admin-handyman.component. error:  ' + error)
+    //     );
+    // }
+    // submit the form to back end
     AdminHandymanComponent.prototype.createService = function () {
         var _this = this;
-        this.dataService.createService(this.addServiceForm.value).subscribe(function (res) {
-            var newService = res.json();
-            console.log("AdminHandymanComponent new service is: " + JSON.stringify(newService));
-            _this.services.push(newService);
-            console.log('Create service successfull at Admin-Handyman.component');
-            _this.addServiceForm.reset();
-        }, function (error) { return console.log('Create error at Admin-handyman.component. error:  ' + error); });
+        this.submitStarted = true;
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData();
+        for (var i = 0; i < this.files.length; i++) {
+            console.log('On Admin component, it shows this.files[i].name as: ' + this.files[i].name);
+            formData.append('serviceImage', this.files[i], this.files[i].name);
+        }
+        xhr.upload.addEventListener('progress', function (event) {
+            if (event.lengthComputable) {
+                _this.progress = Math.round((event.loaded * 100) / event.total);
+            }
+        }, false);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                _this.progress = 0;
+                // if (xhr.status === 201) {
+                //   this.router.navigateByUrl('/user/forms');
+                //   // this.toastr.success('Form submitted successfully');
+                //   console.log('Service Form submitted successfully');
+                // } else if (xhr.status !== 201) {
+                //   // this.toastr.error('There was an error!');
+                //   console.log('Service Form, there was an error!');
+                // }
+                _this.clear();
+            }
+        };
+        xhr.open('POST', this.url, true);
+        formData.append('serviceName', this.addServiceForm.value.serviceName);
+        formData.append('serviceDescription', this.addServiceForm.value.serviceDescription);
+        console.log('Xhr shows the formData as: ' + formData.serviceName);
+        // xhr.withCredentials = true;
+        xhr.send(formData);
+        console.log(xhr);
+    };
+    AdminHandymanComponent.prototype.clearServiceForm = function () {
+        this.addServiceForm.reset();
     };
     AdminHandymanComponent.prototype.readServices = function () {
         var _this = this;
@@ -108,6 +217,9 @@ var AdminHandymanComponent = (function () {
         // readServiceLists();
         this.addServiceListForm.reset();
     };
+    AdminHandymanComponent.prototype.clearServiceListForm = function () {
+        this.addServiceListForm.reset();
+    };
     AdminHandymanComponent.prototype.readServiceLists = function () {
         var _this = this;
         this.dataService.readServiceLists().subscribe(
@@ -146,6 +258,14 @@ var AdminHandymanComponent = (function () {
     };
     return AdminHandymanComponent;
 }());
+__decorate([
+    core_1.ViewChild('nameField'),
+    __metadata("design:type", core_1.ElementRef)
+], AdminHandymanComponent.prototype, "nameField", void 0);
+__decorate([
+    core_1.ViewChild('fileInput'),
+    __metadata("design:type", core_1.ElementRef)
+], AdminHandymanComponent.prototype, "fileInput", void 0);
 AdminHandymanComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
@@ -162,6 +282,9 @@ AdminHandymanComponent = __decorate([
     }),
     __metadata("design:paramtypes", [http_1.Http,
         data_service_1.DataService,
+        router_1.Router,
+        platform_browser_1.DomSanitizer,
+        core_1.Renderer,
         forms_1.FormBuilder])
 ], AdminHandymanComponent);
 exports.AdminHandymanComponent = AdminHandymanComponent;

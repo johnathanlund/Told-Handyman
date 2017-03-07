@@ -28,6 +28,7 @@
       'angular2-useful-swiper': 'npm:angular2-useful-swiper/lib',
       'ng2-modal': 'npm:ng2-modal',
       'ng2-file-upload': 'npm:ng2-file-upload',
+      'ng2-progress-bar': 'npm:ng2-progress-bar',
       // 'angular2-dropzone-wrapper': 'npm:angular2-dropzone-wrapper/bundles/angular2-dropzone-wrapper.umd.min.js',
       // 'angular2-dropzone-wrapper':  'npm:angular2-dropzone-wrapper',
     },
@@ -49,6 +50,10 @@
         defaultExtension: 'js'
       },
       'ng2-file-upload': {
+        defaultExtension: 'js'
+      },
+      'ng2-progress-bar': {
+        main: 'index.js',
         defaultExtension: 'js'
       },
       // 'angular2-dropzone-wrapper': {

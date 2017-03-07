@@ -58,3 +58,20 @@ modal-header strong {
 /*.table-striped {
   border: 5px solid purple;
 }*/
+
+.topPad {
+  padding-top: 100px !important;
+}
+
+.topMargin {
+margin-top: 20px;
+}
+
+.img-resized {
+  width: 25%;
+}
+
+.img-thumbnail {
+  width: 300px;
+  height: 175px;
+}

@@ -8,7 +8,8 @@ var fs = require('fs');
 
 // CONFIG
 var config = require('./config');
-
+// MODELS
+var Service = require('./models/ServiceModel.js');
 // CONTROLLERS
 var serviceCtrl = require('./controllers/serviceCtrl.js');
 var serviceListCtrl = require('./controllers/serviceListCtrl.js')
@@ -27,7 +28,8 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({storage: storage}).single('photo');
+var upload = multer({storage: storage, limits: { parts: 3 }});
+var upload2 = multer({storage: storage}).single('photo');
 
 // POLICIES
 var isAuthed = function(req, res, next) {
@@ -76,7 +78,7 @@ app.get('/uploads', function(req, res, next) {
 //our file upload function.
 app.post('/upload', function (req, res, next) {
     console.log("In the Server Post function.");
-     upload(req, res, function (err) {
+     upload2(req, res, function (err) {
        console.log('Inside the upload function within Post.');
           // req.file.filename = req.file.originalname + '-' + Date.now();
         if (err) {
@@ -96,7 +98,23 @@ app.post('/upload', function (req, res, next) {
 
 
 //===========Service Endpoints========================================
-app.post('/service', serviceCtrl.create);
+
+app.post('/services', upload.single('serviceImage'), function (req, res, err) {
+  var serviceForm = new Service({
+    serviceName: req.body.serviceName,
+    serviceDescription: req.body.serviceDescription,
+    serviceImage: req.file.filename
+  });
+  serviceForm.save(function (err, result) {
+    if (err) {
+      console.log('Error in the server, POST /services save function.  ' + err);
+      return res.status(404).send(err);
+    }
+    res.status(201).send(result);
+  });
+});
+
+// app.post('/service', serviceCtrl.create);
 app.get('/services', serviceCtrl.read);
 app.get('/service/:id', serviceCtrl.readById);
 app.put('/service/:id', serviceCtrl.update);

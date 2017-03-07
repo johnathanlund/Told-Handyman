@@ -25,6 +25,7 @@
             <tr>
               <th>Name</th>
               <th>Description</th>
+              <th>Image</th>
             </tr>
           </thead>
           <tbody *ngIf="services.length === 0">
@@ -36,6 +37,7 @@
             <tr *ngFor="let service of services">
               <td>{{service.serviceName}}</td>
               <td>{{service.serviceDescription}}</td>
+              <td class="img-resized"><img class="img-thumbnail img-responsive" src="../uploads/{{service.serviceImage}}"></td>
               <td>
                 <!-- <button class="btn btn-sm btn-warning" (click)="enableEditing(service)"><i class="fa fa-pencil"></i> Edit</button> -->
 
@@ -124,15 +126,34 @@
           <div class="card-block">
             <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
               <div class="form-group">
-                  <h5>Service Name:  </h5><input class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
+                  <h5>Service Name:  </h5><input id="nameField" class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
               </div>
               <br>
               <div class="form-group">
                 <h5>Service Description:  </h5>
-                <!-- <input class="form-control" type="text" name="description" formControlName="serviceDescription" placeholder="Description"> -->
                 <textarea rows="2" cols="30" class="form-control" type="text" name="serviceDescription" formControlName="serviceDescription" [(ngModel)]="serviceList.serviceDescription" placeholder="Description" required></textarea>
               </div><br>
-              <button class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+              <!-- Image File Upload -->
+              <div class="form-group">
+                <h5>Image File Upload:  </h5>
+                  <button type="button" class="btn">
+                    <!-- <input #fileInput name="fileUp" type="file" (change)="onFileSelect($event)"> -->
+                    <input #fileInput class="form-control" name="serviceImage" type="file" (change)="onFileSelect($event)">
+                  </button>
+                  <div *ngIf="hasFiles()">
+                    <div *ngFor="let file of files">
+                      <img [src]="file.objectURL" class="img-thumbnail img-responsive topMargin"><br>
+                      <div>
+                        <button type="button" class="btn-danger topMargin" (click)="remove(i)">Remove Image</button>
+                      </div>
+                    </div>
+                  </div>
+              </div><br>
+
+              <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid || !hasFiles()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+              <button class="btn btn-primary" type="button" name="button" (click)="clearServiceForm()"><i class="fa fa-floppy-o"></i>Reset</button>
+              <br>
+              <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles() && submitStarted" title="Service form is uploading.."></progress-bar>
             </form>
           </div>
         </modal-content>
@@ -279,6 +300,7 @@
                 <textarea rows="2" cols="30" class="form-control" type="text" name="serviceListDescription" formControlName="serviceListDescription" [(ngModel)]="serviceList.serviceListDescription" placeholder="Description" required></textarea>
               </div><br>
               <button class="btn btn-primary" type="submit" [disabled]="!addServiceListForm.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+              <button class="btn btn-primary" type="button" name="button" (click)="clearServiceListForm()"><i class="fa fa-floppy-o"></i>Reset</button>
             </form>
           </div>
         </modal-content>

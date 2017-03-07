@@ -24,6 +24,7 @@ var image_preview_directive_1 = require("./directives/image-preview.directive");
 // import { UploadService }          from './services/upload.service';
 var ng2_page_scroll_1 = require("ng2-page-scroll/ng2-page-scroll");
 var ng2_modal_1 = require("ng2-modal");
+var ng2_progress_bar_1 = require("ng2-progress-bar");
 var file_upload_module_1 = require("ng2-file-upload/file-upload/file-upload.module");
 var angular2_useful_swiper_1 = require("angular2-useful-swiper");
 // const DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -50,6 +51,7 @@ AppModule = __decorate([
             file_upload_module_1.FileUploadModule,
             ng2_modal_1.ModalModule,
             common_1.CommonModule,
+            ng2_progress_bar_1.ProgressBarModule,
         ],
         declarations: [
             app_component_1.AppComponent,

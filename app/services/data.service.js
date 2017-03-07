@@ -25,13 +25,13 @@ var DataService = (function () {
     //=============Service Connections=============================================
     DataService.prototype.createService = function (service) {
         console.log("Create service successfull at data.service");
+        console.log('Service is showing as: ' + JSON.stringify(service));
         return this.http.post('http://localhost:8000/service', JSON.stringify(service), this.options);
     };
     DataService.prototype.readServices = function () {
         console.log("Starting to Read service successfull at data.service");
         return this.http.get('http://localhost:8000/services').timeout(2000).map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
-        // console.log('Read read please reeeeeaaaaaad.....');
     };
     DataService.prototype.updateService = function (service) {
         console.log("Update service successfull at data.service");
