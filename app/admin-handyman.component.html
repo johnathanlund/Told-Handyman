@@ -37,7 +37,7 @@
             <tr *ngFor="let service of services">
               <td>{{service.serviceName}}</td>
               <td>{{service.serviceDescription}}</td>
-                <!-- <td class="img-resized"><img class="img-thumbnail img-responsive" src="../uploads/{{service.serviceImage}}"></td> -->
+                <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{service.serviceImage}}">{{service.serviceImage}}</td>
               <td>
                 <!-- <button class="btn btn-sm btn-warning" (click)="enableEditing(service)"><i class="fa fa-pencil"></i> Edit</button> -->
 
@@ -138,7 +138,7 @@
                   <h5>Image File Upload:  </h5>
                   <!-- <upload-image>Loading.....image uploader.....</upload-image> -->
 
-                  <input type="file" class="form-control" ng2FileSelect [uploader]="uploader"/>
+                  <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
                   <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" (change)="fileEvent($event)"/> -->
                   <p>Items in the queue: {{uploader.queue.length}}</p>
                   <div *ngFor="let item of uploader.queue" class="media">

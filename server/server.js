@@ -19,9 +19,11 @@ var serviceListCtrl = require('./controllers/serviceListCtrl.js')
 // Multer settings for handling file uploads.
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './uploads/');
+    console.log('WITHIN storage destination function');
+    cb(null, './server/uploads/');
   },
   filename: function (req, file, cb) {
+    console.log('WITHIN storage filename function: ' + file.originalname );
     var datetimestamp = Date.now();
     cb(null, file.originalname);
     // cb(null, file.originalname + '-' + datetimestamp);
@@ -76,13 +78,13 @@ app.get('/uploads', function(req, res, next) {
 
 //our file upload function.
 app.post('/upload', function (req, res, next) {
-    console.log("In the Server Post function.");
+    console.log("In the Server Post function. File name is: " + req.body);
      upload(req, res, function (err) {
-       console.log('Inside the upload function within Post.');
+       console.log('Inside the upload function within Post. file name is: ' + JSON.stringify(req.file));
           // req.file.filename = req.file.originalname + '-' + Date.now();
         if (err) {
           // An error occurred when uploading
-          console.log(err);
+          console.log('Error is POST /upload, Upload function is: ' + err);
           return res.status(422).send("an Error occured")
         }
         console.log('This is the UPLOAD file json of req.file:   ' + JSON.stringify(req.file));

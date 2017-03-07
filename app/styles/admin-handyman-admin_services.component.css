@@ -58,3 +58,8 @@ modal-header strong {
 /*.table-striped {
   border: 5px solid purple;
 }*/
+
+.img-resized {
+  width: 100px;
+  height: 70px;
+}
