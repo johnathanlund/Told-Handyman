@@ -2,12 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
-
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { DataService }  from './services/data.service';
 // import { FileUploadComponent }  from './fileUpload.component';
 // import { UploadService }  from './services/upload.service';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneComponent }  from './dropzone.component';
+const URL = 'http://localhost:8000/upload';
+// var imageName = '';
 
 @Component ({
   moduleId: module.id,
@@ -19,11 +21,13 @@ import { DataService }  from './services/data.service';
     './styles/admin-handyman-admin_top_gallery.component.css',
     './styles/admin-handyman-admin_services.component.css',
     './styles/admin-handyman-admin_reviews.component.css',
-    './styles/dropzone.css',
+    './styles/uploadImage.component.css',
   ],
   // directives: [ DropzoneComponent ]
 })
 export class AdminHandymanComponent implements OnInit {
+
+  imageName: string = '';
 
   services = [];
   isLoading = true;
@@ -45,18 +49,37 @@ export class AdminHandymanComponent implements OnInit {
   serviceListName = new FormControl('', Validators.required);
   serviceListDescription = new FormControl('', Validators.required);
 
+   public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+
   constructor(private http: Http,
               private dataService: DataService,
               // private uploadService: UploadService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+// var imageName = '';
+    //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
+      this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false;
+        console.log('In .onAfterAddingFile, jsonof file is:  ' + file.file.name);
+        console.log('Json of file.file is: ' + JSON.stringify(file.file));
+        this.imageName = JSON.stringify(file.file.name);
+        console.log('Within ngOnInit, imageName now is equal to: ' + this.imageName);
+      };
+    //overide the onCompleteItem property of the uploader so we are
+    //able to deal with the server response.
+      this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+            console.log("ImageUpload:uploaded:", item, " Thats the item. ", status, " Thats the status. ", response, " THats the response.", item.file.name );
+            this.uploader.queue.length = 0;
+            console.log('What is in the uploader.queue is: ' + this.uploader.queue.length);
+        };
+
     this.readServices();
     this.readServiceLists();
-
+    // console.log('NOW SAYING THAT imageName is: ' + this.imageName);
     this.addServiceForm = this.formBuilder.group({
       serviceName: this.serviceName,
-      serviceDescription: this.serviceDescription
+      serviceDescription: this.serviceDescription,
+      serviceImage: this.imageName
     });
     this.addServiceListForm = this.formBuilder.group({
       serviceListName: this.serviceListName,
@@ -66,6 +89,9 @@ export class AdminHandymanComponent implements OnInit {
 
 //=====================Service Data Connections==================================
   createService() {
+    console.log('NOW THE VALUE of imageName is : ' + this.imageName);
+    this.addServiceForm.value.serviceImage = this.imageName;
+    console.log('NOW FOR addServiceForm value of serviceImage is : ' + this.addServiceForm.value.serviceImage);
     this.dataService.createService(this.addServiceForm.value).subscribe(
       res => {
         let newService = res.json();
@@ -185,6 +211,21 @@ deleteServiceList(serviceList) {
       error => console.log('Delete service list Failed at Admin-Handyman.component. error: '+ error)
     );
   }
+}
+
+//=================FileUploader Functions========================================
+cancelUploaderItem(item) {
+  for(var i = 0; i<this.uploader.queue.length; i++) {
+   var itm = this.uploader.queue[i];
+   if(itm=item) {
+     itm.remove();
+   }
+  }
+  console.log('File has been cleared from the uploader.queue');
+};
+cancelUploaderAll() {
+  this.uploader.clearQueue();
+  console.log("Uploader.queue has been cleared.");
 }
 
 

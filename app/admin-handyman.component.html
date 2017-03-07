@@ -25,6 +25,7 @@
             <tr>
               <th>Name</th>
               <th>Description</th>
+              <th>Image</th>
             </tr>
           </thead>
           <tbody *ngIf="services.length === 0">
@@ -36,6 +37,7 @@
             <tr *ngFor="let service of services">
               <td>{{service.serviceName}}</td>
               <td>{{service.serviceDescription}}</td>
+                <!-- <td class="img-resized"><img class="img-thumbnail img-responsive" src="../uploads/{{service.serviceImage}}"></td> -->
               <td>
                 <!-- <button class="btn btn-sm btn-warning" (click)="enableEditing(service)"><i class="fa fa-pencil"></i> Edit</button> -->
 
@@ -112,37 +114,58 @@
   </div>
   </div> -->
 
-  <div class="add_card">
-  <div class="card" *ngIf="!isEditing">
-    <div class="rowModal">
-    <button (click)="myModal.open()" class="modalButton btn">Add new service</button>
-    <modal #myModal class="modal_box">
-        <modal-header class="modal_header">
-            <h1>Told Handyman Services</h1>
-        </modal-header>
-        <modal-content>
-          <div class="card-block">
-            <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
-              <div class="form-group">
-                  <h5>Service Name:  </h5><input class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
-              </div>
-              <br>
-              <div class="form-group">
-                <h5>Service Description:  </h5>
-                <!-- <input class="form-control" type="text" name="description" formControlName="serviceDescription" placeholder="Description"> -->
-                <textarea rows="2" cols="30" class="form-control" type="text" name="serviceDescription" formControlName="serviceDescription" [(ngModel)]="serviceList.serviceDescription" placeholder="Description" required></textarea>
-              </div><br>
-              <button class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
-            </form>
-          </div>
-        </modal-content>
-        <modal-footer>
-            <button class="btn btn-primary" (click)="myModal.close()">Cancel</button>
-        </modal-footer>
-    </modal>
+    <div class="add_card">
+    <div class="card" *ngIf="!isEditing">
+      <div class="rowModal">
+      <button (click)="myModal.open()" class="modalButton btn">Add new service</button>
+      <modal #myModal class="modal_box">
+          <modal-header class="modal_header">
+              <h1>Told Handyman Services</h1>
+          </modal-header>
+          <modal-content>
+            <div class="card-block">
+              <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
+                <div class="form-group">
+                    <h5>Service Name:  </h5><input id="nameField" class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
+                </div>
+                <br>
+                <div class="form-group">
+                  <h5>Service Description:  </h5>
+                  <textarea rows="2" cols="30" class="form-control" type="text" name="serviceDescription" formControlName="serviceDescription" [(ngModel)]="serviceList.serviceDescription" placeholder="Description" required></textarea>
+                </div><br>
+                <!-- Image File Upload -->
+                <div class="form-group">
+                  <h5>Image File Upload:  </h5>
+                  <!-- <upload-image>Loading.....image uploader.....</upload-image> -->
+
+                  <input type="file" class="form-control" ng2FileSelect [uploader]="uploader"/>
+                  <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" (change)="fileEvent($event)"/> -->
+                  <p>Items in the queue: {{uploader.queue.length}}</p>
+                  <div *ngFor="let item of uploader.queue" class="media">
+                      <div class="media-left">
+                          <p>Image Preview</p>
+                          <img src="" imgPreview [image]="item?._file" class="media-object" />
+                          <button type="button" (click)="cancelUploaderItem(item)">Cancel</button>
+                      </div>
+                      <div class="media-body">
+                          <p>{{ item?.file?.name }}</p>
+                      </div>
+                  </div>
+
+                </div><br>
+
+                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+                <button class="btn btn-primary" type="button" name="button" (click)="clearServiceForm()"><i class="fa fa-floppy-o"></i>Reset</button>
+                </form>
+            </div>
+          </modal-content>
+          <modal-footer>
+              <button class="btn btn-primary" (click)="myModal.close()">Cancel</button>
+          </modal-footer>
+      </modal>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 

@@ -12,11 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
+var ng2_file_upload_1 = require("ng2-file-upload/ng2-file-upload");
 var data_service_1 = require("./services/data.service");
 // import { FileUploadComponent }  from './fileUpload.component';
 // import { UploadService }  from './services/upload.service';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneComponent }  from './dropzone.component';
+var URL = 'http://localhost:8000/upload';
+// var imageName = '';
 var AdminHandymanComponent = (function () {
     function AdminHandymanComponent(http, dataService, 
         // private uploadService: UploadService,
@@ -24,6 +27,7 @@ var AdminHandymanComponent = (function () {
         this.http = http;
         this.dataService = dataService;
         this.formBuilder = formBuilder;
+        this.imageName = '';
         this.services = [];
         this.isLoading = true;
         this.service = {};
@@ -36,13 +40,33 @@ var AdminHandymanComponent = (function () {
         this.serviceListIsEditing = false;
         this.serviceListName = new forms_1.FormControl('', forms_1.Validators.required);
         this.serviceListDescription = new forms_1.FormControl('', forms_1.Validators.required);
+        this.uploader = new ng2_file_upload_1.FileUploader({ url: URL, itemAlias: 'photo' });
     }
     AdminHandymanComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // var imageName = '';
+        //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
+        this.uploader.onAfterAddingFile = function (file) {
+            file.withCredentials = false;
+            console.log('In .onAfterAddingFile, jsonof file is:  ' + file.file.name);
+            console.log('Json of file.file is: ' + JSON.stringify(file.file));
+            _this.imageName = JSON.stringify(file.file.name);
+            console.log('Within ngOnInit, imageName now is equal to: ' + _this.imageName);
+        };
+        //overide the onCompleteItem property of the uploader so we are
+        //able to deal with the server response.
+        this.uploader.onCompleteItem = function (item, response, status, headers) {
+            console.log("ImageUpload:uploaded:", item, " Thats the item. ", status, " Thats the status. ", response, " THats the response.", item.file.name);
+            _this.uploader.queue.length = 0;
+            console.log('What is in the uploader.queue is: ' + _this.uploader.queue.length);
+        };
         this.readServices();
         this.readServiceLists();
+        // console.log('NOW SAYING THAT imageName is: ' + this.imageName);
         this.addServiceForm = this.formBuilder.group({
             serviceName: this.serviceName,
-            serviceDescription: this.serviceDescription
+            serviceDescription: this.serviceDescription,
+            serviceImage: this.imageName
         });
         this.addServiceListForm = this.formBuilder.group({
             serviceListName: this.serviceListName,
@@ -52,6 +76,9 @@ var AdminHandymanComponent = (function () {
     //=====================Service Data Connections==================================
     AdminHandymanComponent.prototype.createService = function () {
         var _this = this;
+        console.log('NOW THE VALUE of imageName is : ' + this.imageName);
+        this.addServiceForm.value.serviceImage = this.imageName;
+        console.log('NOW FOR addServiceForm value of serviceImage is : ' + this.addServiceForm.value.serviceImage);
         this.dataService.createService(this.addServiceForm.value).subscribe(function (res) {
             var newService = res.json();
             console.log("AdminHandymanComponent new service is: " + JSON.stringify(newService));
@@ -144,6 +171,21 @@ var AdminHandymanComponent = (function () {
             }, function (error) { return console.log('Delete service list Failed at Admin-Handyman.component. error: ' + error); });
         }
     };
+    //=================FileUploader Functions========================================
+    AdminHandymanComponent.prototype.cancelUploaderItem = function (item) {
+        for (var i = 0; i < this.uploader.queue.length; i++) {
+            var itm = this.uploader.queue[i];
+            if (itm = item) {
+                itm.remove();
+            }
+        }
+        console.log('File has been cleared from the uploader.queue');
+    };
+    ;
+    AdminHandymanComponent.prototype.cancelUploaderAll = function () {
+        this.uploader.clearQueue();
+        console.log("Uploader.queue has been cleared.");
+    };
     return AdminHandymanComponent;
 }());
 AdminHandymanComponent = __decorate([
@@ -157,7 +199,7 @@ AdminHandymanComponent = __decorate([
             './styles/admin-handyman-admin_top_gallery.component.css',
             './styles/admin-handyman-admin_services.component.css',
             './styles/admin-handyman-admin_reviews.component.css',
-            './styles/dropzone.css',
+            './styles/uploadImage.component.css',
         ],
     }),
     __metadata("design:paramtypes", [http_1.Http,

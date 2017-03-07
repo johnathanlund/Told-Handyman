@@ -19,9 +19,61 @@
 </div>
 
 <!-- button to trigger the file upload when submitted -->
-<button type="button" class="btn btn-success btn-s"
+<!-- <button type="button" class="btn btn-success btn-s"
       (click)="uploader.uploadAll()"
       [disabled]="!uploader.getNotUploadedItems().length">
       Upload with ng-2 file uploader
 </button>
-<button type="button" (click)="cancelUploaderAll()">Cancel All</button>
+<button type="button" (click)="cancelUploaderAll()">Cancel All</button> -->
+
+
+
+
+<!-- <div class="add_card">
+<div class="card" *ngIf="!isEditing">
+  <div class="rowModal">
+  <button (click)="myModal.open()" class="modalButton btn">Add new service</button>
+  <modal #myModal class="modal_box">
+      <modal-header class="modal_header">
+          <h1>Told Handyman Services</h1>
+      </modal-header>
+      <modal-content>
+        <div class="card-block">
+          <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
+            <div class="form-group">
+                <h5>Service Name:  </h5><input id="nameField" class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
+            </div>
+            <br>
+            <div class="form-group">
+              <h5>Service Description:  </h5>
+              <textarea rows="2" cols="30" class="form-control" type="text" name="serviceDescription" formControlName="serviceDescription" [(ngModel)]="serviceList.serviceDescription" placeholder="Description" required></textarea>
+            </div><br>
+            <div class="form-group">
+              <h5>Image File Upload:  </h5>
+                <button type="button" class="btn">
+                    <input #fileInput class="form-control" name="serviceImage" type="file" (change)="onFileSelect($event)">
+                </button>
+                <div *ngIf="hasFiles()">
+                  <div *ngFor="let file of files">
+                    <img [src]="file.objectURL" class="img-thumbnail img-responsive topMargin"><br>
+                    <div>
+                      <button type="button" class="btn-danger topMargin" (click)="remove(i)">Remove Image</button>
+                    </div>
+                  </div>
+                </div>
+            </div><br>
+
+            <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid || !hasFiles()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+            <button class="btn btn-primary" type="button" name="button" (click)="clearServiceForm()"><i class="fa fa-floppy-o"></i>Reset</button>
+            <br>
+            <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles() && submitStarted" title="Service form is uploading.."></progress-bar>
+          </form>
+        </div>
+      </modal-content>
+      <modal-footer>
+          <button class="btn btn-primary" (click)="myModal.close()">Cancel</button>
+      </modal-footer>
+  </modal>
+  </div>
+</div>
+</div> -->
