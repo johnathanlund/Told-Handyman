@@ -128,6 +128,9 @@ export class AdminHandymanComponent implements OnInit {
   }
 
   updateService(service) {
+    if (this.imageName.length > 0) {
+      service.serviceImage = this.imageName;
+    }
     this.dataService.updateService(service).subscribe(
       res => {
         this.isEditing = false;

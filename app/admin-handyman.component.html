@@ -37,7 +37,7 @@
             <tr *ngFor="let service of services">
               <td>{{service.serviceName}}</td>
               <td>{{service.serviceDescription}}</td>
-                <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{service.serviceImage}}">{{service.serviceImage}}</td>
+                <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{service.serviceImage}}"></td>
               <td>
                 <!-- <button class="btn btn-sm btn-warning" (click)="enableEditing(service)"><i class="fa fa-pencil"></i> Edit</button> -->
 
@@ -58,7 +58,28 @@
                               </div>
                               <div class="form-group">
                                 <h5>Service Description:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="serviceDescription" [(ngModel)]="service.serviceDescription" placeholder="Description" required></textarea>
-                              </div>
+                              </div><br>
+
+                              <div class="form-group">
+                                <h5>Image File Upload:  </h5>
+                                <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
+                                <div>
+                                  <h5>Current Image:</h5>
+                                  <img class="img-thumbnail img-responsive" src="../server/uploads/{{service.serviceImage}}"><br><br>
+                                </div>
+                                <div *ngFor="let item of uploader.queue" class="media">
+                                    <div class="media-left">
+                                        <p>Image Preview</p>
+                                        <img src="" imgPreview [image]="item?._file" class="media-object" />
+                                        <button type="button" (click)="cancelUploaderItem(item)">Cancel</button>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>File name: {{ item?.file?.name }}</p>
+                                    </div>
+                                </div>
+
+                              </div><br>
+
                               <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>

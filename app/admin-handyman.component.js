@@ -107,6 +107,9 @@ var AdminHandymanComponent = (function () {
     };
     AdminHandymanComponent.prototype.updateService = function (service) {
         var _this = this;
+        if (this.imageName.length > 0) {
+            service.serviceImage = this.imageName;
+        }
         this.dataService.updateService(service).subscribe(function (res) {
             _this.isEditing = false;
             _this.service = service;
