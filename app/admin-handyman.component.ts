@@ -62,7 +62,7 @@ export class AdminHandymanComponent implements OnInit {
       this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false;
         console.log('In .onAfterAddingFile, jsonof file is:  ' + file.file.name);
         console.log('Json of file.file is: ' + JSON.stringify(file.file));
-        this.imageName = JSON.stringify(file.file.name);
+        this.imageName = file.file.name;
         console.log('Within ngOnInit, imageName now is equal to: ' + this.imageName);
       };
     //overide the onCompleteItem property of the uploader so we are

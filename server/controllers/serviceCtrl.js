@@ -3,9 +3,10 @@ var ServiceModel = require('../models/ServiceModel.js');
 module.exports = {
 
   create: function(req, res, next) {
-    console.log('This is the req.params.id ' + req.params.id);
+    console.log('This is the req.body.serviceName ' + req.body.serviceName);
+    console.log('This is the req.body.serviceImage: ' + req.body.serviceImage);
     ServiceModel.create(req.body, function(err, response) {
-      console.log('this is the req.body.name ' + req);
+      // console.log('this is the req.body.name ' + req);
       if (err) {
         console.log("Create Service error just happened");
         return res.status(500).send(err);
