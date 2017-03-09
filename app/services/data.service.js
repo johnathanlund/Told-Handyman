@@ -22,6 +22,24 @@ var DataService = (function () {
         this.options = new http_1.RequestOptions({ headers: this.headers });
         this._adminUrl = 'http://localhost:8000';
     }
+    //=============Gallery Connections=============================================
+    DataService.prototype.createGallery = function (gallery) {
+        console.log("Create gallery successfull at data.service");
+        return this.http.post('http://localhost:8000/gallery', JSON.stringify(gallery), this.options);
+    };
+    DataService.prototype.readGallerys = function () {
+        console.log("Starting to Read gallery successfull at data.service");
+        return this.http.get('http://localhost:8000/gallerys').timeout(2000).map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
+    };
+    DataService.prototype.updateGallery = function (gallery) {
+        console.log("Update gallery successfull at data.service");
+        return this.http.put('http://localhost:8000/gallery/' + gallery._id, JSON.stringify(gallery), this.options);
+    };
+    DataService.prototype.deleteGallery = function (gallery) {
+        console.log("Delete gallery successfull at data.service");
+        return this.http.delete('http://localhost:8000/gallery/' + gallery._id, this.options);
+    };
     //=============Service Connections=============================================
     DataService.prototype.createService = function (service) {
         console.log("Create service successfull at data.service");

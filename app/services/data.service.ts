@@ -13,7 +13,30 @@ export class DataService {
   private options = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http) { }
-  private _adminUrl = 'http://localhost:8000'
+  private _adminUrl = 'http://localhost:8000';
+
+  //=============Gallery Connections=============================================
+
+  createGallery(gallery): Observable<any> {
+    console.log("Create gallery successfull at data.service");
+    return this.http.post('http://localhost:8000/gallery', JSON.stringify(gallery), this.options);
+  }
+
+  readGallerys(): Observable<any> {
+    console.log("Starting to Read gallery successfull at data.service");
+    return this.http.get('http://localhost:8000/gallerys').timeout(2000).map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server Error'));
+  }
+
+  updateGallery(gallery): Observable<any> {
+    console.log("Update gallery successfull at data.service");
+    return this.http.put('http://localhost:8000/gallery/' + gallery._id, JSON.stringify(gallery), this.options);
+  }
+
+  deleteGallery(gallery): Observable<any> {
+    console.log("Delete gallery successfull at data.service");
+    return this.http.delete('http://localhost:8000/gallery/' + gallery._id, this.options);
+  }
 
   //=============Service Connections=============================================
 

@@ -29,6 +29,16 @@ export class AdminHandymanComponent implements OnInit {
 
   imageName: string = '';
 
+  gallerys = [];
+  galleryIsLoading = true;
+
+  gallery = {};
+  galleryIsEditing = false;
+
+  addGalleryForm: FormGroup;
+  galleryName = new FormControl('', Validators.required);
+  galleryDescription = new FormControl('', Validators.required);
+
   services = [];
   isLoading = true;
 
@@ -72,9 +82,15 @@ export class AdminHandymanComponent implements OnInit {
             console.log('What is in the uploader.queue is: ' + this.uploader.queue.length);
         };
 
+    this.readGallerys();
     this.readServices();
     this.readServiceLists();
-    // console.log('NOW SAYING THAT imageName is: ' + this.imageName);
+
+    this.addGalleryForm = this.formBuilder.group({
+      galleryName: this.galleryName,
+      galleryDescription: this.galleryDescription,
+      galleryImage: this.imageName
+    });
     this.addServiceForm = this.formBuilder.group({
       serviceName: this.serviceName,
       serviceDescription: this.serviceDescription,
@@ -86,14 +102,72 @@ export class AdminHandymanComponent implements OnInit {
     });
   }
 
+  //=====================Gallery Data Connections==================================
+    createGallery() {
+      this.addGalleryForm.value.galleryImage = this.imageName;
+      this.dataService.createGallery(this.addGalleryForm.value).subscribe(
+        res => {
+          let newGallery = res.json();
+          this.gallery.push(newGallery);
+          console.log('Create gallery successfull at Admin-Handyman.component');
+          this.addGalleryForm.reset();
+        },
+        error => console.log('Create gallery error at Admin-handyman.component. error:  ' + error)
+      );
+    }
+
+    readGallerys() {
+      this.dataService.readGallerys().subscribe(
+        data => this.gallerys = data,
+        error => console.log(error),
+        () => this.galleryIsLoading = false
+      );
+    }
+
+    enableGalleryEditing(gallery) {
+      this.galleryIsEditing = true;
+      this.gallery = gallery;
+    }
+
+    cancelGalleryEditing() {
+      this.galleryIsEditing = false;
+      this.gallery = {};
+      this.readGallerys();
+    }
+
+    updateGallery(gallery) {
+      if (this.imageName.length > 0) {
+        gallery.galleryImage = this.imageName;
+      }
+      this.dataService.updateGallery(gallery).subscribe(
+        res => {
+          this.galleryIsEditing = false;
+          this.gallery = gallery;
+          console.log('Update gallery successfull at Admin-Handyman.component, gallery:  ' + JSON.stringify(this.gallery));
+        },
+        error => console.log('Update gallery Failed at Admin-Handyman.component. error: '+ error + "THIS IS THE Gallery:  " + + JSON.stringify(this.gallery))
+      );
+    }
+
+    deleteGallery(gallery) {
+      if (window.confirm('Are you sure you want to permanently delete this gallery?')) {
+        this.dataService.deleteGallery(gallery).subscribe(
+          res => {
+            console.log('Delete gallery successfull at Admin-Handyman.component.');
+            let pos = this.gallerys.map(elem => { return elem._id; }).indexOf(gallery._id);
+            this.gallerys.splice(pos, 1);
+          },
+          error => console.log('Delete gallery Failed at Admin-Handyman.component. error: '+ error)
+        );
+      }
+    }
+
 //=====================Service Data Connections==================================
   createService() {
     this.addServiceForm.value.serviceImage = this.imageName;
-    console.log('NOW FOR addServiceForm value of serviceImage is : ' + this.addServiceForm.value.serviceImage);
     this.dataService.createService(this.addServiceForm.value).subscribe(
       res => {
         let newService = res.json();
-        console.log("AdminHandymanComponent new service is: " + JSON.stringify(newService));
         this.services.push(newService);
         console.log('Create service successfull at Admin-Handyman.component');
         this.addServiceForm.reset();
@@ -104,10 +178,6 @@ export class AdminHandymanComponent implements OnInit {
 
   readServices() {
     this.dataService.readServices().subscribe(
-      // data => {
-      //   console.log('Read services succesfull at Admin-Handyman.component');
-      //   this.services = data;
-      // },
       data => this.services = data,
       error => console.log(error),
       () => this.isLoading = false

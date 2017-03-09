@@ -6,13 +6,143 @@
   <div class="admin_top_gallery_container">
     <h3>Handyman Top Page Gallery</h3>
 
-    <upload-image>Loading.....image uploader.....</upload-image>
+    <div class="card gallery_card" *ngIf="!galleryIsLoading">
+      <h4 class="card-header">Current Gallerys ({{gallerys.length}})</h4>
+      <div class="card-block card_table_block">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-default">
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Image</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="gallerys.length === 0">
+            <tr>
+              <td colspan="4">There are no gallerys in the DB. Add a new gallery below.</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="!galleryIsEditing">
+            <tr *ngFor="let gallery of gallerys">
+              <td>{{gallery.galleryName}}</td>
+              <td>{{gallery.galleryDescription}}</td>
+                <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{gallery.galleryImage}}"></td>
+              <td>
 
-    <!-- <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone> -->
-    <!-- <div [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)">Add Images/Files by clicking here.</div> -->
-    <!-- <dropzone></dropzone> -->
+                <div class="rowModal">
+                <button (click)="myModal.open()" class="modalButton btn edit_modalButton"><i class="fa fa-pencil"></i>Edit</button>
+                <modal #myModal class="modal_box">
+                    <modal-header class="modal_header">
+                        <h1>Edit <strong>{{gallery.galleryName}}</strong> Gallery</h1>
+                    </modal-header>
+                    <modal-content>
+                      <tbody>
+                        <tr>
+                          <td colspan="4">
+                            <form class="form-inline" #form="ngForm" (ngSubmit)="updateGallery(gallery)" style="display:inline">
+                              <div class="form-group">
+                                  <h5>Gallery Name:  </h5><input class="form-control" type="text" name="galleryName" [(ngModel)]="gallery.galleryName" placeholder="Name" required>
+                              </div>
+                              <div class="form-group">
+                                <h5>Gallery Description:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="galleryDescription" [(ngModel)]="gallery.galleryDescription" placeholder="Description" required></textarea>
+                              </div><br>
 
+                              <div class="form-group">
+                                <h5>Image File Upload:  </h5>
+                                <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
+                                <div>
+                                  <h5>Current Image:</h5>
+                                  <img class="img-thumbnail img-responsive edit_Image" src="../server/uploads/{{gallery.galleryImage}}"><br><br>
+                                </div>
+                                <div *ngFor="let item of uploader.queue" class="media">
+                                    <div class="media-left">
+                                        <p>Image Preview</p>
+                                        <img src="" imgPreview [image]="item?._file" class="media-object" />
+                                        <button type="button" (click)="cancelUploaderItem(item)">Cancel</button>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>File name: {{ item?.file?.name }}</p>
+                                    </div>
+                                </div>
+
+                              </div><br>
+
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </modal-content>
+                    <modal-footer>
+                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelGalleryEditing()">Cancel</button>
+                    </modal-footer>
+                </modal>
+                </div>
+
+
+                <button class="btn btn-sm btn-danger" (click)="deleteGallery(gallery)"><i class="fa fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="add_card">
+    <div class="card" *ngIf="!galleryIsEditing">
+      <div class="rowModal">
+      <button (click)="myModal.open()" class="modalButton btn">Add new gallery</button>
+      <modal #myModal class="modal_box">
+          <modal-header class="modal_header">
+              <h1>Told Handyman Gallerys</h1>
+          </modal-header>
+          <modal-content>
+            <div class="card-block">
+              <form class="form-inline" [formGroup]="addGalleryForm" (ngSubmit)="createGallery()" style="text-align:center">
+                <div class="form-group">
+                    <h5>Gallery Name:  </h5><input id="nameField" class="form-control" type="text" name="name" formControlName="galleryName" placeholder="Name">
+                </div>
+                <br>
+                <div class="form-group">
+                  <h5>Gallery Description:  </h5>
+                  <textarea rows="2" cols="30" class="form-control" type="text" name="galleryDescription" formControlName="galleryDescription" [(ngModel)]="gallery.galleryDescription" placeholder="Description" required></textarea>
+                </div><br>
+                <!-- Image File Upload -->
+                <div class="form-group">
+                  <h5>Image File Upload:  </h5>
+                  <!-- <upload-image>Loading.....image uploader.....</upload-image> -->
+
+                  <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
+                  <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" (change)="fileEvent($event)"/> -->
+                  <p>Items in the queue: {{uploader.queue.length}}</p>
+                  <div *ngFor="let item of uploader.queue" class="media">
+                      <div class="media-left">
+                          <p>Image Preview</p>
+                          <img src="" imgPreview [image]="item?._file" class="media-object" />
+                          <button type="button" (click)="cancelUploaderItem(item)">Cancel</button>
+                      </div>
+                      <div class="media-body">
+                          <p>{{ item?.file?.name }}</p>
+                      </div>
+                  </div>
+
+                </div><br>
+
+                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addGalleryForm.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+                <button class="btn btn-primary" type="button" name="button" (click)="clearGalleryForm()"><i class="fa fa-floppy-o"></i>Reset</button>
+                </form>
+            </div>
+          </modal-content>
+          <modal-footer>
+              <button class="btn btn-primary" (click)="myModal.close()">Cancel</button>
+          </modal-footer>
+      </modal>
+      </div>
+    </div>
   </div>
+
+  </div><!-- END OF THE TOP GALLERY CONTAINER -->
+
   <div class="admin_services_container">
     <div class="service_section">
     <h3>Handyman Services Information</h3>
@@ -65,7 +195,7 @@
                                 <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
                                 <div>
                                   <h5>Current Image:</h5>
-                                  <img class="img-thumbnail img-responsive" src="../server/uploads/{{service.serviceImage}}"><br><br>
+                                  <img class="img-thumbnail img-responsive edit_Image" src="../server/uploads/{{service.serviceImage}}"><br><br>
                                 </div>
                                 <div *ngFor="let item of uploader.queue" class="media">
                                     <div class="media-left">
@@ -187,7 +317,7 @@
       </div>
     </div>
   </div>
-</div>
+</div><!-- END OF SERVICE SECTION -->
 
 
 

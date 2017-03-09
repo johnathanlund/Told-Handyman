@@ -10,6 +10,7 @@ var fs = require('fs');
 var config = require('./config');
 
 // CONTROLLERS
+var galleryCtrl = require('./controllers/galleryCtrl.js');
 var serviceCtrl = require('./controllers/serviceCtrl.js');
 var serviceListCtrl = require('./controllers/serviceListCtrl.js')
 
@@ -78,7 +79,6 @@ app.get('/uploads', function(req, res, next) {
 
 //our file upload function.
 app.post('/upload', function (req, res, next) {
-    console.log("In the Server Post function. File name is: " + req.body);
      upload(req, res, function (err) {
        console.log('Inside the upload function within Post. file name is: ' + JSON.stringify(req.file));
           // req.file.filename = req.file.originalname + '-' + Date.now();
@@ -96,8 +96,11 @@ app.post('/upload', function (req, res, next) {
 
 
 //===========Gallery Endpoints=========================================
-
-
+app.post('/gallery', galleryCtrl.create);
+app.get('/gallerys', galleryCtrl.read);
+app.get('/gallery/:id', galleryCtrl.readById);
+app.put('/gallery/:id', galleryCtrl.update);
+app.delete('/gallery/:id', galleryCtrl.delete);
 //===========Service Endpoints========================================
 app.post('/service', serviceCtrl.create);
 app.get('/services', serviceCtrl.read);

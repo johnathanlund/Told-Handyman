@@ -28,6 +28,12 @@ var AdminHandymanComponent = (function () {
         this.dataService = dataService;
         this.formBuilder = formBuilder;
         this.imageName = '';
+        this.gallerys = [];
+        this.galleryIsLoading = true;
+        this.gallery = {};
+        this.galleryIsEditing = false;
+        this.galleryName = new forms_1.FormControl('', forms_1.Validators.required);
+        this.galleryDescription = new forms_1.FormControl('', forms_1.Validators.required);
         this.services = [];
         this.isLoading = true;
         this.service = {};
@@ -59,9 +65,14 @@ var AdminHandymanComponent = (function () {
             _this.uploader.queue.length = 0;
             console.log('What is in the uploader.queue is: ' + _this.uploader.queue.length);
         };
+        this.readGallerys();
         this.readServices();
         this.readServiceLists();
-        // console.log('NOW SAYING THAT imageName is: ' + this.imageName);
+        this.addGalleryForm = this.formBuilder.group({
+            galleryName: this.galleryName,
+            galleryDescription: this.galleryDescription,
+            galleryImage: this.imageName
+        });
         this.addServiceForm = this.formBuilder.group({
             serviceName: this.serviceName,
             serviceDescription: this.serviceDescription,
@@ -72,14 +83,57 @@ var AdminHandymanComponent = (function () {
             serviceListDescription: this.serviceListDescription
         });
     };
+    //=====================Gallery Data Connections==================================
+    AdminHandymanComponent.prototype.createGallery = function () {
+        var _this = this;
+        this.addGalleryForm.value.galleryImage = this.imageName;
+        this.dataService.createGallery(this.addGalleryForm.value).subscribe(function (res) {
+            var newGallery = res.json();
+            _this.gallery.push(newGallery);
+            console.log('Create gallery successfull at Admin-Handyman.component');
+            _this.addGalleryForm.reset();
+        }, function (error) { return console.log('Create gallery error at Admin-handyman.component. error:  ' + error); });
+    };
+    AdminHandymanComponent.prototype.readGallerys = function () {
+        var _this = this;
+        this.dataService.readGallerys().subscribe(function (data) { return _this.gallerys = data; }, function (error) { return console.log(error); }, function () { return _this.galleryIsLoading = false; });
+    };
+    AdminHandymanComponent.prototype.enableGalleryEditing = function (gallery) {
+        this.galleryIsEditing = true;
+        this.gallery = gallery;
+    };
+    AdminHandymanComponent.prototype.cancelGalleryEditing = function () {
+        this.galleryIsEditing = false;
+        this.gallery = {};
+        this.readGallerys();
+    };
+    AdminHandymanComponent.prototype.updateGallery = function (gallery) {
+        var _this = this;
+        if (this.imageName.length > 0) {
+            gallery.galleryImage = this.imageName;
+        }
+        this.dataService.updateGallery(gallery).subscribe(function (res) {
+            _this.galleryIsEditing = false;
+            _this.gallery = gallery;
+            console.log('Update gallery successfull at Admin-Handyman.component, gallery:  ' + JSON.stringify(_this.gallery));
+        }, function (error) { return console.log('Update gallery Failed at Admin-Handyman.component. error: ' + error + "THIS IS THE Gallery:  " + +JSON.stringify(_this.gallery)); });
+    };
+    AdminHandymanComponent.prototype.deleteGallery = function (gallery) {
+        var _this = this;
+        if (window.confirm('Are you sure you want to permanently delete this gallery?')) {
+            this.dataService.deleteGallery(gallery).subscribe(function (res) {
+                console.log('Delete gallery successfull at Admin-Handyman.component.');
+                var pos = _this.gallerys.map(function (elem) { return elem._id; }).indexOf(gallery._id);
+                _this.gallerys.splice(pos, 1);
+            }, function (error) { return console.log('Delete gallery Failed at Admin-Handyman.component. error: ' + error); });
+        }
+    };
     //=====================Service Data Connections==================================
     AdminHandymanComponent.prototype.createService = function () {
         var _this = this;
         this.addServiceForm.value.serviceImage = this.imageName;
-        console.log('NOW FOR addServiceForm value of serviceImage is : ' + this.addServiceForm.value.serviceImage);
         this.dataService.createService(this.addServiceForm.value).subscribe(function (res) {
             var newService = res.json();
-            console.log("AdminHandymanComponent new service is: " + JSON.stringify(newService));
             _this.services.push(newService);
             console.log('Create service successfull at Admin-Handyman.component');
             _this.addServiceForm.reset();
@@ -87,12 +141,7 @@ var AdminHandymanComponent = (function () {
     };
     AdminHandymanComponent.prototype.readServices = function () {
         var _this = this;
-        this.dataService.readServices().subscribe(
-        // data => {
-        //   console.log('Read services succesfull at Admin-Handyman.component');
-        //   this.services = data;
-        // },
-        function (data) { return _this.services = data; }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
+        this.dataService.readServices().subscribe(function (data) { return _this.services = data; }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
     };
     AdminHandymanComponent.prototype.enableEditing = function (service) {
         this.isEditing = true;
