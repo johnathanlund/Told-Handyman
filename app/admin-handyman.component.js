@@ -89,7 +89,7 @@ var AdminHandymanComponent = (function () {
         this.addGalleryForm.value.galleryImage = this.imageName;
         this.dataService.createGallery(this.addGalleryForm.value).subscribe(function (res) {
             var newGallery = res.json();
-            _this.gallery.push(newGallery);
+            _this.gallerys.push(newGallery);
             console.log('Create gallery successfull at Admin-Handyman.component');
             _this.addGalleryForm.reset();
         }, function (error) { return console.log('Create gallery error at Admin-handyman.component. error:  ' + error); });

@@ -108,7 +108,7 @@ export class AdminHandymanComponent implements OnInit {
       this.dataService.createGallery(this.addGalleryForm.value).subscribe(
         res => {
           let newGallery = res.json();
-          this.gallery.push(newGallery);
+          this.gallerys.push(newGallery);
           console.log('Create gallery successfull at Admin-Handyman.component');
           this.addGalleryForm.reset();
         },

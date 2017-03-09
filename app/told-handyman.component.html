@@ -24,6 +24,10 @@
     <h4 id="title_slogan">"Fast friendly service with a name you can trust"</h4>
   </div>
   <div class="top_gallery_container">
+    <!-- <div class="gallery_box" *ngFor="let gallery of gallerys">
+      <div class="Gallery">{{gallery.galleryName}}</div>
+    </div> -->
+
     <!-- Gallery info
     Go to this website for a bootstrap gallery:
     http://www.angulartypescript.com/angular-2-carousel/
@@ -32,7 +36,13 @@
     <div class="swiper-wrapper">
       <swiper [config]="config">
         <div class="swiper-wrapper">
-          <div class="swiper-slide slide1">Slide 1</div>
+          <!-- <div class="swiper-slide"><img class="img-responsive" src="../server/uploads/{{gallery.galleryImage}}"></div> -->
+          <!-- <div class="swiper-slide" style="background-image: url('../server/uploads/{{gallery.galleryImage}}')"></div> -->
+          <!-- <div class="swiper-slide" style="background: url('../server/uploads/{{gallery.galleryImage}}')"></div> -->
+          <img class="swiper-slide" *ngFor="let gallery of gallerys" src="../server/uploads/{{gallery.galleryImage}}">
+          <!-- <div class="swiper-slide">{{gallery.galleryName}}</div> -->
+
+          <!-- <div class="swiper-slide slide1">Slide 1</div>
           <div class="swiper-slide slide2">Slide 2</div>
           <div class="swiper-slide slide3">Slide 3</div>
           <div class="swiper-slide">Slide 4</div>
@@ -41,7 +51,7 @@
           <div class="swiper-slide">Slide 7</div>
           <div class="swiper-slide">Slide 8</div>
           <div class="swiper-slide">Slide 9</div>
-          <div class="swiper-slide">Slide 10</div>
+          <div class="swiper-slide">Slide 10</div> -->
         </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
@@ -50,6 +60,7 @@
     <div class="swiper-button-prev"></div>
     </swiper>
   </div>
+  <!-- <div class="Gallery">{{gallery.galleryName}}</div> -->
   <!-- <div class="gallery_description">
     Description of each slide here.
   </div> -->
@@ -293,6 +304,18 @@
   </div>
   <div id="bottom_contact_container">
     Contact info
+    <!-- <ul *ngFor="let gallery of gallerys">
+      <li>{{gallery.galleryName}}</li>
+    </ul> -->
+    <!-- <tbody *ngIf="!galleryIsEditing">
+      <tr *ngFor="let gallery of gallerys">
+        <td>{{gallery.galleryName}}</td>
+        <td>{{gallery.galleryDescription}}</td>
+          <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{gallery.galleryImage}}"></td>
+        <td>
+    <div class="gallery_box" *ngFor="let gallery of gallerys">
+      <div class="Gallery">{{gallery.galleryName}}</div>
+    </div> -->
   </div>
   <div class="bottom_footer_container">
     Footer info

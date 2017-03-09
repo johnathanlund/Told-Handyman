@@ -25,6 +25,10 @@ var ToldHandymanComponent = (function () {
             spaceBetween: 30,
             loop: true
         };
+        this.gallerys = [];
+        this.galleryIsLoading = true;
+        this.gallery = {};
+        this.galleryIsEditing = false;
         this.services = [];
         this.isLoading = true;
         this.service = {};
@@ -35,8 +39,13 @@ var ToldHandymanComponent = (function () {
         this.isEditingList = false;
     }
     ToldHandymanComponent.prototype.ngOnInit = function () {
+        this.readGallerys();
         this.readServices();
         this.readServiceLists();
+    };
+    ToldHandymanComponent.prototype.readGallerys = function () {
+        var _this = this;
+        this.dataService.readGallerys().subscribe(function (data) { return _this.gallerys = data; }, function (error) { return console.log(error); }, function () { return _this.galleryIsLoading = false; });
     };
     ToldHandymanComponent.prototype.readServices = function () {
         var _this = this;

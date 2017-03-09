@@ -35,6 +35,12 @@ export class ToldHandymanComponent implements OnInit {
           loop: true
   };
 
+  gallerys = [];
+  galleryIsLoading = true;
+
+  gallery = {};
+  galleryIsEditing = false;
+
   services = [];
   isLoading = true;
 
@@ -51,10 +57,18 @@ export class ToldHandymanComponent implements OnInit {
               private dataService: DataService){ }
 
   ngOnInit() {
+    this.readGallerys();
     this.readServices();
     this.readServiceLists();
   }
 
+  readGallerys() {
+    this.dataService.readGallerys().subscribe(
+      data => this.gallerys = data,
+      error => console.log(error),
+      () => this.galleryIsLoading = false
+    );
+  }
   readServices() {
     this.dataService.readServices().subscribe(
       data => this.services = data,
