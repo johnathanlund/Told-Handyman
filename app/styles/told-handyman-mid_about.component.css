@@ -88,3 +88,16 @@
   color: rgb(82, 177, 145);
   margin: 1vh 1vw 0 0;
 }
+.about_link a:hover {
+  color: rgb(180, 11, 17);
+  font-stretch: ultra-expanded;
+}
+
+/*a .toldPlumbing:hover {
+  font-size: 130%;
+  color: red;
+}
+a .toldPlumbingFacebook:hover {
+  font-size: 160%;
+  color: red;
+}*/

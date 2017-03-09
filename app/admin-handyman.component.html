@@ -26,7 +26,19 @@
             <tr *ngFor="let gallery of gallerys">
               <td>{{gallery.galleryName}}</td>
               <td>{{gallery.galleryDescription}}</td>
-                <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{gallery.galleryImage}}"></td>
+                <td class="img-resized">
+
+                <a class="zoom" (click)="myGalleryModal.open()">
+                                            <img class="img-thumbnail img-responsive" src="../server/uploads/{{gallery.galleryImage}}">
+                                            <!-- <span class="overlay"><i class="glyphicon glyphicon-fullscreen"></i></span> -->
+                                        </a>
+                                        <modal #myGalleryModal class="modal_box">
+                                            <modal-content>
+                                              <img #adminModalImage class="img-thumbnail" src="../server/uploads/{{gallery.galleryImage}}">
+                                            </modal-content>
+                                        </modal>
+                                        </td>
+
               <td>
 
                 <div class="rowModal">
@@ -167,7 +179,19 @@
             <tr *ngFor="let service of services">
               <td>{{service.serviceName}}</td>
               <td>{{service.serviceDescription}}</td>
-                <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{service.serviceImage}}"></td>
+                <!-- <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{service.serviceImage}}"></td> -->
+                <td class="img-resized">
+
+                <a class="zoom" (click)="myServiceModal.open()">
+                                            <img class="img-thumbnail img-responsive" src="../server/uploads/{{service.serviceImage}}">
+                                            <!-- <span class="overlay"><i class="glyphicon glyphicon-fullscreen"></i></span> -->
+                                        </a>
+                                        <modal #myServiceModal class="modal_box">
+                                            <modal-content>
+                                              <img id="adminModalImage" class="img-thumbnail" src="../server/uploads/{{service.serviceImage}}">
+                                            </modal-content>
+                                        </modal>
+                                        </td>
               <td>
                 <!-- <button class="btn btn-sm btn-warning" (click)="enableEditing(service)"><i class="fa fa-pencil"></i> Edit</button> -->
 

@@ -23,7 +23,10 @@ var ToldHandymanComponent = (function () {
             nextButton: '.swiper-button-next',
             prevButton: '.swiper-button-prev',
             spaceBetween: 30,
-            loop: true
+            loop: true,
+            // This adds autoplay option to the gallery
+            autoplay: 2500,
+            autoplayDisableOnInteraction: false
         };
         this.gallerys = [];
         this.galleryIsLoading = true;

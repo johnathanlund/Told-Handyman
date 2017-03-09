@@ -51,12 +51,12 @@ module.exports = {
 
     delete: function(req, res, next) {
       var delFile = '';
-      GaleryModel.findById(req.params.id, function(err, response) {
+      GalleryModel.findById(req.params.id, function(err, response) {
         if (err) { res.status(500).send(err);}
         delFile = response.galleryImage;
         console.log('THE delFile shows as: ' + delFile);
       });
-      GaleryModel.findByIdAndRemove(req.params.id, function(err, response) {
+      GalleryModel.findByIdAndRemove(req.params.id, function(err, response) {
         if (err) {
           console.log("Delete Gallery error just happened");
           res.status(500).send(err);

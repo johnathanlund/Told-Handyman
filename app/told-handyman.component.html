@@ -7,12 +7,14 @@
       <a class="link_home" pageScroll href="#handyman_container">HOME</a>
       <a class="link_services" pageScroll href="#mid_services_container">SERVICES</a>
       <a class="link_about" pageScroll href="#mid_about_container">ABOUT</a>
+      <a class="link_reviews" pageScroll href="#mid_reviews_container">REVIEWS</a>
       <a class="link_contact" pageScroll href="#bottom_contact_container">CONTACT US</a>
     </nav>
     <nav class="mobile_menu">
       <a class="link_home" pageScroll href="#handyman_container">HOME</a>
       <a class="link_services" pageScroll href="#mid_services_container">SERVICES</a>
       <a class="link_about" pageScroll href="#mid_about_container">ABOUT</a>
+      <a class="link_reviews" pageScroll href="#mid_reviews_container">REVIEWS</a>
       <a class="link_contact" pageScroll href="#bottom_contact_container">CONTACT US</a>
     </nav>
     <span class="top_menu_logo">
@@ -190,14 +192,27 @@
     <h4>{{service.serviceName}}</h4>
   </div>
   <div class="service_body">
-    <div class="service_image"><img id="imageService" class="img-thumbnail" src="../server/uploads/{{service.serviceImage}}"></div>
+
+    <div class="service_image">
+    <a class="zoom" (click)="myModal.open()">
+                                <img id="imageService" class="img-thumbnail" src="../server/uploads/{{service.serviceImage}}">
+                                <!-- <span class="overlay"><i class="glyphicon glyphicon-fullscreen"></i></span> -->
+                            </a>
+                            <modal #myModal class="modal_box">
+                                <modal-content>
+                                  <img id="modalImage" class="img-resized" src="../server/uploads/{{service.serviceImage}}">
+                                </modal-content>
+                            </modal>
+    </div>
+
+    <!-- <div class="service_image"><img id="imageService" class="img-thumbnail" src="../server/uploads/{{service.serviceImage}}"></div> -->
     <div class="service_text">{{service.serviceDescription}}</div>
   </div>
 </div>
 
 </div> <!--This ends the class grid-container -->
 <div class="rowModal">
-<button (click)="myModal.open()" class="modalButton btn">Full List of Services</button>
+<button (click)="myModal.open()" class="modalButton btn"><p>Full List of Services</p></button>
 <modal #myModal class="modal_box">
     <modal-header class="modal_header">
         <h1>Told Handyman Service List</h1>
@@ -205,7 +220,7 @@
     <modal-content>
       <tbody>
         <tr *ngFor="let serviceList of serviceLists">
-          <td>{{serviceList.serviceListName}}</td>
+          <td><li>{{serviceList.serviceListName}}</li></td>
           <!-- <td>{{service.serviceDescription}}</td> -->
         </tr>
       </tbody>
@@ -223,7 +238,7 @@
     <div class="about_body">
     <div class="about_image"></div>
       <div class="about_text">
-        <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+        <!-- <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
           that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
         <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
           that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
@@ -232,23 +247,42 @@
         <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
           that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
         <p>A handyman is a person who is very good with their hands. Their job description covers a variety of duties
-          that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p>
-
+          that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</p> -->
+          <p>Told Plumbing is a family owned business, founded and operated by David and Belinda Told. David
+            and Belinda are 4th generation Pleasant Grove residents. David was raised on the family farm that
+            remains in operation today. Belinda's family comes from a long line of successful business owners.
+            David began plumbing in 1980 and has worked all along the Wasatch Front. David and Belinda attribute
+             their success to quality employees and hard work.</p>
+             <p>Told Plumbing is a family owned business, founded and operated by David and Belinda Told. David
+               and Belinda are 4th generation Pleasant Grove residents. David was raised on the family farm that
+               remains in operation today. Belinda's family comes from a long line of successful business owners.
+               David began plumbing in 1980 and has worked all along the Wasatch Front. David and Belinda attribute
+                their success to quality employees and hard work.</p>
+                <p>Told Plumbing is a family owned business, founded and operated by David and Belinda Told. David
+                  and Belinda are 4th generation Pleasant Grove residents. David was raised on the family farm that
+                  remains in operation today. Belinda's family comes from a long line of successful business owners.
+                  David began plumbing in 1980 and has worked all along the Wasatch Front. David and Belinda attribute
+                   their success to quality employees and hard work.</p>
+                   <p>Told Plumbing is a family owned business, founded and operated by David and Belinda Told. David
+                     and Belinda are 4th generation Pleasant Grove residents. David was raised on the family farm that
+                     remains in operation today. Belinda's family comes from a long line of successful business owners.
+                     David began plumbing in 1980 and has worked all along the Wasatch Front. David and Belinda attribute
+                      their success to quality employees and hard work.</p>
       </div>
     </div>
     <div class="about_link">
-      <a href="http://toldplumbing.com/">Told Plumbing</a>
-    <a class="link_home" pageScroll href="#handyman_container">Told Plumbing Facebook</a>
+      <a class="toldPlumbing" href="http://toldplumbing.com/">Told Plumbing</a>
+    <a class="toldPlumbingFacebook" href="https://www.facebook.com/Told-Plumbing-355154127293/">Told Plumbing Facebook</a>
     </div>
   </div>
-  <div class="mid_reviews_container">
+  <div id="mid_reviews_container">
     <div class="reviews_heading">
       <h3>Customer Reviews</h3>
     </div>
     <ul class="tabs" role="tablist">
       <li>
         <input type="radio" name="tabs" id="tab1" checked />
-        <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">credits</label>
+        <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0"><h4>credits</h4></label>
       <div class="tab-content" id="tab-content1" role="tabpanel" aria-labelledby="Movie Credit Reviews" aria-hidden="false">
         <div class="reviews_credits_container">
           <div class="reviews_wrapper">
@@ -275,7 +309,7 @@
     </li>
     <li>
       <input type="radio" name="tabs" id="tab2" />
-      <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Normal</label>
+      <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0"><h4>Normal</h4></label>
       <div class="tab-content" id="tab-content2" role="tabpanel" aria-labelledby="normal reviews" aria-hidden="true">
         <div class="reviews_normal_container">
           <div class="reviews_normal_wrapper">
@@ -318,7 +352,7 @@
     </div> -->
   </div>
   <div class="bottom_footer_container">
-    Footer info
+    <strong>Copyright 2008 © Told Plumbing. All rights reserved.</strong>
   </div>
 
 </div>

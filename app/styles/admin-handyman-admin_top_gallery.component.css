@@ -6,33 +6,12 @@
   border-top: 2px solid black;
 }
 
-/*.admin_top_gallery_container h3 {
-  width: 30%;
-  margin: 0 0 0 35%;
-  text-align: center;
-  font-size: 150%;
-  border: 2px solid white;
-}*/
-
-/*.dropzone-container {
-  width: 100%;
+#myGalleryModal {
+  width: 40vw;
+  height: 40vh;
 }
 
-.dropzone-drop-area {
-  border: dashed 3px grey;
+#adminModalImage {
   width: 100%;
-  min-height: 120px;
-  box-sizing: border-box;
-  padding: 6px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  cursor: pointer;
-  position: relative;
-  &:hover {
-    color: darkorange;
-    border-color: darkorange;
-  }
-}*/
+  height: auto;
+}
