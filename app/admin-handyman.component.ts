@@ -60,8 +60,7 @@ export class AdminHandymanComponent implements OnInit {
 // var imageName = '';
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
       this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false;
-        console.log('In .onAfterAddingFile, jsonof file is:  ' + file.file.name);
-        console.log('Json of file.file is: ' + JSON.stringify(file.file));
+        file.file.name = file.file.name + '-' + Date.now();
         this.imageName = file.file.name;
         console.log('Within ngOnInit, imageName now is equal to: ' + this.imageName);
       };
@@ -89,7 +88,6 @@ export class AdminHandymanComponent implements OnInit {
 
 //=====================Service Data Connections==================================
   createService() {
-    console.log('NOW THE VALUE of imageName is : ' + this.imageName);
     this.addServiceForm.value.serviceImage = this.imageName;
     console.log('NOW FOR addServiceForm value of serviceImage is : ' + this.addServiceForm.value.serviceImage);
     this.dataService.createService(this.addServiceForm.value).subscribe(
