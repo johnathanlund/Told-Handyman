@@ -22,7 +22,8 @@
     </span>
   </div>
   <div class="top_title_container">
-    <h2 id="title_handyman">TOLD <br> HANDYMAN SERVICE</h2>
+    <!-- <h2 id="title_handyman">TOLD <br> HANDYMAN SERVICE</h2> -->
+    <div id="title_handyman"></div>
     <h4 id="title_slogan">"Fast friendly service with a name you can trust"</h4>
   </div>
   <div class="top_gallery_container">
@@ -286,7 +287,7 @@
       <div class="tab-content" id="tab-content1" role="tabpanel" aria-labelledby="Movie Credit Reviews" aria-hidden="false">
         <div class="reviews_credits_container">
           <div class="reviews_wrapper">
-            <h1 class="reviews_title">The Handyman Life</h1>
+            <!-- <h1 class="reviews_title">The Handyman Life</h1> -->
             <div class="review_author">John Doe, Provo, UT<div class="review_image"></div></div>
             <div class="work_review">"Marlin is awesome. He really knows his stuff. We had a few different things for him and he was clearly very experienced with all of them. We know who we will be hiring next time we need Handyman services; Marlin!"</div>
             <div class="review_author">Jane Doe, Sandy, UT</div>
@@ -313,7 +314,7 @@
       <div class="tab-content" id="tab-content2" role="tabpanel" aria-labelledby="normal reviews" aria-hidden="true">
         <div class="reviews_normal_container">
           <div class="reviews_normal_wrapper">
-            <h1 class="reviews_title">The Handyman Life</h1>
+            <!-- <h1 class="reviews_title">The Handyman Life</h1> -->
             <div class="review_author">John Doe, Provo, UT<div class="review_image"></div></div>
             <div class="work_review">"Marlin is awesome. He really knows his stuff. We had a few different things for him and he was clearly very experienced with all of them. We know who we will be hiring next time we need Handyman services; Marlin!"</div>
             <div class="review_author">Jane Doe, Sandy, UT</div>
@@ -337,22 +338,78 @@
 </ul>
   </div>
   <div id="bottom_contact_container">
-    Contact info
-    <!-- <ul *ngFor="let gallery of gallerys">
-      <li>{{gallery.galleryName}}</li>
-    </ul> -->
-    <!-- <tbody *ngIf="!galleryIsEditing">
-      <tr *ngFor="let gallery of gallerys">
-        <td>{{gallery.galleryName}}</td>
-        <td>{{gallery.galleryDescription}}</td>
-          <td class="img-resized"><img class="img-thumbnail img-responsive" src="../server/uploads/{{gallery.galleryImage}}"></td>
-        <td>
-    <div class="gallery_box" *ngFor="let gallery of gallerys">
-      <div class="Gallery">{{gallery.galleryName}}</div>
-    </div> -->
+    <div>
+    <div class="told_handyman_info">
+      <h3>Told Handyman</h3>
+      <p><strong>(801)785-2000</strong></p>
+      <p>501 S Main St</p>
+      <p>Pleasant Grove, UT 84062</p>
+    </div>
+    <div class="told_plumbing_info">
+      <h3>Told Plumbing</h3>
+      <p><strong>(801)785-5559</strong></p>
+      <p>501 S Main St</p>
+      <p>Pleasant Grove, UT 84062</p>
+    </div>
+  </div><br><br>
+
+  <!-- <div id="contact-form">
+	<div>
+		<h1>Nice to Meet You!</h1>
+		<h4>Have a question or just want to get in touch? Let's chat.</h4>
+	</div>
+		<p id="failure">Oopsie...message not sent.</p>
+		<p id="success">Your message was sent successfully. Thank you!</p>
+
+		   <form method="post" action="/">
+			<div>
+		      <label for="name">
+		      	<span class="required">Name: *</span>
+		      	<input type="text" id="name" name="name" value="" placeholder="Your Name" required="required" tabindex="1" autofocus="autofocus" />
+		      </label>
+			</div>
+			<div>
+		      <label for="email">
+		      	<span class="required">Email: *</span>
+		      	<input type="email" id="email" name="email" value="" placeholder="Your Email" tabindex="2" required="required" />
+		      </label>
+			</div>
+      <div>
+		      <label for="phone">
+		      	<span class="required">Phone: *</span>
+		      	<input type="number" id="phone" name="phone" value="" placeholder="Your Phone Number" tabindex="3" required="required" />
+		      </label>
+			</div>
+			<div>
+		      <label for="subject">
+		      <span>Subject: </span>
+			      <select id="subject" name="subject" tabindex="4">
+			         <option value="hello">Product Price Question</option>
+			         <option value="quote">Where are my dragons?!</option>
+			         <option value="general">- Valar Morghulis - </option>
+			      </select>
+		      </label>
+			</div>
+			<div>
+		      <label for="message">
+		      	<span class="required">Message: *</span>
+		      	<textarea id="message" name="message" placeholder="Please write your message here." tabindex="5" required="required"></textarea>
+		      </label>
+			</div>
+			<div>
+		      <button name="submit" type="submit" id="submit" >SEND</button>
+			</div>
+		   </form>
+
+	</div> -->
+
+    <!-- Contact form goes here. -->
+
   </div>
   <div class="bottom_footer_container">
-    <strong>Copyright 2008 © Told Plumbing. All rights reserved.</strong>
+    <div class="copyright">
+      <strong>Copyright 2008 © Told Plumbing. All rights reserved.</strong>
+    </div>
   </div>
 
 </div>

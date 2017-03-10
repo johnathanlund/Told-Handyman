@@ -12,7 +12,8 @@ var config = require('./config');
 // CONTROLLERS
 var galleryCtrl = require('./controllers/galleryCtrl.js');
 var serviceCtrl = require('./controllers/serviceCtrl.js');
-var serviceListCtrl = require('./controllers/serviceListCtrl.js')
+var serviceListCtrl = require('./controllers/serviceListCtrl.js');
+var reviewCtrl = require('./controllers/reviewCtrl.js')
 
 // SERVICES
 // var passport = require('./services/passport');
@@ -113,6 +114,12 @@ app.get('/serviceLists', serviceListCtrl.read);
 app.get('/serviceList/:id', serviceListCtrl.readById);
 app.put('/serviceList/:id', serviceListCtrl.update);
 app.delete('/serviceList/:id', serviceListCtrl.delete);
+//===========Review Endpoints=========================================
+app.post('/review', reviewCtrl.create);
+app.get('/reviews', reviewCtrl.read);
+app.get('/review/:id', reviewCtrl.readById);
+app.put('/review/:id', reviewCtrl.update);
+app.delete('/review/:id', reviewCtrl.delete);
 
 // CONNECTIONS
 // var port: number = process.env.PORT || 8000;

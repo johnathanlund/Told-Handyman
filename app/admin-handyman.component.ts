@@ -59,6 +59,17 @@ export class AdminHandymanComponent implements OnInit {
   serviceListName = new FormControl('', Validators.required);
   serviceListDescription = new FormControl('', Validators.required);
 
+  reviews = [];
+  reviewIsLoading = true;
+
+  review = {};
+  reviewIsEditing = false;
+
+  addReviewForm: FormGroup;
+  reviewAuthor = new FormControl('', Validators.required);
+  reviewLocation = new FormControl('', Validators.required);
+  reviewMessage = new FormControl('', Validators.required);
+
    public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 
   constructor(private http: Http,
@@ -85,6 +96,7 @@ export class AdminHandymanComponent implements OnInit {
     this.readGallerys();
     this.readServices();
     this.readServiceLists();
+    this.readReviews();
 
     this.addGalleryForm = this.formBuilder.group({
       galleryName: this.galleryName,
@@ -99,6 +111,12 @@ export class AdminHandymanComponent implements OnInit {
     this.addServiceListForm = this.formBuilder.group({
       serviceListName: this.serviceListName,
       serviceListDescription: this.serviceListDescription
+    });
+    this.addReviewForm = this.formBuilder.group({
+      reviewAuthor: this.reviewAuthor,
+      reviewLocation: this.reviewLocation,
+      reviewMessage: this.reviewMessage,
+      reviewImage: this.imageName
     });
   }
 
@@ -283,6 +301,66 @@ deleteServiceList(serviceList) {
     );
   }
 }
+
+//=====================Review Data Connections==================================
+  createReview() {
+    this.addReviewForm.value.reviewImage = this.imageName;
+    this.dataService.createReview(this.addReviewForm.value).subscribe(
+      res => {
+        let newReview = res.json();
+        this.reviews.push(newReview);
+        console.log('Create review successfull at Admin-Handyman.component');
+        this.addReviewForm.reset();
+      },
+      error => console.log('Create error at Admin-handyman.component. error:  ' + error)
+    );
+  }
+
+  readReviews() {
+    this.dataService.readReviews().subscribe(
+      data => this.reviews = data,
+      error => console.log(error),
+      () => this.reviewIsLoading = false
+    );
+  }
+
+  enableReviewEditing(review) {
+    this.reviewIsEditing = true;
+    this.review = review;
+  }
+
+  cancelReviewEditing() {
+    this.reviewIsEditing = false;
+    this.review = {};
+    this.readReview();
+  }
+
+  updatReview(review) {
+    if (this.imageName.length > 0) {
+      review.reviewImage = this.imageName;
+    }
+    this.dataService.updatReview(review).subscribe(
+      res => {
+        this.reviewIsEditing = false;
+        this.review = review;
+        console.log('Update review successfull at Admin-Handyman.component, review:  ' + JSON.stringify(this.review));
+      },
+      error => console.log('Update review Failed at Admin-Handyman.component. error: '+ error + "THIS IS THE REVIEW:  " + + JSON.stringify(this.review))
+    );
+  }
+
+  deleteReview(review) {
+    if (window.confirm('Are you sure you want to permanently delete this review?')) {
+      this.dataService.deleteReview(review).subscribe(
+        res => {
+          console.log('Delete review successfull at Admin-Handyman.component.');
+          let pos = this.reviews.map(elem => { return elem._id; }).indexOf(review._id);
+          this.reviews.splice(pos, 1);
+        },
+        error => console.log('Delete review Failed at Admin-Handyman.component. error: '+ error)
+      );
+    }
+  }
 
 //=================FileUploader Functions========================================
 cancelUploaderItem(item) {

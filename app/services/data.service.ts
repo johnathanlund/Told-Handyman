@@ -86,4 +86,28 @@ export class DataService {
     return this.http.delete('http://localhost:8000/serviceList/' + serviceList._id, this.options);
   }
 
+  //=============Review Connections=============================================
+
+  createReview(review): Observable<any> {
+    console.log("Create review successfull at data.service");
+    return this.http.post('http://localhost:8000/review', JSON.stringify(review), this.options);
+  }
+
+  readReviews(): Observable<any> {
+    console.log("Starting to Read review successfull at data.service");
+    return this.http.get('http://localhost:8000/reviews').timeout(2000).map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server Error'));
+    // console.log('Read read please reeeeeaaaaaad.....');
+  }
+
+  updateReview(review): Observable<any> {
+    console.log("Update review successfull at data.service");
+    return this.http.put('http://localhost:8000/review/' + review._id, JSON.stringify(review), this.options);
+  }
+
+  deleteReview(review): Observable<any> {
+    console.log("Delete review successfull at data.service");
+    return this.http.delete('http://localhost:8000/review/' + review._id, this.options);
+  }
+
 }
