@@ -78,6 +78,25 @@ var DataService = (function () {
         console.log("Delete service list successfull at data.service");
         return this.http.delete('http://localhost:8000/serviceList/' + serviceList._id, this.options);
     };
+    //=============Review Connections=============================================
+    DataService.prototype.createReview = function (review) {
+        console.log("Create review successfull at data.service");
+        return this.http.post('http://localhost:8000/review', JSON.stringify(review), this.options);
+    };
+    DataService.prototype.readReviews = function () {
+        console.log("Starting to Read review successfull at data.service");
+        return this.http.get('http://localhost:8000/reviews').timeout(2000).map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
+        // console.log('Read read please reeeeeaaaaaad.....');
+    };
+    DataService.prototype.updateReview = function (review) {
+        console.log("Update review successfull at data.service");
+        return this.http.put('http://localhost:8000/review/' + review._id, JSON.stringify(review), this.options);
+    };
+    DataService.prototype.deleteReview = function (review) {
+        console.log("Delete review successfull at data.service");
+        return this.http.delete('http://localhost:8000/review/' + review._id, this.options);
+    };
     return DataService;
 }());
 DataService = __decorate([

@@ -56,6 +56,12 @@ export class ToldHandymanComponent implements OnInit {
   serviceList = {};
   isEditingList = false;
 
+  reviews = [];
+  reviewIsLoading = true;
+
+  review = {};
+  reviewIsEditing = false;
+
   constructor(private http: Http,
               private dataService: DataService){ }
 
@@ -63,6 +69,7 @@ export class ToldHandymanComponent implements OnInit {
     this.readGallerys();
     this.readServices();
     this.readServiceLists();
+    this.readReviews();
   }
 
   readGallerys() {
@@ -84,6 +91,14 @@ export class ToldHandymanComponent implements OnInit {
       data => this.serviceLists = data,
       error => console.log(error),
       () => this.isLoading = false
+    );
+  }
+  readReviews() {
+    this.dataService.readReviews().subscribe(
+      // console.log("Reading Reviews from Told Handyman component."),
+      data => this.reviews = data,
+      error => console.log(error),
+      () => this.reviewIsLoading = false
     );
   }
 

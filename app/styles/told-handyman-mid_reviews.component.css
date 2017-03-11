@@ -17,7 +17,7 @@
 .reviews_heading {
   width: 100vw;
   height: 10%;
-  color: #000;
+  /*color: #000;*/
   text-align: center;
   /*margin: 2vh 0 0 0;*/
   padding: 0;
@@ -34,6 +34,7 @@
   padding: 0 0 0 0;
   margin: 20px 0 0 0;
   line-height: 1.5;
+  color: rgb(180, 21, 17);
 }
 @media (min-device-width: 1024px) {
   .reviews_heading h3 {
@@ -63,13 +64,13 @@
   /*font: 300 30px/1 'Open Sans Condensed', sans-serif;*/
   text-align: center;
   text-transform: uppercase;
-  color: #000;
+  /*color: #000;*/
   animation: 40s credits linear infinite;
 }
 @media (min-device-width: 1024px) {
     .reviews_wrapper {
       width: 50%;
-      margin: 0 0 0 -300px;
+      margin: 0 -30vw 0 0;
     }
 }
 
@@ -97,6 +98,10 @@
     }
 }
 
+.reviews_author h4{
+  color: rgb(180, 21, 17);
+}
+
 /* Add a height & width to create a single size
 for the review consistently vs sized to content.*/
 .work_review {
@@ -107,7 +112,7 @@ for the review consistently vs sized to content.*/
 }
 @media (min-device-width: 1024px) {
     .work_review {
-      font-size: 70%;
+      font-size: 90%;
       margin: 0 0 80 0;
     }
 }
@@ -116,8 +121,8 @@ for the review consistently vs sized to content.*/
   float: right;
   width: 30vw;
   height: 18vh;
-  background-image: url('http://www.diamondcertified.org/sites/diamondcertified.org/files/imagecache/large/Alex%20Maxwell/Diaz%20Handyman%20example%20of%20work%2039.JPG');
-  background-size: cover;
+  /*background-image: url('http://www.diamondcertified.org/sites/diamondcertified.org/files/imagecache/large/Alex%20Maxwell/Diaz%20Handyman%20example%20of%20work%2039.JPG');*/
+  /*background-size: cover;*/
   /*margin: 0 0 50px 0;*/
 }
 @media (min-device-width: 1024px) {
@@ -142,7 +147,7 @@ for the review consistently vs sized to content.*/
   width: 80%;
   text-align: center;
   text-transform: uppercase;
-  color: #000;
+  /*color: #000;*/
   margin: 0 0 0 10%;
   /*overflow: scroll;*/
 }
@@ -178,7 +183,7 @@ for the review consistently vs sized to content.*/
 }
 @media (min-device-width: 1024px) {
   #tab-content2 {
-    margin: 0 10% 0 -13%
+    margin: 0 -20vw 0 0;
   }
 }
 

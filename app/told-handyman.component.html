@@ -286,9 +286,9 @@
         <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0"><h4>credits</h4></label>
       <div class="tab-content" id="tab-content1" role="tabpanel" aria-labelledby="Movie Credit Reviews" aria-hidden="false">
         <div class="reviews_credits_container">
-          <div class="reviews_wrapper">
+          <div class="reviews_wrapper"  *ngFor="let review of reviews">
             <!-- <h1 class="reviews_title">The Handyman Life</h1> -->
-            <div class="review_author">John Doe, Provo, UT<div class="review_image"></div></div>
+            <!-- <div class="review_author">John Doe, Provo, UT<div class="review_image"></div></div>
             <div class="work_review">"Marlin is awesome. He really knows his stuff. We had a few different things for him and he was clearly very experienced with all of them. We know who we will be hiring next time we need Handyman services; Marlin!"</div>
             <div class="review_author">Jane Doe, Sandy, UT</div>
             <div class="work_review">Works fast and efficiently. Very good handyman. Sticks to his bid.</div>
@@ -303,7 +303,10 @@
             <div class="review_author">Mr. White, Orem, UT</div>
             <div class="work_review">He saved me a lot of money! He was just one of those people that is always there and performed 100% and just a great person to work with! I cant say enough how much money he saved me.</div>
             <div class="review_author">Mrs. Smith, Wolf Creek, UT</div>
-            <div class="work_review">One of the best guys there is!! Top of the line handyman.</div>
+            <div class="work_review">One of the best guys there is!! Top of the line handyman.</div> -->
+            <div class="review_author"><h4>{{review.reviewAuthor}}    {{review.reviewLocation}}</h4><img class="review_image" *ngIf="review.reviewImage" src="../server/uploads/{{review.reviewImage}}"></div>
+            <div class="work_review">{{review.reviewMessage}}</div>
+
           </div>
         </div>
       </div>
@@ -313,9 +316,9 @@
       <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0"><h4>Normal</h4></label>
       <div class="tab-content" id="tab-content2" role="tabpanel" aria-labelledby="normal reviews" aria-hidden="true">
         <div class="reviews_normal_container">
-          <div class="reviews_normal_wrapper">
+          <div class="reviews_normal_wrapper"  *ngFor="let review of reviews">
             <!-- <h1 class="reviews_title">The Handyman Life</h1> -->
-            <div class="review_author">John Doe, Provo, UT<div class="review_image"></div></div>
+            <!-- <div class="review_author">John Doe, Provo, UT<div class="review_image"></div></div>
             <div class="work_review">"Marlin is awesome. He really knows his stuff. We had a few different things for him and he was clearly very experienced with all of them. We know who we will be hiring next time we need Handyman services; Marlin!"</div>
             <div class="review_author">Jane Doe, Sandy, UT</div>
             <div class="work_review">Works fast and efficiently. Very good handyman. Sticks to his bid.</div>
@@ -330,7 +333,11 @@
             <div class="review_author">Mr. White, Orem, UT</div>
             <div class="work_review">He saved me a lot of money! He was just one of those people that is always there and performed 100% and just a great person to work with! I cant say enough how much money he saved me.</div>
             <div class="review_author">Mrs. Smith, Wolf Creek, UT</div>
-            <div class="work_review">One of the best guys there is!! Top of the line handyman.</div>
+            <div class="work_review">One of the best guys there is!! Top of the line handyman.</div> -->
+
+            <div class="review_author"><h4>{{review.reviewAuthor}}    {{review.reviewLocation}}</h4><img class="review_image" *ngIf="review.reviewImage" src="../server/uploads/{{review.reviewImage}}"></div>
+            <div class="work_review">{{review.reviewMessage}}</div>
+
           </div>
         </div>
       </div>

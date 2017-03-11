@@ -61,10 +61,13 @@ module.exports = {
         console.log("Delete Review error just happened");
         res.status(500).send(err);
       }
-      fs.unlinkSync('server/uploads/' + delFile, function (err) {
-        if (err) throw err;
-        console.log("Deletion of image file from the system server/uploads folder successfull for: " + delFile);
-      });
+      // If the review has no image, then the below code will not need to execute.
+      if (response.reviewImage) {
+        fs.unlinkSync('server/uploads/' + delFile, function (err) {
+          if (err) throw err;
+          console.log("Deletion of image file from the system server/uploads folder successfull for: " + delFile);
+        });
+      }
       console.log("Delete Review successfully worked");
       res.send(response);
     });

@@ -312,7 +312,7 @@ deleteServiceList(serviceList) {
         console.log('Create review successfull at Admin-Handyman.component');
         this.addReviewForm.reset();
       },
-      error => console.log('Create error at Admin-handyman.component. error:  ' + error)
+      error => console.log('Create review error at Admin-handyman.component. error:  ' + error)
     );
   }
 
@@ -332,14 +332,14 @@ deleteServiceList(serviceList) {
   cancelReviewEditing() {
     this.reviewIsEditing = false;
     this.review = {};
-    this.readReview();
+    this.readReviews();
   }
 
-  updatReview(review) {
+  updateReview(review) {
     if (this.imageName.length > 0) {
       review.reviewImage = this.imageName;
     }
-    this.dataService.updatReview(review).subscribe(
+    this.dataService.updateReview(review).subscribe(
       res => {
         this.reviewIsEditing = false;
         this.review = review;

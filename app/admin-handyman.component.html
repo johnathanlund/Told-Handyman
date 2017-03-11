@@ -485,202 +485,167 @@
     </modal>
     </div>
   </div>
-</div> <!--END OF SERVICE LIST CONTAINER -->
-
-
-<div class="admin_reviews_container">
-  <div class="review_section">
-  <h3>Handyman Reviews Information</h3>
-
-  <div class="card review_card" *ngIf="!isLoading">
-    <h4 class="card-header">Current Reviews ({{reviews.length}})</h4>
-    <div class="card-block card_table_block">
-      <table class="table table-bordered table-striped">
-        <thead class="thead-default">
-          <tr>
-            <th>Author</th>
-            <th>Location</th>
-            <th>Message</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody *ngIf="reviews.length === 0">
-          <tr>
-            <td colspan="4">There are no reviews in the DB. Add a new review below.</td>
-          </tr>
-        </tbody>
-        <tbody *ngIf="!reviewIsEditing">
-          <tr *ngFor="let review of reviews">
-            <td>{{review.reviewAuthor}}</td>
-            <td>{{review.reviewLocation}}</td>
-            <td>{{review.reviewMessage}}</td>
-              <td class="img-resized">
-
-              <a class="zoom" (click)="myReviewModal.open()">
-                                          <img class="img-thumbnail img-responsive" src="../server/uploads/{{review.reviewImage}}">
-                                      </a>
-                                      <modal #myReviewModal class="modal_box">
-                                          <modal-content>
-                                            <img id="adminModalImage" class="img-thumbnail" src="../server/uploads/{{review.reviewImage}}">
-                                          </modal-content>
-                                      </modal>
-                                      </td>
-            <td>
-
-              <div class="rowModal">
-              <button (click)="myModal.open()" class="modalButton btn edit_modalButton"><i class="fa fa-pencil"></i>Edit</button>
-              <modal #myModal class="modal_box">
-                  <modal-header class="modal_header">
-                      <h1>Edit <strong>{{review.reviewAuthor}}</strong> Review</h1>
-                  </modal-header>
-                  <modal-content>
-                    <tbody>
-                      <tr>
-                        <td colspan="4">
-                          <form class="form-inline" #form="ngForm" (ngSubmit)="updateReview(review)" style="display:inline">
-                            <div class="form-group">
-                                <h5>Review Name:  </h5><input class="form-control" type="text" name="reviewAuthor" [(ngModel)]="review.reviewAuthor" placeholder="Name" required>
-                            </div>
-                            <div class="form-group">
-                              <h5>Review Description:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="reviewMessage" [(ngModel)]="review.reviewMessage" placeholder="Message" required></textarea>
-                            </div><br>
-
-                            <div class="form-group">
-                              <h5>Image File Upload:  </h5>
-                              <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
-                              <div>
-                                <h5>Current Image:</h5>
-                                <img class="img-thumbnail img-responsive edit_Image" src="../server/uploads/{{service.serviceImage}}"><br><br>
-                              </div>
-                              <div *ngFor="let item of uploader.queue" class="media">
-                                  <div class="media-left">
-                                      <p>Image Preview</p>
-                                      <img src="" imgPreview [image]="item?._file" class="media-object" />
-                                      <button type="button" (click)="cancelUploaderItem(item)">Cancel</button>
-                                  </div>
-                                  <div class="media-body">
-                                      <p>File name: {{ item?.file?.name }}</p>
-                                  </div>
-                              </div>
-
-                            </div><br>
-
-                            <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
-                          </form>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </modal-content>
-                  <modal-footer>
-                      <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelEditing()">Cancel</button>
-                  </modal-footer>
-              </modal>
-              </div>
-
-
-              <button class="btn btn-sm btn-danger" (click)="deleteService(service)"><i class="fa fa-trash"></i> Delete</button>
-            </td>
-          </tr>
-        </tbody>
-        <!-- <tbody *ngIf="isEditing">
-          <tr>
-            <td colspan="4">
-              <form class="form-inline" #form="ngForm" (ngSubmit)="updateService(service)" style="display:inline">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="serviceName" [(ngModel)]="service.serviceName" placeholder="Name" required>
-                </div>
-                <div class="form-group">
-                  <textarea rows="4" cols="70" class="form-control" type="text" name="serviceDescription" [(ngModel)]="service.serviceDescription" placeholder="Description" required></textarea>
-                </div>
-                <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
-              </form>
-              <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
-            </td>
-          </tr>
-        </tbody> -->
-      </table>
-    </div>
-  </div>
-
-  <!-- <div class="add_card">
-  <div class="card" *ngIf="!isEditing">
-    <h4 class="card-header service_card_header">Add new service</h4>
-    <div class="card-block">
-      <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
-        <div class="form-group">
-            <input class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
-        </div>
-        <div class="form-group">
-          <input class="form-control" type="text" name="description" formControlName="serviceDescription" placeholder="Description">
-        </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
-      </form>
-    </div>
-  </div>
 </div>
-</div> -->
+</div> <!--END OF SERVICE LIST SECTION -->
 
-  <div class="add_card">
-  <div class="card" *ngIf="!isEditing">
-    <div class="rowModal">
-    <button (click)="myModal.open()" class="modalButton btn">Add new service</button>
-    <modal #myModal class="modal_box">
-        <modal-header class="modal_header">
-            <h1>Told Handyman Services</h1>
-        </modal-header>
-        <modal-content>
-          <div class="card-block">
-            <form class="form-inline" [formGroup]="addServiceForm" (ngSubmit)="createService()" style="text-align:center">
-              <div class="form-group">
-                  <h5>Service Name:  </h5><input id="nameField" class="form-control" type="text" name="name" formControlName="serviceName" placeholder="Name">
-              </div>
-              <br>
-              <div class="form-group">
-                <h5>Service Description:  </h5>
-                <textarea rows="2" cols="30" class="form-control" type="text" name="serviceDescription" formControlName="serviceDescription" [(ngModel)]="serviceList.serviceDescription" placeholder="Description" required></textarea>
-              </div><br>
-              <!-- Image File Upload -->
-              <div class="form-group">
-                <h5>Image File Upload:  </h5>
-                <!-- <upload-image>Loading.....image uploader.....</upload-image> -->
+  </div> <!--END OF ADMIN_SERVICE_CONTAINER -->
 
-                <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
-                <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" (change)="fileEvent($event)"/> -->
-                <p>Items in the queue: {{uploader.queue.length}}</p>
-                <div *ngFor="let item of uploader.queue" class="media">
-                    <div class="media-left">
-                        <p>Image Preview</p>
-                        <img src="" imgPreview [image]="item?._file" class="media-object" />
-                        <button type="button" (click)="cancelUploaderItem(item)">Cancel</button>
-                    </div>
-                    <div class="media-body">
-                        <p>{{ item?.file?.name }}</p>
-                    </div>
-                </div>
-
-              </div><br>
-
-              <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
-              <button class="btn btn-primary" type="button" name="button" (click)="clearServiceForm()"><i class="fa fa-floppy-o"></i>Reset</button>
-              </form>
-          </div>
-        </modal-content>
-        <modal-footer>
-            <button class="btn btn-primary" (click)="myModal.close()">Cancel</button>
-        </modal-footer>
-    </modal>
-    </div>
-  </div>
-</div>
-</div><!-- END OF REVIEW SECTION -->
-
-
-
-
-
-  </div>
-  </div>
   <div class="admin_reviews_container">
-    <h3>Handyman Reviews Selection</h3>
+    <h3>Handyman Customer Reviews</h3>
+
+    <div class="card review_card" *ngIf="!reviewIsLoading">
+      <h4 class="card-header">Current Customer Reviews ({{reviews.length}})</h4>
+      <div class="card-block card_table_block">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-default">
+            <tr>
+              <th>Author</th>
+              <th>Location</th>
+              <th>Message</th>
+              <th>Image</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="reviews.length === 0">
+            <tr>
+              <td colspan="4">There are no reviews in the database. Add a new review below.</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="!reviewIsEditing">
+            <tr *ngFor="let review of reviews">
+              <td>{{review.reviewAuthor}}</td>
+              <td>{{review.reviewLocation}}</td>
+              <td>{{review.reviewMessage}}</td>
+                <td class="img-resized">
+
+                <a class="zoom" (click)="myReviewModal.open()">
+                                            <img class="img-thumbnail img-responsive" src="../server/uploads/{{review.reviewImage}}">
+                                            <!-- <span class="overlay"><i class="glyphicon glyphicon-fullscreen"></i></span> -->
+                                        </a>
+                                        <modal #myReviewModal class="modal_box">
+                                            <modal-content>
+                                              <img #adminModalImage class="img-thumbnail" src="../server/uploads/{{review.reviewImage}}">
+                                            </modal-content>
+                                        </modal>
+                                        </td>
+
+              <td>
+
+                <div class="rowModal">
+                <button (click)="myModal.open()" class="modalButton btn edit_modalButton"><i class="fa fa-pencil"></i>Edit</button>
+                <modal #myModal class="modal_box">
+                    <modal-header class="modal_header">
+                        <h1>Edit <strong>{{review.reviewAuthor}}'s</strong> Review </h1>
+                    </modal-header>
+                    <modal-content>
+                      <tbody>
+                        <tr>
+                          <td colspan="4">
+                            <form class="form-inline" #form="ngForm" (ngSubmit)="updateReview(review)" style="display:inline">
+                              <div class="form-group">
+                                  <h5>Review Author:  </h5><input class="form-control" type="text" name="Author" [(ngModel)]="review.reviewAuthor" placeholder="Name" required>
+                              </div>
+                              <div class="form-group">
+                                  <h5>Author Location:  </h5><input class="form-control" type="text" name="Location" [(ngModel)]="review.reviewLocation" placeholder="ex: Alpine, UT">
+                              </div>
+                              <div class="form-group">
+                                <h5>Review Message:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="Message" [(ngModel)]="review.reviewMessage" placeholder="Review Message" required></textarea>
+                              </div><br>
+
+                              <div class="form-group">
+                                <h5>Image File Upload:  </h5>
+                                <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
+                                <div>
+                                  <h5>Current Image:</h5>
+                                  <img class="img-thumbnail img-responsive edit_Image" src="../server/uploads/{{review.reviewImage}}"><br><br>
+                                </div>
+                                <div *ngFor="let item of uploader.queue" class="media">
+                                    <div class="media-left">
+                                        <p>Image Preview</p>
+                                        <img src="" imgPreview [image]="item?._file" class="media-object" />
+                                        <button type="button" (click)="cancelUploaderItem(item)">Cancel</button>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>File name: {{ item?.file?.name }}</p>
+                                    </div>
+                                </div>
+
+                              </div><br>
+
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </modal-content>
+                    <modal-footer>
+                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelReviewEditing()">Cancel</button>
+                    </modal-footer>
+                </modal>
+                </div>
+
+
+                <button class="btn btn-sm btn-danger" (click)="deleteReview(review)"><i class="fa fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="add_card">
+    <div class="card" *ngIf="!reviewIsEditing">
+      <div class="rowModal">
+      <button (click)="myModal.open()" class="modalButton btn">Add new review</button>
+      <modal #myModal class="modal_box">
+          <modal-header class="modal_header">
+              <h1>Told Handyman Reviews</h1>
+          </modal-header>
+          <modal-content>
+            <div class="card-block">
+              <form class="form-inline" [formGroup]="addReviewForm" (ngSubmit)="createReview()" style="text-align:center">
+                <div class="form-group">
+                    <h5>Review Author:  </h5><input id="nameField" class="form-control" type="text" name="author" formControlName="reviewAuthor" placeholder="Author" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <h5>Author Location:  </h5><input id="authorLocationField" class="form-control" type="text" name="location" formControlName="reviewLocation" placeholder="ex: Alpine, UT">
+                </div>
+                <br>
+                <div class="form-group">
+                  <h5>Review Message:  </h5>
+                  <textarea rows="2" cols="30" class="form-control" type="text" name="Message" formControlName="reviewMessage" [(ngModel)]="review.reviewMessage" placeholder="Review Message" required></textarea>
+                </div><br>
+                <!-- Image File Upload -->
+                <div class="form-group">
+                  <h5>Image File Upload:  </h5>
+                  <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
+                  <p>Items in the queue: {{uploader.queue.length}}</p>
+                  <div *ngFor="let item of uploader.queue" class="media">
+                      <div class="media-left">
+                          <p>Image Preview</p>
+                          <img src="" imgPreview [image]="item?._file" class="media-object" />
+                          <button type="button" (click)="cancelUploaderItem(item)">Cancel</button>
+                      </div>
+                      <div class="media-body">
+                          <p>{{ item?.file?.name }}</p>
+                      </div>
+                  </div>
+
+                </div><br>
+
+                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addReviewForm.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+                <button class="btn btn-primary" type="button" name="button" (click)="clearReviewForm()"><i class="fa fa-floppy-o"></i>Reset</button>
+                </form>
+            </div>
+          </modal-content>
+          <modal-footer>
+              <button class="btn btn-primary" (click)="myModal.close()">Cancel</button>
+          </modal-footer>
+      </modal>
+      </div>
+    </div>
   </div>
+
+</div> <!-- END OF ADMIN_REVIEWS_CONTAINER -->
+
 </div>
