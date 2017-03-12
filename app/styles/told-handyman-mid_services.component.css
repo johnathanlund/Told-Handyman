@@ -2,7 +2,7 @@
   width: 100%;
   height: 370vh;
   padding: 0 0 0 0;
-  margin: 0 0 0 0;
+  margin: -150px 0 0 0;
   /*background-color: rgb(180, 21, 17);*/
   background-color: #fff;
   color: #000;
@@ -82,6 +82,38 @@
 
 .col-3 {
   height: 5vh;
+}
+
+.callUs {
+  width: 50px;
+  height: 150px;
+  /*border: 3px solid red;*/
+  /*position: absolute;*/
+  top: 60;
+  position: sticky;
+  margin: 0 0 0 -5px;
+  padding: 0;
+  z-index: 3;
+}
+
+.callUs_box {
+  width: 100%;
+  height: 100%;
+  padding: 10px 0 0 0;
+  /*border: 3px solid lawngreen;*/
+  /*background: rgb(180, 21, 17);*/
+  background: radial-gradient(rgb(180, 21, 17), rgb(137, 21, 21));
+  color: white;
+  text-align: center;
+  word-wrap: break-word;
+  border-radius: 5px;
+}
+.callUs_box strong {
+  /*margin: 50px 0 0 0;*/
+  font-size: 120%;
+}
+.callUs_box a {
+  font-size: 135%;
 }
 
 /*.col-sm-6{
