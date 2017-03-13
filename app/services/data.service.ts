@@ -15,6 +15,13 @@ export class DataService {
   constructor(private http: Http) { }
   private _adminUrl = 'http://localhost:8000';
 
+  //=============Contact Form Connections========================================
+
+  createContactForm(contact): Observable<any> {
+    console.log("Create contact form successfull at data.service");
+    return this.http.post('http://localhost:8000/contactForm', JSON.stringify(contact), this.options);
+  }
+
   //=============Gallery Connections=============================================
 
   createGallery(gallery): Observable<any> {

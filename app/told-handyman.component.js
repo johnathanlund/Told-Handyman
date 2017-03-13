@@ -10,13 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var data_service_1 = require("./services/data.service");
 var ToldHandymanComponent = (function () {
-    function ToldHandymanComponent(http, dataService) {
+    function ToldHandymanComponent(http, dataService, formBuilder) {
         this.http = http;
         this.dataService = dataService;
-        // export class ToldHandymanComponent {
+        this.formBuilder = formBuilder;
+        this.contactName = new forms_1.FormControl('', forms_1.Validators.required);
+        this.contactEmail = new forms_1.FormControl('', forms_1.Validators.required);
+        this.contactPhone1of3 = new forms_1.FormControl('', forms_1.Validators.required);
+        this.contactPhone2of3 = new forms_1.FormControl('', forms_1.Validators.required);
+        this.contactPhone3of3 = new forms_1.FormControl('', forms_1.Validators.required);
+        this.contactMessage = new forms_1.FormControl('', forms_1.Validators.required);
+        this.phoneCombined = '';
         this.config = {
             pagination: '.swiper-pagination',
             paginationClickable: true,
@@ -46,6 +54,31 @@ var ToldHandymanComponent = (function () {
         this.readServices();
         this.readServiceLists();
         this.readReviews();
+        this.addContactForm = this.formBuilder.group({
+            contactName: this.contactName,
+            contactEmail: this.contactEmail,
+            contactPhone1of3: this.contactPhone1of3,
+            contactPhone2of3: this.contactPhone2of3,
+            contactPhone3of3: this.contactPhone3of3,
+            // contactPhone: this.phoneCombined,
+            // contactPhone1of3 + contactPhone2of3 + contactPhone3of3: this.contactPhone,
+            contactMessage: this.contactMessage,
+        });
+        this.phoneCombined = this.addContactForm.value.contactPhone1of3;
+    };
+    //===============Contact Form Connections=====================================
+    ToldHandymanComponent.prototype.createContactForm = function () {
+        var _this = this;
+        // this.addContactForm.value.contactPhone = this.phoneCombined;
+        // console.log(" PART 2 Create Contact Form shows contactPhone as: " + this.addContactForm.value.contactPhone);
+        console.log("Create Contact Form shows contactPhone as: " + '(' + this.addContactForm.value.contactPhone1of3 + ')' + this.addContactForm.value.contactPhone2of3 + '-' + this.addContactForm.value.contactPhone3of3);
+        // console.log("PART 3 Create Contact Form shows phoneCombined as: " + this.phoneCombined);
+        this.dataService.createContactForm(this.addContactForm.value).subscribe(function (res) {
+            var newContactForm = res.json();
+            console.log("Create contact form successfull at AdminHandymanComponent.");
+            _this.addContactForm.reset();
+        }, function (error) { return console.log('Create contact form error at AdminHandymanComponent.'); });
+        ;
     };
     ToldHandymanComponent.prototype.readGallerys = function () {
         var _this = this;
@@ -85,7 +118,8 @@ ToldHandymanComponent = __decorate([
         ]
     }),
     __metadata("design:paramtypes", [http_1.Http,
-        data_service_1.DataService])
+        data_service_1.DataService,
+        forms_1.FormBuilder])
 ], ToldHandymanComponent);
 exports.ToldHandymanComponent = ToldHandymanComponent;
 //# sourceMappingURL=told-handyman.component.js.map

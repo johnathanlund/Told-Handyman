@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var multer = require('multer');
 var fs = require('fs');
+var nodemailer = require('nodemailer');
 
 // CONFIG
 var config = require('./config');
@@ -17,6 +18,27 @@ var reviewCtrl = require('./controllers/reviewCtrl.js')
 
 // SERVICES
 // var passport = require('./services/passport');
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: config.nodemailer_user,
+    pass: config.nodemailer_pass
+  }
+});
+
+// var mailOptions = {
+//   from: '"The Legend" <johnathanlund@gmail.com>',
+//   to: 'jalshield@gmail.com',
+//   subject: 'Hello from the server',
+//   text: 'Hello world ?',
+//   html: '<h1>Hello Mystic World of Email</h1><br style:"color: blue;"><p>Wolves rock</p>'
+// };
+// transporter.sendMail(mailOptions, (error, info) => {
+//   if (error) {
+//     return console.log(error);
+//   }
+//   console.log('Message %s sent: %s', info.messageId, info.response);
+// });
 
 // Multer settings for handling file uploads.
 var storage = multer.diskStorage({
@@ -71,6 +93,26 @@ else {
 app.use(permitCrossDomainRequests);
 
 // ENDPOINTS
+
+//===========Contact Form Endpoints==============================================
+app.post('/contactForm', function (req, res, next) {
+  console.log("In Server, Contact Form shows req.body as: " + req.body);
+  console.log("In Server, Contact Form shows req.body.contactName as: " + req.body.contactName);
+  var mailOptions = {
+    from: '"The Legend" <' + config.nodemailer_user +'>',
+    to: config.nodemailer_recipient,
+    subject: 'Told Handyman Contact Form from Website',
+    text: 'Hello world ?',
+    html: '<h1>Hello Mystic World of Email</h1><br style:"color: blue;"><p>Wolves rock</p>' +
+    req.body.contactName + '<br><h2>Message: </h2>' + req.body.contactMessage
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+  });
+});
 
 //===========Upload Endpoints=========================================
 app.get('/uploads', function(req, res, next) {

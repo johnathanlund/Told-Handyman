@@ -22,6 +22,11 @@ var DataService = (function () {
         this.options = new http_1.RequestOptions({ headers: this.headers });
         this._adminUrl = 'http://localhost:8000';
     }
+    //=============Contact Form Connections========================================
+    DataService.prototype.createContactForm = function (contact) {
+        console.log("Create contact form successfull at data.service");
+        return this.http.post('http://localhost:8000/contactForm', JSON.stringify(contact), this.options);
+    };
     //=============Gallery Connections=============================================
     DataService.prototype.createGallery = function (gallery) {
         console.log("Create gallery successfull at data.service");
