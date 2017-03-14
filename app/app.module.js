@@ -15,6 +15,7 @@ var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var told_handyman_component_1 = require("./told-handyman.component");
 var admin_handyman_component_1 = require("./admin-handyman.component");
+var login_component_1 = require("./login.component");
 var uploadImage_component_1 = require("./UploadImage/uploadImage.component");
 var data_service_1 = require("./services/data.service");
 var image_preview_directive_1 = require("./directives/image-preview.directive");
@@ -55,6 +56,7 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             told_handyman_component_1.ToldHandymanComponent,
             admin_handyman_component_1.AdminHandymanComponent,
+            login_component_1.LoginComponent,
             uploadImage_component_1.UploadImageComponent,
             image_preview_directive_1.ImagePreview,
         ],

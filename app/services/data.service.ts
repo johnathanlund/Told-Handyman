@@ -15,6 +15,12 @@ export class DataService {
   constructor(private http: Http) { }
   private _adminUrl = 'http://localhost:8000';
 
+  //=============User Login Connections==========================================
+  login(user): Observable<any> {
+    console.log("Login successfull at data.service");
+    return this.http.post('http://localhost:8000/login', JSON.stringify(user), this.options);
+  }
+
   //=============Contact Form Connections========================================
 
   createContactForm(contact): Observable<any> {

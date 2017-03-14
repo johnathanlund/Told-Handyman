@@ -27,6 +27,7 @@
     "@angular/router": "~3.4.5",
     "@angular/upgrade": "~2.4.5",
     "angular2-useful-swiper": "^3.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.0",
     "core-js": "^2.4.1",
     "cors": "^2.8.1",

@@ -111,7 +111,7 @@ phoneCombined: string = '';
         console.log("Create contact form successfull at AdminHandymanComponent.");
         this.addContactForm.reset();
       },
-      error => console.log('Create contact form error at AdminHandymanComponent.');
+      error => console.log('Create contact form error at AdminHandymanComponent.')
     );
   }
 

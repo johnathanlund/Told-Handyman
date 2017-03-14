@@ -14,10 +14,12 @@ var config = require('./config');
 var galleryCtrl = require('./controllers/galleryCtrl.js');
 var serviceCtrl = require('./controllers/serviceCtrl.js');
 var serviceListCtrl = require('./controllers/serviceListCtrl.js');
-var reviewCtrl = require('./controllers/reviewCtrl.js')
+var reviewCtrl = require('./controllers/reviewCtrl.js');
+var userCtrl = require('./controllers/userCtrl.js');
 
 // SERVICES
-// var passport = require('./services/passport');
+var passport = require('./services/passport.js');
+
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -25,20 +27,6 @@ var transporter = nodemailer.createTransport({
     pass: config.nodemailer_pass
   }
 });
-
-// var mailOptions = {
-//   from: '"The Legend" <johnathanlund@gmail.com>',
-//   to: 'jalshield@gmail.com',
-//   subject: 'Hello from the server',
-//   text: 'Hello world ?',
-//   html: '<h1>Hello Mystic World of Email</h1><br style:"color: blue;"><p>Wolves rock</p>'
-// };
-// transporter.sendMail(mailOptions, (error, info) => {
-//   if (error) {
-//     return console.log(error);
-//   }
-//   console.log('Message %s sent: %s', info.messageId, info.response);
-// });
 
 // Multer settings for handling file uploads.
 var storage = multer.diskStorage({
@@ -66,15 +54,16 @@ var isAuthed = function(req, res, next) {
 var app = express();
 
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
 // app.use(express.static(__dirname + './../public'));
-// app.use(session({
-//   secret: config.SESSION_SECRET,
-//   saveUninitialized: false,
-//   resave: false
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(session({
+  secret: config.SESSION_SECRET,
+  saveUninitialized: false,
+  resave: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 mongoose.set('debug', true);
 
 // HEADERS
@@ -90,21 +79,42 @@ else {
   next();
 }
 };
-app.use(permitCrossDomainRequests);
+// app.use(permitCrossDomainRequests);
 
 // ENDPOINTS
+//-----------------User Login Methods------------------
+app.post('/user', function(req, res, next) { //makes new user
+ console.log('running endpoint');
+ next();
+},userCtrl.addUser);
+app.get('/user', userCtrl.getUser); //Login user if creds match
+app.get('/getCurrentUser', userCtrl.getCurrentUser); //current user , goes to user controller, res.send(req.user) sends back current user//call endpoint in resolve
+app.post('/login', passport.authenticate( 'local', { //login//
+ successRedirect: '/getCurrentUser' }));
+app.get('/logout', function(req, res, next) { //logout//
+ req.logout();
+ console.log("User has been logged out.");
+ return res.status(200).send("logged out");
+});
 
 //===========Contact Form Endpoints==============================================
 app.post('/contactForm', function (req, res, next) {
   console.log("In Server, Contact Form shows req.body as: " + req.body);
   console.log("In Server, Contact Form shows req.body.contactName as: " + req.body.contactName);
   var mailOptions = {
-    from: '"The Legend" <' + config.nodemailer_user +'>',
+    from: req.body.contactName + '<' + config.nodemailer_user +'>',
     to: config.nodemailer_recipient,
-    subject: 'Told Handyman Contact Form from Website',
+    subject: req.body.contactName +' - Told Handyman Contact Form from Website',
     text: 'Hello world ?',
-    html: '<h1>Hello Mystic World of Email</h1><br style:"color: blue;"><p>Wolves rock</p>' +
-    req.body.contactName + '<br><h2>Message: </h2>' + req.body.contactMessage
+    html:   '<div style:"display:inline-block; width:70vw; float:left;">' +
+        '<div class="email_header" style="width: 100vw;height: 8vh;background: radial-gradient(rgb(180,21,17), white);color: #fff;text-align:center; ">' +
+          '<h3 style="padding:2vh 0 0 0;">NEW CONTACT FORM SENT FROM TOLD HANDYMAN WEBSITE</h3></div>' +
+        '<h1  style="color: blue; padding: 0 0 0 10px;margin:0;">Contact Information:</h1><br>' +
+        '<div style="margin: 0 0 1vh 0;border-bottom:3px solid blue; display:flex;box-shadow: 0 6px 10px black;"><h3 style="width:150px;color:rgb(180,21,17);font-style: italic;margin:0;padding:30px 0 0 10px;">Name:  </h3><p style="margin:30px 0 0 0;padding:0;">' + req.body.contactName + '</p></div><br>' +
+        '<div style="margin: 0 0 1vh 0;border-bottom:3px solid blue; display:flex;box-shadow: 0 6px 10px black;"><h3 style="width:150px;color:rgb(180,21,17);font-style: italic;margin:0;padding:30px 0 0 10px;">Email:  </h3><p style="margin:30px 0 0 0;padding:0;">' + req.body.contactEmail + '</p></div><br>' +
+        '<div style="margin: 0 0 1vh 0;border-bottom:3px solid blue; display:flex;box-shadow: 0 6px 10px black;"><h3 style="width:150px;color:rgb(180,21,17);font-style: italic;margin:0;padding:30px 0 0 10px;">Phone #:  </h3><p style="margin:30px 0 0 0;padding:0;"> (' + req.body.contactPhone1of3 + ')' + req.body.contactPhone2of3 + '-' + req.body.contactPhone3of3 + '</p></div><br>' +
+        '<div style="margin: 0 0 2vh 0;border-bottom:3px solid blue; display:flex;box-shadow: 0 6px 10px black;"><h3 style="width:150px;color:rgb(180,21,17);font-style: italic;margin:0;padding:30px 0 0 10px;">Message:  </h3><br><p style="margin:30px 0 0 30px;padding:0;">' + req.body.contactMessage + '</p></div><br>'
+        + '</div>'
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {

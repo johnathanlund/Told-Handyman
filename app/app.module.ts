@@ -10,6 +10,7 @@ import { HttpModule }             from '@angular/http';
 import { AppComponent }           from './app.component';
 import { ToldHandymanComponent }  from './told-handyman.component';
 import { AdminHandymanComponent } from './admin-handyman.component';
+import { LoginComponent }         from './login.component';
 import { UploadImageComponent }   from './UploadImage/uploadImage.component';
 
 import { DataService }            from './services/data.service';
@@ -49,6 +50,7 @@ import { SwiperModule }           from 'angular2-useful-swiper';
     AppComponent,
     ToldHandymanComponent,
     AdminHandymanComponent,
+    LoginComponent,
     UploadImageComponent,
     ImagePreview,
     // DropzoneComponent,

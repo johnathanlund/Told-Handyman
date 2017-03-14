@@ -78,7 +78,6 @@ var ToldHandymanComponent = (function () {
             console.log("Create contact form successfull at AdminHandymanComponent.");
             _this.addContactForm.reset();
         }, function (error) { return console.log('Create contact form error at AdminHandymanComponent.'); });
-        ;
     };
     ToldHandymanComponent.prototype.readGallerys = function () {
         var _this = this;

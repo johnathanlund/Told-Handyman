@@ -17,7 +17,9 @@
 .about_heading {
   width: 100vw;
   height: 7%;
-  color: #000;
+  font-style: italic;
+  color: rgb(180, 21, 17);
+  font-weight: bolder;
   text-align: center;
   margin: 0;
   padding: 0;

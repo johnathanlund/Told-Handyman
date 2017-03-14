@@ -10,10 +10,12 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var told_handyman_component_1 = require("./told-handyman.component");
 var admin_handyman_component_1 = require("./admin-handyman.component");
+var login_component_1 = require("./login.component");
 var routes = [
     { path: '', redirectTo: '/ToldHandyman', pathMatch: 'full' },
     { path: 'ToldHandyman', component: told_handyman_component_1.ToldHandymanComponent },
-    { path: 'AdminHandyman', component: admin_handyman_component_1.AdminHandymanComponent }
+    { path: 'AdminHandyman', component: login_component_1.LoginComponent },
+    { path: 'RealAdminHandyman', component: admin_handyman_component_1.AdminHandymanComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

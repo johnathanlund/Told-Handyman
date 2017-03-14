@@ -60,6 +60,8 @@
 .col-1 h2 {
   text-align: center;
   font-style: italic;
+  color: rgb(180, 21, 17);
+  font-weight: bolder;
 }
 @media (min-device-width: 1024px) {
   .col-1 h2 {
@@ -110,10 +112,11 @@
 }
 .callUs_box strong {
   /*margin: 50px 0 0 0;*/
-  font-size: 120%;
+  font-size: 110%;
 }
 .callUs_box a {
-  font-size: 135%;
+  /*font-size: 135%;*/
+  color: #fff
 }
 
 /*.col-sm-6{

@@ -18,7 +18,7 @@
       <a class="link_contact" pageScroll href="#bottom_contact_container">CONTACT US</a>
     </nav>
     <span class="top_menu_logo">
-      TOLD HANDYMAN
+      <h4>TOLD HANDYMAN</h4>
     </span>
   </div>
   <div class="top_title_container">
@@ -69,7 +69,8 @@
   </div> -->
 </div>
 <div class="callUs" [class.fixedsticky]="callHandyman">
-  <div class="callUs_box"><strong>CALL <br> US </strong><br><a href="tel:+18017851889">(801)785-1889</a></div>
+  <div class="callUs_box"><a href="tel:+18017851889"><strong>CLICK<br> TO <br> CALL <br> US <br> HERE</strong></a></div>
+  <!-- <a href="tel:+18017851889">(801)785-1889</a> -->
 </div>
   <div id="mid_services_container">
     <!-- <div class="services_heading_container">
@@ -79,7 +80,7 @@
     <div class="grid-container">
     <div class="row">
         <div class="col-1"></div>
-        <div class="col-1"><h2>HANDYMAN SERVICES</h2></div>
+        <div class="col-1"><strong><h2>HANDYMAN SERVICES</h2></strong></div>
         <div class="col-1"></div>
     </div>
     <!-- <div class="callUs" [class.fixedsticky]="callHandyman">
@@ -240,7 +241,7 @@
   </div>
   <div id="mid_about_container">
     <div class="about_heading">
-      <h3>WHO WE ARE:</h3>
+      <h3>ABOUT US</h3>
     </div>
     <div class="about_body">
     <div class="about_image"></div>
@@ -351,10 +352,61 @@
 </ul>
   </div>
   <div id="bottom_contact_container">
-    <div>
+
+    <div class="rowModal contactForm_modal">
+    <button (click)="myModal.open()" class="modalButton btn"><p>CLICK TO CONTACT US</p></button>
+    <modal #myModal class="modal_box">
+        <modal-header id="modal_header_contactForm">
+            <h1>We Want To Hear From You</h1>
+        </modal-header>
+        <modal-content>
+          <!--================= Contact form goes here.====================================-->
+          <form [formGroup]="addContactForm" (ngSubmit)="createContactForm()" id='contact-form'>
+         <div>
+             <label for="name">
+               <span class="required">Name: *</span>
+               <input class="form-control" formControlName="contactName" type="text" id="name" name="name" value="" placeholder="Your Name" required="required" tabindex="1" autofocus="autofocus" />
+             </label>
+         </div>
+         <div>
+             <label for="email">
+               <span class="required">Email: *</span>
+               <input class="form-control" formControlName="contactEmail" type="email" id="email" name="email" value="" placeholder="Your Email" tabindex="2" required="required" />
+             </label>
+         </div>
+         <div>
+             <label for="phone">
+               <span class="required">Phone #: *</span><br>
+               <!-- <input type="number" id="phone" name="phone" value="" placeholder="Your Phone Number" tabindex="4" required="required" /> -->
+               <div class="contactPhone_div">
+                 <p>(area code)  </p><input class="form-control contactPhone_input" formControlName="contactPhone1of3" type=tel name="phone" size=3 maxlength="3" required="required"> -
+                 <input class="form-control contactPhone_input" formControlName="contactPhone2of3" type=tel name="phone" size=3 maxlength="3" required="required"> -
+                 <input class="form-control contactPhone_input" formControlName="contactPhone3of3" type=tel name="phone" size=4 maxlength="4" required="required">
+               </div>
+             </label>
+         </div>
+         <div>
+             <label for="message">
+               <span class="required">Message: *</span>
+               <textarea class="form-control" formControlName="contactMessage" id="message" name="message" placeholder="Please write your message here." tabindex="6" required="required"></textarea>
+             </label>
+         </div>
+         <div>
+             <button name="submit" type="submit" id="submit" [disabled]="!addContactForm.valid" (click)="myModal.close()" >SEND</button>
+         </div>
+          </form>
+          <!--================= Contact form ends here.====================================-->
+
+        </modal-content>
+        <modal-footer>
+            <button class="btn btn-primary" (click)="myModal.close()">cancel</button>
+        </modal-footer>
+    </modal>
+    </div>
+    <div class="contact_list">
     <div class="told_handyman_info">
       <h3>Told Handyman</h3>
-      <p><strong>(801)785-2000</strong></p>
+      <p><strong>(801)785-1889</strong></p>
       <p>501 S Main St</p>
       <p>Pleasant Grove, UT 84062</p>
     </div>
@@ -366,105 +418,8 @@
     </div>
   </div><br><br>
 
-  <div class="rowModal">
-  <button (click)="myModal.open()" class="modalButton btn"><p>CLICK TO CONTACT US</p></button>
-  <modal #myModal class="modal_box">
-      <modal-header id="modal_header_contactForm">
-          <h1>We Want To Hear From You</h1>
-      </modal-header>
-      <modal-content>
-        <!--================= Contact form goes here.====================================-->
-        <form [formGroup]="addContactForm" (ngSubmit)="createContactForm()" id='contact-form'>
-       <div>
-           <label for="name">
-             <span class="required">Name: *</span>
-             <input class="form-control" formControlName="contactName" type="text" id="name" name="name" value="" placeholder="Your Name" required="required" tabindex="1" autofocus="autofocus" />
-           </label>
-       </div>
-       <div>
-           <label for="email">
-             <span class="required">Email: *</span>
-             <input class="form-control" formControlName="contactEmail" type="email" id="email" name="email" value="" placeholder="Your Email" tabindex="2" required="required" />
-           </label>
-       </div>
-       <div>
-           <label for="phone">
-             <span class="required">Phone #: *</span>
-             <!-- <input type="number" id="phone" name="phone" value="" placeholder="Your Phone Number" tabindex="4" required="required" /> -->
-             (<input class="form-control" formControlName="contactPhone1of3" type=tel name="phone" size=3 maxlength="3" required="required">)
-             <input class="form-control" formControlName="contactPhone2of3" type=tel name="phone" size=3 maxlength="4" required="required"> -
-             <input class="form-control" formControlName="contactPhone3of3" type=tel name="phone" size=4 maxlength="5" required="required">
-           </label>
-       </div>
-       <div>
-           <label for="message">
-             <span class="required">Message: *</span>
-             <textarea class="form-control" formControlName="contactMessage" id="message" name="message" placeholder="Please write your message here." tabindex="6" required="required"></textarea>
-           </label>
-       </div>
-       <div>
-           <button name="submit" type="submit" id="submit" [disabled]="!addContactForm.valid" (click)="myModal.close()" >SEND</button>
-       </div>
-        </form>
-        <!--================= Contact form ends here.====================================-->
 
-      </modal-content>
-      <modal-footer>
-          <button class="btn btn-primary" (click)="myModal.close()">cancel</button>
-      </modal-footer>
-  </modal>
-  </div>
 
-<!--================= Contact form goes here.====================================-->
-  <!-- <div id="contact-form">
-	<div>
-		<h1>Nice to Meet You!</h1>
-		<h4>Have a question or just want to get in touch? Let's chat.</h4>
-	</div>
-		<p id="failure">Oopsie...message not sent.</p>
-		<p id="success">Your message was sent successfully. Thank you!</p>
-
-		   <form method="post" action="/">
-			<div>
-		      <label for="name">
-		      	<span class="required">Name: *</span>
-		      	<input type="text" id="name" name="name" value="" placeholder="Your Name" required="required" tabindex="1" autofocus="autofocus" />
-		      </label>
-			</div>
-			<div>
-		      <label for="email">
-		      	<span class="required">Email: *</span>
-		      	<input type="email" id="email" name="email" value="" placeholder="Your Email" tabindex="2" required="required" />
-		      </label>
-			</div>
-      <div>
-		      <label for="phone">
-		      	<span class="required">Phone: *</span>
-		      	<input type="number" id="phone" name="phone" value="" placeholder="Your Phone Number" tabindex="3" required="required" />
-		      </label>
-			</div>
-			<div>
-		      <label for="subject">
-		      <span>Subject: </span>
-			      <select id="subject" name="subject" tabindex="4">
-			         <option value="hello">Product Price Question</option>
-			         <option value="quote">Where are my dragons?!</option>
-			         <option value="general">- Valar Morghulis - </option>
-			      </select>
-		      </label>
-			</div>
-			<div>
-		      <label for="message">
-		      	<span class="required">Message: *</span>
-		      	<textarea id="message" name="message" placeholder="Please write your message here." tabindex="5" required="required"></textarea>
-		      </label>
-			</div>
-			<div>
-		      <button name="submit" type="submit" id="submit" >SEND</button>
-			</div>
-		   </form>
-
-	</div>  -->
 <!--================= Contact form ends here.====================================-->
 
 
@@ -473,10 +428,6 @@
     <div class="copyright">
       <strong>Copyright 2008 © Told Plumbing. All rights reserved.</strong>
     </div>
-    phone:
-    <input type="tel" name="usrtel" placeholder="type your phone #">
-    (<input type=tel size=3 maxlength="3">) <input type=tel size=3 maxlength="3"> -
-    <input type=tel size=4 maxlength="4">
   </div>
 
 </div>

@@ -5,16 +5,29 @@
   margin: 0;
   background-color: #fff;
   border-bottom: 5px white solid;
+  display: inline-flex;
+}
+
+.contact_list h3 {
+  font-style: italic;
+  color: rgb(180, 21, 17);
+  font-weight: bolder;
 }
 
 .told_handyman_info {
   float: left;
   margin: 0 0 0 10vw;
+  padding: 6vh 10vw 0 0;
 }
 
 .told_plumbing_info {
   float: right;
   margin: 0 20vw 0 0;
+  padding: 6vh 0 0 0;
+}
+
+.contactForm_modal {
+  padding: 13vh 0 0 10vw;
 }
 
 #modal_header_contactForm {
@@ -68,6 +81,22 @@
 
 #contact-form input{
   background: rgba(154, 154, 154,0.3);
+}
+
+.contactPhone_div {
+  display: inline-flex;
+  padding: 10px 0 0 0;
+}
+
+.contactPhone_input {
+  /*border: 3px solid purple;*/
+  margin: 0 5px 0 5px;
+  padding: 0;
+  /*flex-flow: column wrap;*/
+  /*width: 20%;*/
+}
+#contact-form p {
+  font-size: 70%;
 }
 /*#contact-form input:focus,
 #contact-form select:focus,
