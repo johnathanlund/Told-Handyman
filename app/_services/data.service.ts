@@ -19,6 +19,8 @@ export class DataService {
   login(user): Observable<any> {
     console.log("Login successfull at data.service");
     return this.http.post('http://localhost:8000/login', JSON.stringify(user), this.options);
+    return this.http.post('http://localhost:8000/getCurrentUser', JSON.stringify(user), this.options)
+    .map((res:Response) => res.json());
   }
 
   //=============Contact Form Connections========================================

@@ -11,7 +11,7 @@ const URL = 'http://localhost:8000/upload';
     selector: 'upload-image',
     //location of our template rather than writing in-line templates.
     templateUrl: './uploadImage.component.html',
-    styleUrls: ['../styles/uploadImage.component.css']
+    styleUrls: ['../_styles/uploadImage.component.css']
 })
 export class UploadImageComponent implements OnInit {
   //declare a property called fileuploader and assign it to an instance of a new fileUploader.

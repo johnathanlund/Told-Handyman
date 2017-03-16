@@ -8,14 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var told_handyman_component_1 = require("./told-handyman.component");
-var admin_handyman_component_1 = require("./admin-handyman.component");
-var login_component_1 = require("./login.component");
+var told_handyman_component_1 = require("./told-handyman/told-handyman.component");
+var admin_handyman_component_1 = require("./admin-handyman/admin-handyman.component");
+var login_component_1 = require("./login/login.component");
+var register_component_1 = require("./register/register.component");
 var routes = [
     { path: '', redirectTo: '/ToldHandyman', pathMatch: 'full' },
     { path: 'ToldHandyman', component: told_handyman_component_1.ToldHandymanComponent },
     { path: 'AdminHandyman', component: login_component_1.LoginComponent },
-    { path: 'RealAdminHandyman', component: admin_handyman_component_1.AdminHandymanComponent }
+    { path: 'Register', component: register_component_1.RegisterComponent },
+    { path: 'RealAdminHandyman', component: admin_handyman_component_1.AdminHandymanComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

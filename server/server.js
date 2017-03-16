@@ -6,6 +6,9 @@ var cors = require('cors');
 var multer = require('multer');
 var fs = require('fs');
 var nodemailer = require('nodemailer');
+var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
+var User = require('./models/UserModel.js');
 
 // CONFIG
 var config = require('./config');
@@ -18,7 +21,7 @@ var reviewCtrl = require('./controllers/reviewCtrl.js');
 var userCtrl = require('./controllers/userCtrl.js');
 
 // SERVICES
-var passport = require('./services/passport.js');
+// var passport = require('./services/passport.js');
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -45,24 +48,28 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage}).single('photo');
 
 // POLICIES
-var isAuthed = function(req, res, next) {
-  if (!req.isAuthenticated()) return res.status(401).send();
-  return next();
-};
+// var isAuthed = function(req, res, next) {
+//   if (!req.isAuthenticated()) return res.status(401).send();
+//   return next();
+// };
 
 // EXPRESS
 var app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 // app.use(express.static(__dirname + './../public'));
 app.use(session({
   secret: config.SESSION_SECRET,
   saveUninitialized: false,
   resave: false
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+
+// app.use(expressJwt({ secret: config.jwt_secret }).unless({}))
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 mongoose.set('debug', true);
 
@@ -70,7 +77,8 @@ mongoose.set('debug', true);
 var permitCrossDomainRequests = function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, x-access-token, Accept");
+  // res.header('Access-Control-Allow-Credentials', true);
 // some browsers send a pre-flight OPTIONS request to check if CORS is enabled so you have to also respond to that
 if ('OPTIONS' === req.method) {
   res.sendStatus(200);
@@ -79,23 +87,40 @@ else {
   next();
 }
 };
-// app.use(permitCrossDomainRequests);
+app.use(permitCrossDomainRequests);
+
+// var protected = app.get('/', function(req, res){
+//     res.json(req.decoded);
+// });
 
 // ENDPOINTS
+// app.get('/', function(req, res){
+//     res.json(req.decoded);
+// });
 //-----------------User Login Methods------------------
-app.post('/user', function(req, res, next) { //makes new user
- console.log('running endpoint');
- next();
-},userCtrl.addUser);
-app.get('/user', userCtrl.getUser); //Login user if creds match
-app.get('/getCurrentUser', userCtrl.getCurrentUser); //current user , goes to user controller, res.send(req.user) sends back current user//call endpoint in resolve
-app.post('/login', passport.authenticate( 'local', { //login//
- successRedirect: '/getCurrentUser' }));
-app.get('/logout', function(req, res, next) { //logout//
- req.logout();
- console.log("User has been logged out.");
- return res.status(200).send("logged out");
-});
+app.use('/api/user', userCtrl);
+// app.post('/register', function(req, res, next) {
+//  console.log('running endpoint');
+//  next();
+// },userCtrl.addUser);
+// app.get('/user', userCtrl.getUser);
+// app.get('/getCurrentUser', function(req, res, next) {
+// console.log('Server inside the /getCurrentUser function.');
+// next();
+// }, userCtrl.getCurrentUser);
+// app.post('/authenticate', userCtrl.authenticate);
+// app.post('/login', passport.authenticate( 'local', {
+//  successRedirect: '/getCurrentUser' }));
+// app.post('/login', passport.authenticate('local'), function (req, res, next) {
+//   console.log('Server inside the /login function.');
+//    res.status(200);
+//  });
+// app.post('/login', userCtrl.userAuthenticate);
+// app.get('/logout', function(req, res, next) { //logout//
+//  req.logout();
+//  console.log("User has been logged out.");
+//  return res.status(200).send("logged out");
+// });
 
 //===========Contact Form Endpoints==============================================
 app.post('/contactForm', function (req, res, next) {

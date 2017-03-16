@@ -13,12 +13,17 @@ var common_1 = require("@angular/common");
 var app_routing_module_1 = require("./app-routing.module");
 var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
-var told_handyman_component_1 = require("./told-handyman.component");
-var admin_handyman_component_1 = require("./admin-handyman.component");
-var login_component_1 = require("./login.component");
+var told_handyman_component_1 = require("./told-handyman/told-handyman.component");
+var admin_handyman_component_1 = require("./admin-handyman/admin-handyman.component");
+var login_component_1 = require("./login/login.component");
+var register_component_1 = require("./register/register.component");
 var uploadImage_component_1 = require("./UploadImage/uploadImage.component");
-var data_service_1 = require("./services/data.service");
-var image_preview_directive_1 = require("./directives/image-preview.directive");
+var data_service_1 = require("./_services/data.service");
+var authentication_service_1 = require("./_services/authentication.service");
+var user_service_1 = require("./_services/user.service");
+var image_preview_directive_1 = require("./_directives/image-preview.directive");
+var auth_service_1 = require("./_guards/auth.service");
+var app_config_1 = require("./app.config");
 // import { FileUploadComponent }    from './fileUpload.component';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
@@ -57,10 +62,11 @@ AppModule = __decorate([
             told_handyman_component_1.ToldHandymanComponent,
             admin_handyman_component_1.AdminHandymanComponent,
             login_component_1.LoginComponent,
+            register_component_1.RegisterComponent,
             uploadImage_component_1.UploadImageComponent,
             image_preview_directive_1.ImagePreview,
         ],
-        providers: [data_service_1.DataService],
+        providers: [data_service_1.DataService, app_config_1.AppConfig, auth_service_1.AuthService, authentication_service_1.AuthenticationService, user_service_1.UserService],
         schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
         bootstrap: [app_component_1.AppComponent],
     })

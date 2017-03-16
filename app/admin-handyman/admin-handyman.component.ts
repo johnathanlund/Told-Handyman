@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import { DataService }  from './services/data.service';
+import { DataService }  from '../_services/data.service';
+import { AuthService } from '../_guards/auth.service';
+import { User } from '../_models/user';
+import { Subscription }   from 'rxjs/Subscription';
 // import { FileUploadComponent }  from './fileUpload.component';
 // import { UploadService }  from './services/upload.service';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
@@ -16,16 +19,21 @@ const URL = 'http://localhost:8000/upload';
   selector: 'my-admin',
   templateUrl: 'admin-handyman.component.html',
   styleUrls: [
-    './styles/admin-handyman.component.css',
-    './styles/admin-handyman-top_title.component.css',
-    './styles/admin-handyman-admin_top_gallery.component.css',
-    './styles/admin-handyman-admin_services.component.css',
-    './styles/admin-handyman-admin_reviews.component.css',
-    './styles/uploadImage.component.css',
+    '../_styles/admin-handyman.component.css',
+    '../_styles/admin-handyman-top_title.component.css',
+    '../_styles/admin-handyman-admin_top_gallery.component.css',
+    '../_styles/admin-handyman-admin_services.component.css',
+    '../_styles/admin-handyman-admin_reviews.component.css',
+    '../_styles/uploadImage.component.css',
   ],
   // directives: [ DropzoneComponent ]
 })
-export class AdminHandymanComponent implements OnInit {
+export class AdminHandymanComponent implements OnInit, OnDestroy  {
+
+  articles;
+   user: User;
+   message: String;
+   subscription: Subscription;
 
   imageName: string = '';
 
@@ -74,10 +82,20 @@ export class AdminHandymanComponent implements OnInit {
 
   constructor(private http: Http,
               private dataService: DataService,
-              // private uploadService: UploadService,
-              private formBuilder: FormBuilder) { }
+              private authService: AuthService,
+              private formBuilder: FormBuilder) {
+                this.articles = [];
+
+                 this.subscription = authService.user$.subscribe( (user) => this.user = user )
+              }
 
   ngOnInit() {
+
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+
+   //example of verification
+   this.authService.verify().subscribe( (res) => this.message = res['message']);
+
 // var imageName = '';
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
       this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false;
@@ -119,6 +137,17 @@ export class AdminHandymanComponent implements OnInit {
       reviewImage: this.imageName
     });
   }
+
+  ngOnDestroy() {
+  // prevent memory leak when component destroyed
+  this.subscription.unsubscribe();
+}
+
+logout() {
+  this.authService.logout();
+  this.user = null;
+  this.message = "Logged out";
+}
 
   //=====================Gallery Data Connections==================================
     createGallery() {

@@ -6,22 +6,22 @@ import { SwiperModule } from 'angular2-useful-swiper';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 
 import { Http } from '@angular/http';
-import { DataService }  from './services/data.service';
+import { DataService }  from '../_services/data.service';
 
 @Component ({
   moduleId: module.id,
   selector: 'my-handyman',
   templateUrl: 'told-handyman.component.html',
   styleUrls: [
-    './styles/told-handyman.component.css',
-    './styles/told-handyman-top_title.component.css',
-    './styles/told-handyman-top_menu.component.css',
-    './styles/told-handyman-top_gallery.component.css',
-    './styles/told-handyman-mid_services.component.css',
-    './styles/told-handyman-mid_about.component.css',
-    './styles/told-handyman-mid_reviews.component.css',
-    './styles/told-handyman-bottom_contact.component.css',
-    './styles/told-handyman-bottom_footer.component.css',
+    '../_styles/told-handyman.component.css',
+    '../_styles/told-handyman-top_title.component.css',
+    '../_styles/told-handyman-top_menu.component.css',
+    '../_styles/told-handyman-top_gallery.component.css',
+    '../_styles/told-handyman-mid_services.component.css',
+    '../_styles/told-handyman-mid_about.component.css',
+    '../_styles/told-handyman-mid_reviews.component.css',
+    '../_styles/told-handyman-bottom_contact.component.css',
+    '../_styles/told-handyman-bottom_footer.component.css',
   ]
 })
 

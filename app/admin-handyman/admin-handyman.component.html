@@ -1,8 +1,27 @@
 <div class="admin_container">
+
+  <header class="container">
+    <h1><a routerLink="/ToldHandyman">Told Handyman Page</a></h1>
+    <nav>
+      <ul class="nav nav-pills">
+        <li *ngIf="!user">
+          <a routerLink="/AdminHandyman">Login</a>
+        </li>
+        <li *ngIf="!user">
+          <a routerLink="/Register">Register</a>
+        </li>
+        <li *ngIf="user"><button (click)="logout()" class="btn">Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+
   <!-- <h4>Reached the Admin for Handyman page!!!!!!!!!!</h4> -->
   <div class="admin_top_title_container">
     <h2>TOLD HANDYMAN - ADMINISTRATIVE CONTROLS</h2>
   </div>
+  <p *ngIf="user">Logged in as: {{user.email}}</p>
+<p *ngIf="!user">Not logged in</p>
+  <!-- <p><a [routerLink]="['/AdminHandyman']">Logout</a></p> -->
   <div class="admin_top_gallery_container">
     <h3>Handyman Top Page Gallery</h3>
 

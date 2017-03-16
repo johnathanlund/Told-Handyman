@@ -13,7 +13,8 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var ng2_file_upload_1 = require("ng2-file-upload/ng2-file-upload");
-var data_service_1 = require("./services/data.service");
+var data_service_1 = require("../_services/data.service");
+var auth_service_1 = require("../_guards/auth.service");
 // import { FileUploadComponent }  from './fileUpload.component';
 // import { UploadService }  from './services/upload.service';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
@@ -21,11 +22,11 @@ var data_service_1 = require("./services/data.service");
 var URL = 'http://localhost:8000/upload';
 // var imageName = '';
 var AdminHandymanComponent = (function () {
-    function AdminHandymanComponent(http, dataService, 
-        // private uploadService: UploadService,
-        formBuilder) {
+    function AdminHandymanComponent(http, dataService, authService, formBuilder) {
+        var _this = this;
         this.http = http;
         this.dataService = dataService;
+        this.authService = authService;
         this.formBuilder = formBuilder;
         this.imageName = '';
         this.gallerys = [];
@@ -54,9 +55,14 @@ var AdminHandymanComponent = (function () {
         this.reviewLocation = new forms_1.FormControl('', forms_1.Validators.required);
         this.reviewMessage = new forms_1.FormControl('', forms_1.Validators.required);
         this.uploader = new ng2_file_upload_1.FileUploader({ url: URL, itemAlias: 'photo' });
+        this.articles = [];
+        this.subscription = authService.user$.subscribe(function (user) { return _this.user = user; });
     }
     AdminHandymanComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.user = JSON.parse(localStorage.getItem('currentUser'));
+        //example of verification
+        this.authService.verify().subscribe(function (res) { return _this.message = res['message']; });
         // var imageName = '';
         //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
         this.uploader.onAfterAddingFile = function (file) {
@@ -96,6 +102,15 @@ var AdminHandymanComponent = (function () {
             reviewMessage: this.reviewMessage,
             reviewImage: this.imageName
         });
+    };
+    AdminHandymanComponent.prototype.ngOnDestroy = function () {
+        // prevent memory leak when component destroyed
+        this.subscription.unsubscribe();
+    };
+    AdminHandymanComponent.prototype.logout = function () {
+        this.authService.logout();
+        this.user = null;
+        this.message = "Logged out";
     };
     //=====================Gallery Data Connections==================================
     AdminHandymanComponent.prototype.createGallery = function () {
@@ -303,16 +318,17 @@ AdminHandymanComponent = __decorate([
         selector: 'my-admin',
         templateUrl: 'admin-handyman.component.html',
         styleUrls: [
-            './styles/admin-handyman.component.css',
-            './styles/admin-handyman-top_title.component.css',
-            './styles/admin-handyman-admin_top_gallery.component.css',
-            './styles/admin-handyman-admin_services.component.css',
-            './styles/admin-handyman-admin_reviews.component.css',
-            './styles/uploadImage.component.css',
+            '../_styles/admin-handyman.component.css',
+            '../_styles/admin-handyman-top_title.component.css',
+            '../_styles/admin-handyman-admin_top_gallery.component.css',
+            '../_styles/admin-handyman-admin_services.component.css',
+            '../_styles/admin-handyman-admin_reviews.component.css',
+            '../_styles/uploadImage.component.css',
         ],
     }),
     __metadata("design:paramtypes", [http_1.Http,
         data_service_1.DataService,
+        auth_service_1.AuthService,
         forms_1.FormBuilder])
 ], AdminHandymanComponent);
 exports.AdminHandymanComponent = AdminHandymanComponent;

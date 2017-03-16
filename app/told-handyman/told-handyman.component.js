@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
-var data_service_1 = require("./services/data.service");
+var data_service_1 = require("../_services/data.service");
 var ToldHandymanComponent = (function () {
     function ToldHandymanComponent(http, dataService, formBuilder) {
         this.http = http;
@@ -105,15 +105,15 @@ ToldHandymanComponent = __decorate([
         selector: 'my-handyman',
         templateUrl: 'told-handyman.component.html',
         styleUrls: [
-            './styles/told-handyman.component.css',
-            './styles/told-handyman-top_title.component.css',
-            './styles/told-handyman-top_menu.component.css',
-            './styles/told-handyman-top_gallery.component.css',
-            './styles/told-handyman-mid_services.component.css',
-            './styles/told-handyman-mid_about.component.css',
-            './styles/told-handyman-mid_reviews.component.css',
-            './styles/told-handyman-bottom_contact.component.css',
-            './styles/told-handyman-bottom_footer.component.css',
+            '../_styles/told-handyman.component.css',
+            '../_styles/told-handyman-top_title.component.css',
+            '../_styles/told-handyman-top_menu.component.css',
+            '../_styles/told-handyman-top_gallery.component.css',
+            '../_styles/told-handyman-mid_services.component.css',
+            '../_styles/told-handyman-mid_about.component.css',
+            '../_styles/told-handyman-mid_reviews.component.css',
+            '../_styles/told-handyman-bottom_contact.component.css',
+            '../_styles/told-handyman-bottom_footer.component.css',
         ]
     }),
     __metadata("design:paramtypes", [http_1.Http,

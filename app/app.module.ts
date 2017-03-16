@@ -8,13 +8,19 @@ import { AppRoutingModule }       from './app-routing.module';
 import { HttpModule }             from '@angular/http';
 
 import { AppComponent }           from './app.component';
-import { ToldHandymanComponent }  from './told-handyman.component';
-import { AdminHandymanComponent } from './admin-handyman.component';
-import { LoginComponent }         from './login.component';
+import { ToldHandymanComponent }  from './told-handyman/told-handyman.component';
+import { AdminHandymanComponent } from './admin-handyman/admin-handyman.component';
+import { LoginComponent }         from './login/login.component';
+import { RegisterComponent }      from './register/register.component';
 import { UploadImageComponent }   from './UploadImage/uploadImage.component';
 
-import { DataService }            from './services/data.service';
-import { ImagePreview }           from './directives/image-preview.directive';
+import { DataService }            from './_services/data.service';
+import { AuthenticationService }  from './_services/authentication.service';
+import { UserService }            from './_services/user.service';
+import { ImagePreview }           from './_directives/image-preview.directive';
+import { AuthService }              from './_guards/auth.service';
+import { AppConfig }              from './app.config';
+
 // import { FileUploadComponent }    from './fileUpload.component';
 // import { DropzoneModule }         from 'angular2-dropzone-wrapper';
 // import { DropzoneConfigInterface} from 'angular2-dropzone-wrapper';
@@ -51,12 +57,13 @@ import { SwiperModule }           from 'angular2-useful-swiper';
     ToldHandymanComponent,
     AdminHandymanComponent,
     LoginComponent,
+    RegisterComponent,
     UploadImageComponent,
     ImagePreview,
     // DropzoneComponent,
     // FileUploadComponent,
   ],
-  providers: [ DataService ],
+  providers: [ DataService, AppConfig, AuthService, AuthenticationService, UserService ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap:    [ AppComponent ],
 })

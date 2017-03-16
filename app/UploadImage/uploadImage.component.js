@@ -65,7 +65,7 @@ UploadImageComponent = __decorate([
         selector: 'upload-image',
         //location of our template rather than writing in-line templates.
         templateUrl: './uploadImage.component.html',
-        styleUrls: ['../styles/uploadImage.component.css']
+        styleUrls: ['../_styles/uploadImage.component.css']
     })
 ], UploadImageComponent);
 exports.UploadImageComponent = UploadImageComponent;
