@@ -25,7 +25,7 @@ var LoginComponent = (function () {
             _this.user_status = res['success'];
             if (res['success'] == true) {
                 _this.authService.setUser(res['user']);
-                _this.router.navigate(['RealAdminHandyman']);
+                _this.router.navigate(['login/AdminHandyman']);
             }
             else {
                 _this.message = res['message'];

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var ng2_file_upload_1 = require("ng2-file-upload/ng2-file-upload");
 var data_service_1 = require("../_services/data.service");
@@ -22,9 +23,10 @@ var auth_service_1 = require("../_guards/auth.service");
 var URL = 'http://localhost:8000/upload';
 // var imageName = '';
 var AdminHandymanComponent = (function () {
-    function AdminHandymanComponent(http, dataService, authService, formBuilder) {
+    function AdminHandymanComponent(http, router, dataService, authService, formBuilder) {
         var _this = this;
         this.http = http;
+        this.router = router;
         this.dataService = dataService;
         this.authService = authService;
         this.formBuilder = formBuilder;
@@ -111,6 +113,7 @@ var AdminHandymanComponent = (function () {
         this.authService.logout();
         this.user = null;
         this.message = "Logged out";
+        this.router.navigate(['AdminHandyman']);
     };
     //=====================Gallery Data Connections==================================
     AdminHandymanComponent.prototype.createGallery = function () {
@@ -327,6 +330,7 @@ AdminHandymanComponent = __decorate([
         ],
     }),
     __metadata("design:paramtypes", [http_1.Http,
+        router_1.Router,
         data_service_1.DataService,
         auth_service_1.AuthService,
         forms_1.FormBuilder])

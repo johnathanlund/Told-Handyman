@@ -4,6 +4,8 @@
   /*background: blue;*/
   color: rgb(180, 21, 17);
   background: linear-gradient(grey, white);
+  margin: 0;
+  padding: 0;
 }
 
 .admin_top_title_container h2 {
@@ -11,10 +13,23 @@
   text-align: center;
   font-style: italic;
   text-decoration: underline;
+  margin: 0;
+  padding: 0;
   /*line-height: 3.5;*/
 }
 @media (min-device-width: 1024px) {
   .admin_top_title_container h2 {
     line-height: 3.5;
   }
+}
+
+.user_box {
+  text-align: center;
+  /*border: 2px solid lawngreen;*/
+  margin: -20vh 0 10px 0;
+}
+
+.user_box button {
+  margin: 0 0 0 10px;
+  float: right;
 }

@@ -11,11 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
 var Subject_1 = require("rxjs/Subject");
 require("rxjs/add/operator/map");
 var AuthService = (function () {
-    function AuthService(http) {
+    function AuthService(http, router) {
         this.http = http;
+        this.router = router;
         this.base_url = 'http://127.0.0.1:8000/api/user';
         this.userSource = new Subject_1.Subject();
         this.user$ = this.userSource.asObservable();
@@ -66,11 +68,21 @@ var AuthService = (function () {
         var body = JSON.parse(res['_body']);
         return body;
     };
+    AuthService.prototype.canActivate = function (route, state) {
+        if (localStorage.getItem('currentUser')) {
+            // logged in so return true
+            return true;
+        }
+        // not logged in so redirect to login page with the return url
+        this.router.navigate(['/AdminHandyman'], { queryParams: { returnUrl: state.url } });
+        console.log('User is not logged in. Routing back to login page.');
+        return false;
+    };
     return AuthService;
 }());
 AuthService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, router_1.Router])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable }     from 'rxjs/observable';
 import { User } from '../_models/user';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements CanActivate {
 
   private base_url = 'http://127.0.0.1:8000/api/user';
   token: string;
   private userSource = new Subject<User>();
   user$ = this.userSource.asObservable();
 
-  constructor(public http: Http) { }
+  constructor(public http: Http, private router: Router) { }
 
   setUser(user: User) {
     this.userSource.next(user);
@@ -66,6 +67,18 @@ export class AuthService {
   parseRes(res){
     let body = JSON.parse(res['_body']);
     return body;
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+      if (localStorage.getItem('currentUser')) {
+          // logged in so return true
+          return true;
+      }
+
+      // not logged in so redirect to login page with the return url
+      this.router.navigate(['/AdminHandyman'], { queryParams: { returnUrl: state.url }});
+      console.log('User is not logged in. Routing back to login page.');
+      return false;
   }
 
 }

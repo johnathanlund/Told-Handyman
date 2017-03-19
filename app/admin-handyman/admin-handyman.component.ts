@@ -81,6 +81,7 @@ export class AdminHandymanComponent implements OnInit, OnDestroy  {
    public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 
   constructor(private http: Http,
+              private router: Router,
               private dataService: DataService,
               private authService: AuthService,
               private formBuilder: FormBuilder) {
@@ -147,6 +148,7 @@ logout() {
   this.authService.logout();
   this.user = null;
   this.message = "Logged out";
+  this.router.navigate(['AdminHandyman']);
 }
 
   //=====================Gallery Data Connections==================================
