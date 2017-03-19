@@ -58,6 +58,7 @@ export class AuthService implements CanActivate {
       this.token = body['token'];
       localStorage.setItem('currentUser', JSON.stringify({
         email: body['user']['email'],
+        name: body['user']['name'],
         token: this.token
       }));
     }

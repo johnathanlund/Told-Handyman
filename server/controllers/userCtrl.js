@@ -32,6 +32,7 @@ router.post('/register', (req, res) => {
         return;
       } else {
         var newUser = new User();
+        newUser.name = reqUser.name;
         newUser.email = reqUser.email;
         newUser.password = newUser.generateHash(reqUser.password);
         newUser.save( (err) => {

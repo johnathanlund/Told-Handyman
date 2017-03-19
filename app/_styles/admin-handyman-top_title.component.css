@@ -33,3 +33,7 @@
   margin: 0 0 0 10px;
   float: right;
 }
+
+.user_name {
+    color: rgb(180, 21, 17);
+}

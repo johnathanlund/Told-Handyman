@@ -93,7 +93,6 @@ export class AdminHandymanComponent implements OnInit, OnDestroy  {
   ngOnInit() {
 
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-
    //example of verification
    this.authService.verify().subscribe( (res) => this.message = res['message']);
 
