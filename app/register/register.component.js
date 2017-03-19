@@ -25,7 +25,7 @@ var RegisterComponent = (function () {
         this.authService.registerUser(user).subscribe(function (res) {
             if (res['success'] == true) {
                 _this.authService.setUser(res['user']);
-                _this.router.navigate(['']);
+                _this.router.navigate(['AdminHandyman']);
             }
             else {
                 _this.message = res['message'];

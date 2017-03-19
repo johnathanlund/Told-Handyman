@@ -23,7 +23,7 @@ export class RegisterComponent {
     this.authService.registerUser(user).subscribe( (res) => {
       if( res['success'] == true ) {
         this.authService.setUser(res['user']);
-        this.router.navigate(['']);
+        this.router.navigate(['AdminHandyman']);
       } else {
         this.message = res['message'];
       }
