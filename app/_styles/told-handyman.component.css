@@ -1,7 +1,12 @@
 #handyman_container {
   width 100vw;
   height 100vh;
-  border: 5px white solid;
+  /*border: 5px white solid;*/
   padding: 0;
   margin: 0;
+}
+@media (min-device-width: 1024px) {
+  #handyman_container {
+    border: 5px white solid;
+  }
 }

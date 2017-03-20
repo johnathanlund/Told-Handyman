@@ -1,6 +1,6 @@
 #mid_about_container {
-  width: 100%;
-  height: 128vh;
+  width: 100vw;
+  height: 85vh;
   /*background-color: rgb(180, 21, 17);*/
   background-color: #fff;
   border-bottom: 5px #000 solid;
@@ -10,6 +10,7 @@
 }
 @media (min-device-width: 1024px) {
   #mid_about_container {
+    width: 100%;
     height: 85vh;
   }
 }
@@ -21,12 +22,13 @@
   color: rgb(180, 21, 17);
   font-weight: bolder;
   text-align: center;
-  margin: 0;
+  margin: 0 0 20px -10%;
   padding: 0;
 }
 @media (min-device-width: 1024px)  {
   .about_heading {
-    height: 20%
+    height: 20%;
+    margin: 0;
   }
 }
 
@@ -43,20 +45,21 @@
 }
 
 .about_body {
-  width: 100vw;
+  width: 80vw;
   height: 89%;
   /*border: 5px yellow solid;*/
   margin: -3vh 0 0 0;
 }
 @media (min-device-width: 1024px) {
   .about_body {
+    width: 100%;
     height: 74%;
   }
 }
 
 .about_image {
-  width: 50vw;
-  height: 30vh;
+  width: 25vw;
+  height: 15vh;
   float: right;
   background-image: url('http://toldplumbing.com/images/header.jpg');
   background-size: cover;
@@ -71,11 +74,17 @@
 }
 
 .about_text {
-  width: 100vw;
+  width: 100%;
   height: 55vh;
   margin: 0 0 0 2vw;
+  font-size: 70%;
   /*float: left;*/
   /*border: 5px blue solid;*/
+}
+@media (min-device-width: 1024px) {
+  .about_text {
+    font-size: 100%;
+  }
 }
 
 .about_link {
@@ -83,12 +92,24 @@
   height: 5vh;
   /*border: 5px solid purple;*/
   text-align: center;
+  margin: 0 0 0 -10%;
+}
+@media (min-device-width: 1024px)  {
+  .about_link {
+    margin: 0;
+  }
 }
 
 .about_link a{
-  font-size: 120%;
+  font-size: 90%;
   color: rgb(82, 177, 145);
-  margin: 1vh 1vw 0 0;
+  margin: 0.5vh 10px 0 0;
+}
+@media (min-device-width: 1024px) {
+  .about_link a {
+    font-size: 120%;
+    margin: 1vh 1vw 0 0;
+  }
 }
 .about_link a:hover {
   color: rgb(180, 11, 17);
