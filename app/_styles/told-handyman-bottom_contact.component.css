@@ -8,26 +8,65 @@
   display: inline-flex;
 }
 
+.contact_list {
+  font-size: 90%;
+}
+@media (min-device-width: 1024px) {
+  .contact_list {
+    font-size: 100%;
+  }
+}
+
 .contact_list h3 {
   font-style: italic;
   color: rgb(180, 21, 17);
   font-weight: bolder;
+  font-size: 90%;
+}
+@media (min-device-width: 1024px) {
+  .contact_list h3 {
+    font-size: 100%;
+  }
 }
 
 .told_handyman_info {
-  float: left;
-  margin: 0 0 0 10vw;
+  /*float: left;*/
+  margin: 10vh 0 0 0;
   padding: 6vh 10vw 0 0;
+}
+@media (min-device-width: 1024px) {
+  .told_handyman_info {
+    float: left;
+    margin: 0 0 0 10vw;
+    padding: 6vh 10vw 0 0;
+  }
 }
 
 .told_plumbing_info {
-  float: right;
-  margin: 0 20vw 0 0;
+  float: left;
+  /*margin: 0 40vw 0 0;*/
   padding: 6vh 0 0 0;
+}
+@media (min-device-width: 1024px) {
+  .told_plumbing_info {
+    float: right;
+    margin: 0 20vw 0 0;
+  }
 }
 
 .contactForm_modal {
   padding: 13vh 0 0 10vw;
+}
+
+.contact_modal_button {
+  margin: -10vh 0 0 13vw;
+  font-size: 80%;
+}
+@media (min-device-width: 1024px) {
+  .contact_modal_button {
+    margin: 0 0 0 0;
+    font-size: 100%;
+  }
 }
 
 #modal_header_contactForm {
