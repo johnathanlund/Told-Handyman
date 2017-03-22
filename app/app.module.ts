@@ -12,13 +12,15 @@ import { ToldHandymanComponent }  from './told-handyman/told-handyman.component'
 import { AdminHandymanComponent } from './admin-handyman/admin-handyman.component';
 import { LoginComponent }         from './login/login.component';
 import { RegisterComponent }      from './register/register.component';
+import { MyModalComponent }       from './_directives/myModal.component';
 import { UploadImageComponent }   from './UploadImage/uploadImage.component';
 
 import { DataService }            from './_services/data.service';
 import { AuthenticationService }  from './_services/authentication.service';
 import { UserService }            from './_services/user.service';
+import { MyModalService }         from './_services/myModal.service';
 import { ImagePreview }           from './_directives/image-preview.directive';
-import { AuthService }              from './_guards/auth.service';
+import { AuthService }            from './_guards/auth.service';
 import { AppConfig }              from './app.config';
 
 // import { FileUploadComponent }    from './fileUpload.component';
@@ -59,11 +61,19 @@ import { SwiperModule }           from 'angular2-useful-swiper';
     LoginComponent,
     RegisterComponent,
     UploadImageComponent,
+    MyModalComponent,
     ImagePreview,
     // DropzoneComponent,
     // FileUploadComponent,
   ],
-  providers: [ DataService, AppConfig, AuthService, AuthenticationService, UserService ],
+  providers: [
+    DataService,
+    AppConfig,
+    AuthService,
+    AuthenticationService,
+    UserService,
+    MyModalService,
+   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap:    [ AppComponent ],
 })

@@ -28,6 +28,9 @@
       'angular2-useful-swiper': 'npm:angular2-useful-swiper/lib',
       'ng2-modal': 'npm:ng2-modal',
       'ng2-file-upload': 'npm:ng2-file-upload',
+      'underscore': 'npm:underscore/underscore.js',
+      // 'jquery': 'npm:jquery/jquery.min.js',
+      'jquery': '//code.jquery.com/jquery-3.2.1.min.js'
       // 'angular2-dropzone-wrapper': 'npm:angular2-dropzone-wrapper/bundles/angular2-dropzone-wrapper.umd.min.js',
       // 'angular2-dropzone-wrapper':  'npm:angular2-dropzone-wrapper',
     },

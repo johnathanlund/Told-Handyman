@@ -13,11 +13,13 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var data_service_1 = require("../_services/data.service");
+var myModal_service_1 = require("../_services/myModal.service");
 var ToldHandymanComponent = (function () {
-    function ToldHandymanComponent(http, dataService, formBuilder) {
+    function ToldHandymanComponent(http, dataService, formBuilder, myModalService) {
         this.http = http;
         this.dataService = dataService;
         this.formBuilder = formBuilder;
+        this.myModalService = myModalService;
         this.contactName = new forms_1.FormControl('', forms_1.Validators.required);
         this.contactEmail = new forms_1.FormControl('', forms_1.Validators.required);
         this.contactPhone1of3 = new forms_1.FormControl('', forms_1.Validators.required);
@@ -97,6 +99,12 @@ var ToldHandymanComponent = (function () {
         // console.log("Reading Reviews from Told Handyman component."),
         function (data) { return _this.reviews = data; }, function (error) { return console.log(error); }, function () { return _this.reviewIsLoading = false; });
     };
+    ToldHandymanComponent.prototype.openMyModal = function (id) {
+        this.myModalService.open(id);
+    };
+    ToldHandymanComponent.prototype.closeMyModal = function (id) {
+        this.myModalService.close(id);
+    };
     return ToldHandymanComponent;
 }());
 ToldHandymanComponent = __decorate([
@@ -118,7 +126,8 @@ ToldHandymanComponent = __decorate([
     }),
     __metadata("design:paramtypes", [http_1.Http,
         data_service_1.DataService,
-        forms_1.FormBuilder])
+        forms_1.FormBuilder,
+        myModal_service_1.MyModalService])
 ], ToldHandymanComponent);
 exports.ToldHandymanComponent = ToldHandymanComponent;
 //# sourceMappingURL=told-handyman.component.js.map

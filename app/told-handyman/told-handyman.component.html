@@ -178,14 +178,78 @@
     <!-- End of mid_reviews_container -->
     <div id="bottom_contact_container">
 
-        <div class="rowModal contactForm_modal">
-            <button (click)="myModal.open()" class="modalButton btn contact_modal_button"><p>CLICK TO CONTACT US</p></button>
-            <modal #myModal class="modal_box">
+      <!-- <div class="myModal_button"> -->
+        <button class="modalButton btn myModal_button" (click)="openMyModal('custom-modal-1')">CLICK TO CONTACT US</button>
+      <!-- </div> -->
+      <myModal id="custom-modal-1">
+    <div class="myModal">
+        <div class="myModal-body">
+            <h1>We Want To Hear From You</h1>
+            <form [formGroup]="addContactForm" (ngSubmit)="createContactForm()" id='contact-form'>
+                <div>
+                    <label for="name">
+       <span class="required">Name: *</span>
+       <input class="form-control" formControlName="contactName" type="text" id="name" name="name" value="" placeholder="Your Name" required="required" tabindex="1" autofocus="autofocus" />
+     </label>
+                </div>
+                <div>
+                    <label for="email">
+       <span class="required">Email: *</span>
+       <input class="form-control" formControlName="contactEmail" type="email" id="email" name="email" value="" placeholder="Your Email" tabindex="2" required="required" />
+     </label>
+                </div>
+                <div>
+                    <label for="phone">
+       <span class="required">Phone #: *</span><br>
+       <div class="contactPhone_div">
+         <p>(area code)  </p><input class="form-control contactPhone_input" formControlName="contactPhone1of3" type=tel name="phone" size=3 maxlength="3" required="required"> -
+         <input class="form-control contactPhone_input" formControlName="contactPhone2of3" type=tel name="phone" size=3 maxlength="3" required="required"> -
+         <input class="form-control contactPhone_input" formControlName="contactPhone3of3" type=tel name="phone" size=4 maxlength="4" required="required">
+       </div>
+     </label>
+                </div>
+                <div>
+                    <label for="message">
+       <span class="required">Message: *</span>
+       <textarea class="form-control" formControlName="contactMessage" id="message" name="message" placeholder="Please write your message here." tabindex="6" required="required"></textarea>
+     </label>
+                </div>
+                <div>
+                    <button name="submit" type="submit" id="submit" [disabled]="!addContactForm.valid" (click)="closeMyModal('custom-modal-1')">SEND</button>
+                </div>
+            </form>
+            <button (click)="closeMyModal('custom-modal-1')">Close</button>
+        </div>
+    </div>
+    <div class="myModal-background"></div>
+</myModal>
+
+      <div class="contact_list">
+          <div class="contact_list_box">
+          <div class="told_handyman_info">
+              <h3>Told Handyman</h3>
+              <p><strong>(801)785-1889</strong></p>
+              <p>501 S Main St</p>
+              <p>Pleasant Grove, UT 84062</p>
+          </div>
+        </div>
+        <div class="contact_list_box">
+          <div class="told_plumbing_info">
+              <h3>Told Plumbing</h3>
+              <p><strong>(801)785-5559</strong></p>
+              <p>501 S Main St</p>
+              <p>Pleasant Grove, UT 84062</p>
+          </div>
+        </div>
+      </div><br><br>
+
+        <!-- <div class="rowModal contactForm_Box">
+            <button (click)="mycontact.open()" class="modalButton btn"><p>CLICK TO CONTACT US</p></button>
+            <modal #mycontact class="modal_box">
                 <modal-header id="modal_header_contactForm">
                     <h1>We Want To Hear From You</h1>
                 </modal-header>
                 <modal-content>
-                    <!--================= Contact form goes here.====================================-->
                     <form [formGroup]="addContactForm" (ngSubmit)="createContactForm()" id='contact-form'>
                         <div>
                             <label for="name">
@@ -216,34 +280,18 @@
              </label>
                         </div>
                         <div>
-                            <button name="submit" type="submit" id="submit" [disabled]="!addContactForm.valid" (click)="myModal.close()">SEND</button>
+                            <button name="submit" type="submit" id="submit" [disabled]="!addContactForm.valid" (click)="mycontact.close()">SEND</button>
                         </div>
                     </form>
-                    <!--================= Contact form ends here.====================================-->
-
                 </modal-content>
                 <modal-footer>
-                    <button class="btn btn-primary" (click)="myModal.close()">cancel</button>
+                    <button class="btn btn-primary" (click)="mycontact.close()">cancel</button>
                 </modal-footer>
             </modal>
-        </div>
-        <div class="contact_list">
-            <div class="told_handyman_info">
-                <h3>Told Handyman</h3>
-                <p><strong>(801)785-1889</strong></p>
-                <p>501 S Main St</p>
-                <p>Pleasant Grove, UT 84062</p>
-            </div>
-            <div class="told_plumbing_info">
-                <h3>Told Plumbing</h3>
-                <p><strong>(801)785-5559</strong></p>
-                <p>501 S Main St</p>
-                <p>Pleasant Grove, UT 84062</p>
-            </div>
-        </div><br><br>
-        <!--================= Contact form ends here.====================================-->
-    </div>
-    <!-- End of bottom_contact_container -->
+          </div> -->
+
+    </div><!-- End of bottom_contact_container -->
+
     <div class="bottom_footer_container">
         <div class="copyright">
             <strong>Copyright 2008 © Told Plumbing. All rights reserved.</strong>

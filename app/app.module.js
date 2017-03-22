@@ -17,10 +17,12 @@ var told_handyman_component_1 = require("./told-handyman/told-handyman.component
 var admin_handyman_component_1 = require("./admin-handyman/admin-handyman.component");
 var login_component_1 = require("./login/login.component");
 var register_component_1 = require("./register/register.component");
+var myModal_component_1 = require("./_directives/myModal.component");
 var uploadImage_component_1 = require("./UploadImage/uploadImage.component");
 var data_service_1 = require("./_services/data.service");
 var authentication_service_1 = require("./_services/authentication.service");
 var user_service_1 = require("./_services/user.service");
+var myModal_service_1 = require("./_services/myModal.service");
 var image_preview_directive_1 = require("./_directives/image-preview.directive");
 var auth_service_1 = require("./_guards/auth.service");
 var app_config_1 = require("./app.config");
@@ -64,9 +66,17 @@ AppModule = __decorate([
             login_component_1.LoginComponent,
             register_component_1.RegisterComponent,
             uploadImage_component_1.UploadImageComponent,
+            myModal_component_1.MyModalComponent,
             image_preview_directive_1.ImagePreview,
         ],
-        providers: [data_service_1.DataService, app_config_1.AppConfig, auth_service_1.AuthService, authentication_service_1.AuthenticationService, user_service_1.UserService],
+        providers: [
+            data_service_1.DataService,
+            app_config_1.AppConfig,
+            auth_service_1.AuthService,
+            authentication_service_1.AuthenticationService,
+            user_service_1.UserService,
+            myModal_service_1.MyModalService,
+        ],
         schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
         bootstrap: [app_component_1.AppComponent],
     })

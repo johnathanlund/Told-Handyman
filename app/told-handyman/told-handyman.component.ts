@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms
 
 import { Http } from '@angular/http';
 import { DataService }  from '../_services/data.service';
+import { MyModalService } from '../_services/myModal.service';
 
 @Component ({
   moduleId: module.id,
@@ -76,7 +77,8 @@ phoneCombined: string = '';
 
   constructor(private http: Http,
               private dataService: DataService,
-              private formBuilder: FormBuilder
+              private formBuilder: FormBuilder,
+              private myModalService: MyModalService
             ){ }
 
   ngOnInit() {
@@ -144,5 +146,13 @@ phoneCombined: string = '';
       () => this.reviewIsLoading = false
     );
   }
+
+  openMyModal(id: string){
+     this.myModalService.open(id);
+ }
+
+ closeMyModal(id: string){
+     this.myModalService.close(id);
+ }
 
 }

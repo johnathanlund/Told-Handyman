@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "~2.4.5",
     "@angular/router": "~3.4.5",
     "@angular/upgrade": "~2.4.5",
+    "@types/jquery": "^2.0.41",
     "angular2-useful-swiper": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.0",
@@ -35,6 +36,7 @@
     "express-jwt": "^5.1.0",
     "express-session": "^1.15.0",
     "fs": "0.0.1-security",
+    "jquery": "^3.2.1",
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.8.1",
@@ -50,6 +52,7 @@
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.3",
     "systemjs": "0.20.2",
+    "underscore": "^1.8.3",
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
