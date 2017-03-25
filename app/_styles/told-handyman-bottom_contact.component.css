@@ -5,11 +5,12 @@
   margin: 0;
   background-color: #fff;
   border-bottom: 5px white solid;
-  display: flex;
+  display: inline-block;
 }
 @media (min-device-width: 1024px) {
   #bottom_contact_container {
     height: 40%;
+    display: flex;
   }
 }
 
@@ -75,12 +76,14 @@ body .myModal-open {
   height: 25vh;
   display: flex;
   font-size: 90%;
-  border: 3px solid purple;
-  margin: 5vh 0 0 0;
+  /*border: 3px solid purple;*/
+  margin: 5vh 0 0 15vw;
 }
 @media (min-device-width: 1024px) {
   .contact_list {
+    display: flex;
     font-size: 100%;
+    margin: 5vh 0 0 0;
   }
 }
 
@@ -88,7 +91,7 @@ body .myModal-open {
   font-style: italic;
   color: rgb(180, 21, 17);
   font-weight: bolder;
-  font-size: 90%;
+  font-size: 100%;
 }
 @media (min-device-width: 1024px) {
   .contact_list h3 {
@@ -101,12 +104,13 @@ body .myModal-open {
   height: 20vh;
   padding: 0;
   margin: 0 20px 0 20px;
-  border: 2px solid hotpink;
+  /*border: 2px solid hotpink;*/
 }
 @media (min-device-width: 1024px) {
   .contact_list_box {
     width: 20vw;
     height: 20vh;
+    margin: 0 20px 0 20px;
   }
 }
 
