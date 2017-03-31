@@ -22,7 +22,7 @@
   color: rgb(180, 21, 17);
   font-weight: bolder;
   text-align: center;
-  margin: 0 0 20px -10%;
+  margin: 0 0 20px 0;
   padding: 0;
 }
 @media (min-device-width: 1024px)  {

@@ -1,5 +1,5 @@
 #mid_services_container {
-  width: 90vw;
+  width: 100vw;
   height: 135vh;
   padding: 0 0 0 0;
   margin: -150px 0 0 0;
@@ -179,7 +179,7 @@
   height: 25vh;
   /*background-color: rgb(209, 212, 207);*/
   display: inline-block;
-  margin: 10px 0 10px 3vw;
+  margin: 10px 0 10px 10vw;
   box-shadow: 0 6px 20px black;
 }
 @media (min-device-width: 1024px) {
@@ -399,7 +399,7 @@ modal-header {
 .service_list_btn {
   font-size: 80%;
   height: 30px;
-  margin: 20px 0 0 23%;
+  margin: 20px 0 0 33%;
 }
 @media (min-device-width: 1024px) {
   .service_list_btn {

@@ -17,7 +17,7 @@
 .myModal_button {
   height: 7vh;
   font-style: italic;
-  margin: 5vh 5vw 0 30vw;
+  margin: 5vh 5vw 0 25vw;
 }
 @media (min-device-width: 1024px) {
   .myModal_button {
@@ -77,7 +77,7 @@ body .myModal-open {
   display: flex;
   font-size: 90%;
   /*border: 3px solid purple;*/
-  margin: 5vh 0 0 15vw;
+  margin: 5vh 0 0 10vw;
 }
 @media (min-device-width: 1024px) {
   .contact_list {
