@@ -14,7 +14,7 @@
   <li *ngIf="user"><button (click)="logout()" class="modalButton btn">Logout</button></li>
   <p *ngIf="user">Logged in as: <strong class="user_name">{{user.name}}</strong></p>
 <li *ngIf="!user">Not logged in</li>
-<a routerLink="/ToldHandyman">Told Handyman Page</a>
+<a routerLink="/">Told Handyman Page</a>
     <li *ngIf="!user">
       <a routerLink="/AdminHandyman">Login</a>
     </li>

@@ -15,6 +15,12 @@
     height: 150vh;
   }
 }
+@media (min-device-width: 1350px) {
+  #mid_services_container {
+    height: 140vh;
+    margin-bottom: 3vh;
+  }
+}
 
 
 .callUs {
@@ -63,8 +69,8 @@
 }
 
 .grid-container {
-  width: 100%;
-  max-width: 1300px;
+  width: 100vw;
+  /*max-width: 1300px;*/
   height: auto;
   margin: 22% 0 0 0;
   /*border: 5px solid hotpink;*/
@@ -78,11 +84,11 @@
 .row {
   display: flex;
 }
-@media (min-device-width: 1024px) {
+/*@media (min-device-width: 1024px) {
   .row {
 
   }
-}
+}*/
 .services_row {
   flex-flow: column wrap;
 }
@@ -174,6 +180,15 @@
   overflow-x:scroll;
 }*/
 
+/*.service_box_container {
+  width: 100%;
+}*/
+@media (min-device-width: 1350px) {
+  .service_box_container {
+    margin: 0 0 0 5vw;
+  }
+}
+
 .service_box {
   width: 35vw;
   height: 25vh;
@@ -184,11 +199,22 @@
 }
 @media (min-device-width: 1024px) {
   .service_box {
-    width: 45vw;
+    width: 40vw;
     height: 25vh;
     margin: 10px 0 10px 3vw;
   }
 }
+/*@media (min-device-width: 1510px) {
+  .service_box {
+    width: 35vw;
+  }
+}
+@media (min-device-width: 1710px) {
+  .service_box {
+    width: 30vw;
+  }
+}*/
+
 
 .service_title {
   width: 100%;
@@ -406,5 +432,10 @@ modal-header {
     font-size: 100%;
     height: 40px;
     margin: 20px 0 0 43%;
+  }
+}
+@media (min-device-width: 1350px) {
+  .service_list_btn {
+    margin: 20px 0 0 46%;
   }
 }

@@ -45,8 +45,13 @@
 }
 @media (min-device-width: 1024px) {
   #title_slogan {
-    margin: -10% 0 0 0;
+    margin: -20vh 0 0 0;
     font-size: 120%;
     line-height: normal;
   }
 }
+/*@media (min-device-width: 1650px) {
+  #title_slogan {
+    margin: 0 0 0 0;
+  }
+}*/

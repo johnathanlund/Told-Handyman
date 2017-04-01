@@ -71,27 +71,29 @@
                     <p></p>
                 </div>
             </div>
-            <div class="service_box" *ngFor="let service of services">
-                <div class="service_title">
-                    <h4>{{service.serviceName}}</h4>
-                </div>
-                <div class="service_title_mobile">
-                    <h4>{{service.serviceName}}</h4>
-                </div>
-                <div class="service_body">
+            <div class="service_box_container">
+              <div class="service_box" *ngFor="let service of services">
+                  <div class="service_title">
+                      <h4>{{service.serviceName}}</h4>
+                  </div>
+                  <div class="service_title_mobile">
+                      <h4>{{service.serviceName}}</h4>
+                  </div>
+                  <div class="service_body">
 
-                    <div class="service_image">
-                        <a class="zoom" (click)="myModal.open()">
-                            <img id="imageService" class="img-thumbnail" src="../server/uploads/{{service.serviceImage}}">
-                        </a>
-                        <modal #myModal class="modal_box service_image_Modal">
-                            <modal-content>
-                                <img id="modalImage" class="img-resized" src="../server/uploads/{{service.serviceImage}}">
-                            </modal-content>
-                        </modal>
-                    </div>
-                    <div class="service_text">{{service.serviceDescription}}</div>
-                </div>
+                      <div class="service_image">
+                          <a class="zoom" (click)="myModal.open()">
+                              <img id="imageService" class="img-thumbnail" src="../server/uploads/{{service.serviceImage}}">
+                          </a>
+                          <modal #myModal class="modal_box service_image_Modal">
+                              <modal-content>
+                                  <img id="modalImage" class="img-resized" src="../server/uploads/{{service.serviceImage}}">
+                              </modal-content>
+                          </modal>
+                      </div>
+                      <div class="service_text">{{service.serviceDescription}}</div>
+                  </div>
+              </div>
             </div>
         </div>
         <!--This ends the class grid-container -->

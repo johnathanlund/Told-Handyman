@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 export class AuthService implements CanActivate {
 
   private base_url = 'http://127.0.0.1:8000/api/user';
+  // private base_url = 'http://www.toldhandyman.com/api/user';
   token: string;
   private userSource = new Subject<User>();
   user$ = this.userSource.asObservable();

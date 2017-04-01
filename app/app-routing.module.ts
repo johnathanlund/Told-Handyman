@@ -8,8 +8,8 @@ import { RegisterComponent }      from './register/register.component';
 import { AuthService }            from './_guards/auth.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/ToldHandyman', pathMatch: 'full' },
-  { path: 'ToldHandyman', component: ToldHandymanComponent },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', component: ToldHandymanComponent },
   { path: 'AdminHandyman', component: LoginComponent },
   { path: 'Register', component: RegisterComponent },
   { path: 'login/AdminHandyman', component: AdminHandymanComponent, canActivate: [AuthService]  },

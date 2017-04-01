@@ -14,8 +14,8 @@ var login_component_1 = require("./login/login.component");
 var register_component_1 = require("./register/register.component");
 var auth_service_1 = require("./_guards/auth.service");
 var routes = [
-    { path: '', redirectTo: '/ToldHandyman', pathMatch: 'full' },
-    { path: 'ToldHandyman', component: told_handyman_component_1.ToldHandymanComponent },
+    { path: '', redirectTo: '/', pathMatch: 'full' },
+    { path: '', component: told_handyman_component_1.ToldHandymanComponent },
     { path: 'AdminHandyman', component: login_component_1.LoginComponent },
     { path: 'Register', component: register_component_1.RegisterComponent },
     { path: 'login/AdminHandyman', component: admin_handyman_component_1.AdminHandymanComponent, canActivate: [auth_service_1.AuthService] },
