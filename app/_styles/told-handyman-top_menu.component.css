@@ -5,7 +5,6 @@
   left: 0;
   top: 0;
   z-index: 3;
-  /*background-color: rgb(180, 21, 17);*/
   background-color: #fff;
   border-bottom: 1px rgb(180, 21, 17) solid;
   op
@@ -15,19 +14,24 @@
     height: 5%;
   }
 }
+@media (orientation: landscape) and (max-device-height: 375px) {
+  .top_menu_container {
+    height: 10%;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 480px) {
+  .top_menu_container {
+    height: 8%;
+  }
+}
 
 
 #btn-menu-label {
   display: block;
   margin: 2px 0 0 6px;
-  /*border: 5px solid lawngreen;*/
-  /*background: yellow;*/
-  /*background-image: url('../images/circle-ham-menu.png');
-  background-size: cover;*/
 }
 #btn-menu-label:hover {
   cursor: pointer;
-  /*background: lawngreen;*/
 }
 @media (min-device-width: 1024px) {
   #btn-menu-label {
@@ -49,8 +53,6 @@
 #btn-menu {
   width: 60px;
   height: 30px;
-  /*background-color: red;*/
-  /*margin: 10px 0 0 10px;*/
   visibility: hidden;
 }
 
@@ -64,7 +66,6 @@
 }
 
 #btn-menu:checked ~ .top_menu_logo {
-  /*visibility: hidden;*/
   display: none;
   transition: all 0.3s;
 }
@@ -80,7 +81,6 @@
 .top_menu_container a:hover {
   cursor: pointer;
   color: #fff;
-  /*color: rgb(180, 201, 47);*/
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -102,9 +102,7 @@
   text-align: center;
   padding: 0 0 0 0;
   margin: -30px 0 0 -90%;
-  /*background-color: rgba(0, 0, 0, 0.3);*/
   font-size: 80%;
-  /*transition: all 0.3s ease;*/
 }
 @media (min-device-width: 1024px) {
   .mobile_menu {
@@ -114,28 +112,26 @@
 
 .top_menu_logo {
   width: 70%;
-  /*height: 50px;*/
-  /*height: 90%;*/
   color: rgb(180, 21, 17);
-  /*background-color: blue;*/
   font-style: italic;
   font-weight: 600;
-  /*font-stretch: ultra-expanded;*/
   display: inline-block;
-  /*text-align: right;*/
   margin: -40px 0 0 25%;
-  /*border: 2px solid green;*/
-  /*padding: 0 0 0 55%;*/
 }
 @media (min-device-width: 1024px) {
   .top_menu_logo {
     width: 25vw;
-    /*float: left;*/
-    /*height: 40vh;*/
-    /*margin: -18px 0 0 -80%;*/
-    /*background-image: url('../images/told-handyman-logo-copy.png');*/
-    /*background-size: contain;*/
     margin: -30px 0 0 5vw;
     padding: 0 0 0 0;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 375px) {
+  .top_menu_logo {
+    margin: -37px 0 0 37vw;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 480px) {
+  .top_menu_logo {
+    margin: -37px 0 0 37vw;
   }
 }

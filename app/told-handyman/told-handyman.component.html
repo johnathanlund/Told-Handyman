@@ -144,7 +144,7 @@
     <!-- End of mid_about_container -->
     <div id="mid_reviews_container">
         <div class="reviews_heading">
-            <h3>Customer Reviews</h3>
+            <h2 id="reviews_heading_text">Customer Reviews</h2>
         </div>
         <ul class="tabs" role="tablist">
             <li>
@@ -154,7 +154,7 @@
                     <div class="reviews_credits_container">
                         <div class="reviews_wrapper" *ngFor="let review of reviews">
                             <div class="review_author">
-                                <h4>{{review.reviewAuthor}}    {{review.reviewLocation}}</h4><img class="review_image" *ngIf="review.reviewImage" src="../server/uploads/{{review.reviewImage}}"></div>
+                                <h4>{{review.reviewAuthor}}<p>{{review.reviewLocation}}</p></h4><img class="review_image" *ngIf="review.reviewImage" src="../server/uploads/{{review.reviewImage}}"></div>
                             <div class="work_review">{{review.reviewMessage}}</div>
 
                         </div>
@@ -168,7 +168,7 @@
                     <div class="reviews_normal_container">
                         <div class="reviews_normal_wrapper" *ngFor="let review of reviews">
                             <div class="review_author">
-                                <h4>{{review.reviewAuthor}}    {{review.reviewLocation}}</h4><img class="review_image" *ngIf="review.reviewImage" src="../server/uploads/{{review.reviewImage}}"></div>
+                                <h4>{{review.reviewAuthor}}<p>{{review.reviewLocation}}</p></h4><img class="review_image" *ngIf="review.reviewImage" src="../server/uploads/{{review.reviewImage}}"></div>
                             <div class="work_review">{{review.reviewMessage}}</div>
 
                         </div>

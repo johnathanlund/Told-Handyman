@@ -2,7 +2,6 @@
   width: 100%;
   height: 70vh;
   background-color: #fff;
-  /*border-top: 5px orange solid;*/
   border-bottom: 5px #000 solid;
   text-align: center;
   margin: -3vh 0 0 0;
@@ -13,15 +12,23 @@
     height: 85vh;
   }
 }
+@media (orientation: landscape) and (min-device-height: 300px) {
+  #mid_reviews_container {
+    height: 80vh;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 1024px) {
+  #mid_reviews_container {
+    height: 88vh;
+    margin: 0 0 0 0;
+  }
+}
 
 .reviews_heading {
   width: 100vw;
   height: 6%;
-  /*color: #000;*/
   text-align: center;
-  /*margin: 2vh 0 0 0;*/
   padding: 0;
-  border-bottom: 1px #000 solid;
 }
 @media (min-device-width: 1024px)  {
   .reviews_heading {
@@ -30,48 +37,32 @@
   }
 }
 
-.reviews_heading h3 {
-  font-size: 170%;
+.reviews_heading h2 {
   padding: 0 0 0 0;
   margin: 24px 0 0 0;
   line-height: 1.0;
   color: rgb(180, 21, 17);
 }
-@media (min-device-width: 1024px) {
-  .reviews_heading h3 {
-    /*padding: 5vh 0 0 0;
-    margin: 3vh 0 0 0;*/
+@media (orientation: landscape) and (min-device-height: 300px) {
+  #reviews_heading_text {
+    margin: 15px 0 5px 0;
   }
-}
-
-.reviews_body {
-  /*width: 100vw;*/
-  /*height: 85%;*/
-  /*background-color: black;*/
-  /*overflow: hidden;*/
-}
-@media (min-device-width: 1024px) {
-    .reviews_body {
-
-    }
 }
 
 .reviews_wrapper {
   position: relative;
   top: 300%;
-  left: 50%;
+  left: 10%;
   width: 80%;
-  margin: 0 0 0 -160px;
-  /*font: 300 30px/1 'Open Sans Condensed', sans-serif;*/
+  margin: 0 0 0 0;
   text-align: center;
-  text-transform: uppercase;
-  /*color: #000;*/
   animation: 40s credits linear infinite;
 }
 @media (min-device-width: 1024px) {
     .reviews_wrapper {
-      width: 50%;
-      margin: 0 -30vw 0 0;
+      width: 80%;
+      left: 10%;
+      margin: 0 0 0 0;
     }
 }
 
@@ -79,28 +70,19 @@
   margin-bottom: 50px;
   font-size: 200%;
   font-style: italic;
-  /*color: white;*/
-}
-@media (min-device-width: 1024px) {
-  .reviews_title {
-
-  }
 }
 
-.reviews_author {
-  margin-bottom: 5px;
+.review_author {
   font-size: 18px;
   font-style: italic;
-  /*color: red;*/
-}
-@media (min-device-width: 1024px) {
-    .reviews_author {
-
-    }
 }
 
-.reviews_author h4{
+.review_author h4{
   color: rgb(180, 21, 17);
+}
+.review_author h4 p {
+  font-size: 80%;
+  /*font-style: normal;*/
 }
 
 /* Add a height & width to create a single size
@@ -108,8 +90,7 @@ for the review consistently vs sized to content.*/
 .work_review {
   margin: 0 0 50 0;
   font-size: 70%;
-  /*color: white;*/
-  border-bottom: 3px solid rgb(180, 21, 17);
+  border-bottom: 1px solid rgb(180, 21, 17);
 }
 @media (min-device-width: 1024px) {
     .work_review {
@@ -122,9 +103,7 @@ for the review consistently vs sized to content.*/
   float: right;
   width: 30vw;
   height: 18vh;
-  /*background-image: url('http://www.diamondcertified.org/sites/diamondcertified.org/files/imagecache/large/Alex%20Maxwell/Diaz%20Handyman%20example%20of%20work%2039.JPG');*/
-  /*background-size: cover;*/
-  /*margin: 0 0 50px 0;*/
+  margin: 0 0 20px 10px;
 }
 @media (min-device-width: 1024px) {
   .review_image {
@@ -147,44 +126,64 @@ for the review consistently vs sized to content.*/
 .reviews_normal_wrapper {
   width: 80%;
   text-align: center;
-  text-transform: uppercase;
-  /*color: #000;*/
+  /*left: 10%;*/
   margin: 0 0 0 10%;
-  /*overflow: scroll;*/
 }
 @media (min-device-width: 1024px) {
     .reviews_normal_wrapper {
       width: 80%;
-      /*margin: 0 0 0 25%;*/
+      margin: 0 0 0 10%;
     }
 }
 
 .reviews_normal_container {
+  width: 100%;
   height: 100%;
   overflow: scroll;
 }
 .reviews_credits_container {
   height: 100%;
-  /*position: relative;*/
+  width: 100%;
   overflow: hidden;
 }
 
 #tab-content1 {
-  /*position: relative;*/
-  /*margin: 0 0 0 20%;*/
+  width: 80%;
+  margin: 0 0 0 10%;
 }
 @media (min-device-width: 1024px) {
   #tab-content1 {
-    margin: 0 0 0 15%;
+    margin: 0 5% 0 0;
+  }
+}
+@media (orientation: landscape) and (min-device-height: 300px) {
+  #tab-content1{
+    margin: 0 0 0 5%;
   }
 }
 
 #tab-content2 {
-  margin: 0 10% 0 -33%;
+  width: 80%;
+  margin: 0 0 0 -10%;
+}
+@media (min-device-width: 370px) {
+  #tab-content2 {
+    margin: 0 0 0 -8%;
+  }
+}
+@media (min-device-width: 400px) {
+  #tab-content2 {
+    margin: 0 0 0 -5%;
+  }
 }
 @media (min-device-width: 1024px) {
   #tab-content2 {
-    margin: 0 -20vw 0 0;
+    margin: 0 10% 0 0;
+  }
+}
+@media (orientation: landscape) and (min-device-height: 300px) {
+  #tab-content2 {
+    margin: 0 0 0 -5%;
   }
 }
 
@@ -201,6 +200,16 @@ for the review consistently vs sized to content.*/
     margin: 0 0 0 10px;
   }
 }
+@media (orientation: landscape) and (min-device-height: 300px) {
+  .tabs {
+    margin: 10px 0 0 0;
+  }
+}
+@media (orientation: landscape) and (min-device-height: 414px) {
+  .tabs {
+    margin: 10px 0 0 0;
+  }
+}
 
 .tabs li {
     float: left;
@@ -209,7 +218,6 @@ for the review consistently vs sized to content.*/
 
 .tabs input[type="radio"] {
     position: absolute;
-    /*top: 0;*/
     left: -9999px;
   }
 
@@ -217,18 +225,13 @@ for the review consistently vs sized to content.*/
     width: auto;
     height: 5%;
     display: block;
-    /*padding: 14px 21px;*/
     border-radius: 5px 5px 0 0;
     font-size: 17px;
     font-weight: normal;
-    text-transform: uppercase;
     background: #fff;
-    /*box-shadow:*/
     cursor: pointer;
-    /*position: relative;*/
     top: 4px;
     transition: all 0.2s ease-in-out;
-    /*@include transition(all 0.2s ease-in-out);*/
     box-shadow: 0 0 5px black;
   }
 .tabs label:hover {
@@ -238,13 +241,16 @@ for the review consistently vs sized to content.*/
 @media (min-device-width: 1024px) {
   .tabs label {
     padding: 21px 21px;
-    /*width: 10vw;*/
     height: 3%;
+  }
+}
+@media (orientation: landscape) and (min-device-height: 300px) {
+  .tabs label {
+    height: 10%;
   }
 }
 
 label h4 {
-  /*margin: 0 0 0 10px;*/
   font-size: 80%;
   text-align: center;
   padding: 5px 5px 0 5px;
@@ -257,23 +263,11 @@ label h4 {
   }
 }
 
-#tab-content2-name {
-  /*font-size: 70%;*/
-}
-@media (min-device-width: 1024px) {
-  #tab-content2-name {
-    /*font-size: 80%;*/
-  }
-}
-
 .tab-content{
   height: 59vh;
-  /*width: 100%;*/
   z-index: 2;
   display: none;
-  /*overflow: hidden;*/
   position: absolute;
-  /*background: rgb(105, 137, 163);*/
 }
 @media (min-device-width: 1024px) {
   .tab-content {
@@ -283,8 +277,6 @@ label h4 {
 
    /*The Magic*/
 [id^="tab"]:checked + label {
-     /*top: 0;*/
-     /*padding-top: 17px;*/
      background: rgb(250, 250, 250);
      color: rgb(280, 21, 17);
    }

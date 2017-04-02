@@ -1,17 +1,40 @@
 #mid_about_container {
   width: 100vw;
   height: 85vh;
-  /*background-color: rgb(180, 21, 17);*/
   background-color: #fff;
   border-bottom: 5px #000 solid;
   margin: -3vh 0 0 0;
   padding: 0;
-  /*border-top: 5px blue solid;*/
+}
+@media (min-device-width: 375px) {
+  #mid_about_container {
+    height: 70vh;
+  }
+}
+@media (min-device-width: 414px) {
+  #mid_about_container {
+    height: 60vh;
+  }
 }
 @media (min-device-width: 1024px) {
   #mid_about_container {
     width: 100%;
     height: 85vh;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 375px) {
+  #mid_about_container {
+    height: 90vh;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 420px) {
+  #mid_about_container {
+    height: 75vh;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 1024px) {
+  #mid_about_container {
+    height: 77vh;
   }
 }
 
@@ -25,10 +48,25 @@
   margin: 0 0 20px 0;
   padding: 0;
 }
+@media (min-device-width: 375px) {
+  .about_heading {
+    margin: 0 0 30px 0;
+  }
+}
+@media (min-device-width: 414px) {
+  .about_heading {
+    margin: 0 0 40px 0;
+  }
+}
 @media (min-device-width: 1024px)  {
   .about_heading {
     height: 20%;
     margin: 0;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 375px) {
+  .about_heading {
+    margin: -20px 0 40px 0;
   }
 }
 
@@ -37,17 +75,10 @@
   padding: 3% 0 0 0;
   margin: 19px 0 0 0;
 }
-@media (min-device-width: 1024px) {
-  .about_heading h3 {
-    /*padding: 5vh 0 0 0;
-    margin: 3vh 0 0 0;*/
-  }
-}
 
 .about_body {
   width: 96vw;
   height: 89%;
-  /*border: 5px yellow solid;*/
   margin: -3vh 0 0 0;
 }
 @media (min-device-width: 1024px) {
@@ -56,6 +87,13 @@
     height: 74%;
   }
 }
+@media (orientation: landscape) and (max-device-height: 375px) {
+    .about_body {
+      width: 90vw;
+      height: 75%;
+      margin: -3vh 0 0 5vw;
+    }
+}
 
 .about_image {
   width: 25vw;
@@ -63,7 +101,6 @@
   float: right;
   background-image: url('http://toldplumbing.com/images/header.jpg');
   background-size: cover;
-  /*border: 5px green solid;*/
   margin: 2vh 7vw 15px 1vw;
 }
 @media (min-device-width: 1024px) {
@@ -72,14 +109,18 @@
     height: 40vh;
   }
 }
+@media (orientation: landscape) and (max-device-height: 375px) {
+  .about_image {
+    height: 30vh;
+    margin: 1vh 2vw 15px 1vw;
+  }
+}
 
 .about_text {
   width: 100%;
   height: 55vh;
   margin: 0 0 0 8vw;
-  font-size: 70%;
-  /*float: left;*/
-  /*border: 5px blue solid;*/
+  font-size: 65%;
 }
 @media (min-device-width: 1024px) {
   .about_text {
@@ -87,17 +128,47 @@
     margin: 0 0 0 4vw;
   }
 }
+@media (orientation: landscape) and (max-device-height: 375px) {
+  .about_text {
+    font-size: 50%;
+    margin: 0 0 0 1vw;
+  }
+}
 
 .about_link {
   width: 100vw;
   height: 5vh;
-  /*border: 5px solid purple;*/
   text-align: center;
-  margin: 0 0 0 -10%;
+  margin: -2% 0 0 5%;
+}
+@media (min-device-width: 375px)  {
+  .about_link {
+    margin: -5% 0 0 3%;
+  }
+}
+@media (min-device-width: 414px)  {
+  .about_link {
+    margin: -10% 0 0 3%;
+  }
 }
 @media (min-device-width: 1024px)  {
   .about_link {
     margin: 0;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 375px) {
+  .about_link {
+    margin: -15px 0 0 0;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 420px) {
+  .about_link {
+    margin: -50px 0 0 0;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 768px) {
+  .about_link {
+    margin: 10px 0 0 0;
   }
 }
 
@@ -116,12 +187,3 @@
   color: rgb(180, 11, 17);
   font-stretch: ultra-expanded;
 }
-
-/*a .toldPlumbing:hover {
-  font-size: 130%;
-  color: red;
-}
-a .toldPlumbingFacebook:hover {
-  font-size: 160%;
-  color: red;
-}*/

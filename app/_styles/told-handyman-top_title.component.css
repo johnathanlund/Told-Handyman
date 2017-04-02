@@ -2,9 +2,7 @@
   width: 100vw;
   height: 10vh;
   position: absolute;
-  /*background-color: rgb(180, 21, 17);*/
   background-color: rgba(180, 21, 17, 0);
-  /*border: 5px blue solid;*/
   margin: 1vh 0 0 0;
   z-index: 2;
 }
@@ -15,21 +13,57 @@
     margin: 4% 0 0 0;
   }
 }
+@media (orientation: landscape) and (max-device-height: 375px) {
+  .top_title_container {
+    height: 30vh;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 420px) {
+  .top_title_container {
+    height: 30vh;
+  }
+}
 
 #title_handyman {
   width: 70%;
   height: 200%;
   background-image: url('../images/told-handyman-logo-copy.png');
   background-size: cover;
-  /*background-size: contain;
-  background-repeat: no-repeat;*/
   margin: -2vh 0 0 20vw;
-  /*padding: 14em 0 0 0;*/
 }
 @media (min-device-width: 1024px) {
   #title_handyman {
     width: 50%;
     margin: -10vh 0 0 25vw;
+    height: 210%;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 375px) {
+  #title_handyman {
+    width: 50%;
+    height: 160%;
+    margin: -2vh 0 0 30vw;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 420px) {
+  #title_handyman {
+    width: 50%;
+    height: 160%;
+    margin: -4vh 0 0 30vw;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 768px) {
+  #title_handyman {
+    width: 60%;
+    height: 160%;
+    margin: -4vh 0 0 25vw;
+  }
+}
+@media (orientation: landscape) and (max-device-height: 1024px) {
+  #title_handyman {
+    width: 60%;
+    height: 160%;
+    margin: -4vh 0 0 25vw;
   }
 }
 
@@ -50,8 +84,13 @@
     line-height: normal;
   }
 }
-/*@media (min-device-width: 1650px) {
+@media (orientation: landscape) and (max-device-height: 768px) {
   #title_slogan {
-    margin: 0 0 0 0;
+    margin: -15vh 0 0 0;
   }
-}*/
+}
+@media (orientation: landscape) and (max-device-height: 1024px) {
+  #title_slogan {
+    margin: -15vh 0 0 0;
+  }
+}
