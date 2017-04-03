@@ -1,16 +1,23 @@
 #mid_services_container {
   width: 100vw;
-  height: 135vh;
+  height: 137vh;
   padding: 0 0 0 0;
-  margin: -150px 0 0 0;
+  margin: -140px 0 0 0;
   background-color: #fff;
   color: #000;
   border-bottom: 5px #000 solid;
 }
+@media (min-device-width: 768px) {
+  #mid_services_container {
+    height: 75vh;
+    margin: -8vh 0 3vh 0;
+  }
+}
 @media (min-device-width: 1024px) {
   #mid_services_container {
     width: 100%;
-    height: 150vh;
+    height: 140vh;
+    margin: -22vh 0 3vh 0;
   }
 }
 @media (min-device-width: 1350px) {
@@ -78,9 +85,14 @@
   height: auto;
   margin: 22% 0 0 0;
 }
+@media (min-device-width: 768px) {
+  .grid-container {
+    margin: 0 0 0 0;
+  }
+}
 @media (min-device-width: 1024px) {
   .grid-container {
-    margin: 0;
+    margin: 0 0 0 0;
   }
 }
 @media (orientation: landscape) and (max-device-height: 420px) {
@@ -121,6 +133,11 @@
   background-color: rgba(180, 21, 17, 0);
   margin: -7% 0 0 0;
 }
+@media (min-device-width: 768px) {
+  .col-1 {
+    margin: 0 0 0 0;
+  }
+}
 @media (min-device-width: 1024px) {
   .col-1 {
     margin: 0;
@@ -153,9 +170,18 @@
   word-wrap: break-word;
   display: none;
 }
+
+@media (min-device-width: 768px) and (max-device-height: 1024px) {
+  .col-2 {
+    display: inline;
+    margin: -1vh 0 2vh 0;
+    font-size: 200%;
+  }
+}
 @media (min-device-width: 1024px) {
   .col-2 {
-    margin: 5px 0 -5% 0;
+    font-size: 100%;
+    margin: 5px 0 2vh 0;
     display: inline;
   }
 }
@@ -176,6 +202,12 @@
   height: 5vh;
 }
 
+
+@media (min-device-width: 768px) {
+  .service_box_container {
+    margin: -6vh 0 0 0;
+  }
+}
 @media (min-device-width: 1350px) {
   .service_box_container {
     margin: 0 0 0 5vw;
@@ -188,6 +220,13 @@
   display: inline-block;
   margin: 10px 0 10px 10vw;
   box-shadow: 0 6px 20px black;
+}
+@media (min-device-width: 768px) {
+  .service_box {
+    width: 40vw;
+    height: 12vh;
+    margin: 10px 0 10px 6vw;
+  }
 }
 @media (min-device-width: 1024px) {
   .service_box {
@@ -257,6 +296,11 @@
   height: 40%;
   float: right;
   margin: 0 0 0 2px;
+}
+@media (min-device-width: 768px) {
+  .service_image {
+    height: 80%;
+  }
 }
 @media (min-device-width: 1024px) {
   .service_image {
@@ -338,7 +382,7 @@ span.overlay {
   width: 100%;
   height: 100%;
   margin: 10px 0 0 5px;
-  font-size: 65%;
+  font-size: 50%;
   word-wrap: normal;
 }
 @media (min-device-width: 1024px) {
@@ -399,11 +443,17 @@ modal-header {
   height: 30px;
   margin: 20px 0 0 33%;
 }
+
+@media (min-device-width: 768px) {
+  .service_list_btn {
+    margin: 20px 0 0 41%;
+  }
+}
 @media (min-device-width: 1024px) {
   .service_list_btn {
     font-size: 100%;
     height: 40px;
-    margin: 20px 0 0 43%;
+    margin: 20px 0 0 45%;
   }
 }
 @media (min-device-width: 1350px) {
