@@ -26,16 +26,29 @@
     margin-bottom: 3vh;
   }
 }
-@media (orientation: landscape) and (max-device-height: 375px) {
+@media (orientation: landscape) {
   #mid_services_container {
-    height: 172vh;
+    height: 175vh;
+    margin: -22vh 0 0 0;
   }
 }
-@media (orientation: landscape) and (max-device-height: 420px) {
+@media (orientation: landscape) and (min-device-height: 375px) {
+  #mid_services_container {
+    height: 165vh;
+    /*margin: -50vh 0 0 0;*/
+    margin: -17vh 0 0 0;
+  }
+}
+@media (orientation: landscape) and (min-device-height: 414px) {
   #mid_services_container {
     height: 143vh;
     /*margin: -50vh 0 0 0;*/
     margin: -19vh 0 0 0;
+  }
+}
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
+  #mid_services_container {
+    margin: -15vh 0 0 0;
   }
 }
 
@@ -95,7 +108,7 @@
     margin: 0 0 0 0;
   }
 }
-@media (orientation: landscape) and (max-device-height: 420px) {
+@media (orientation: landscape) and (max-device-height: 414px) {
   .grid-container {
     margin: 10vh 0 0 0;
   }
@@ -158,7 +171,7 @@
 }
 @media (orientation: landscape) and (max-device-height: 375px) {
   .col-1 h1 {
-    margin: -2vh 0 0 0;
+    margin: 0 0 0 0;
   }
 }
 
@@ -240,6 +253,11 @@
     width: 40vw;
     height: 30vh;
     margin: 10px 0 10px 40px;
+  }
+}
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
+  .service_box {
+    margin: 10px 0 10px 4vw;
   }
 }
 
@@ -461,14 +479,24 @@ modal-header {
     margin: 20px 0 0 46%;
   }
 }
-@media (orientation: landscape) and (max-device-height: 375px) {
+@media (orientation: landscape) {
   .service_list_btn {
-    margin: 20px 0 0 38%;
+    margin: 10px 0 0 38%;
   }
 }
 
-@media (orientation: landscape) and (max-device-height: 420px) {
-  .service_list_btn{
+@media (orientation: landscape) and (min-device-height: 414px) {
+  .service_list_btn {
     margin: 20px 0 0 41%;
+  }
+}
+@media (orientation: landscape) and (min-device-height: 650px) {
+  .service_list_btn {
+    margin: 20px 0 0 43%;
+  }
+}
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
+  .service_list_btn {
+    margin: 20px 0 0 48%;
   }
 }

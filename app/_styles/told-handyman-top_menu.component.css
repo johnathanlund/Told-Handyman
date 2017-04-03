@@ -7,7 +7,6 @@
   z-index: 3;
   background-color: #fff;
   border-bottom: 1px rgb(180, 21, 17) solid;
-  op
 }
 @media (min-device-width: 768px) {
   .top_menu_container {
@@ -26,7 +25,7 @@
 }
 @media (orientation: landscape) and (max-device-height: 480px) {
   .top_menu_container {
-    height: 8%;
+    height: 10%;
   }
 }
 

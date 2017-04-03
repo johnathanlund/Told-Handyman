@@ -13,6 +13,17 @@
     display: flex;
   }
 }
+@media (orientation: landscape) {
+  #bottom_contact_container {
+    height: 60vh;
+  }
+}
+@media (orientation: landscape) and (min-device-width: 1024px) {
+  #bottom_contact_container {
+    height: 40%;
+    display: flex;
+  }
+}
 
 .myModal_button {
   height: 7vh;

@@ -28,6 +28,11 @@
     height: 30vh;
   }
 }
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
+  .top_title_container {
+    margin: 6% 0 0 0;
+  }
+}
 
 #title_handyman {
   width: 70%;
@@ -95,13 +100,24 @@
     line-height: normal;
   }
 }
-@media (orientation: landscape) and (max-device-height: 768px) {
+@media (orientation: landscape) {
   #title_slogan {
-    margin: -15vh 0 0 0;
+    margin: -5% 0 0 5%;
   }
 }
-@media (orientation: landscape) and (max-device-height: 1024px) {
+@media (orientation: landscape) and (min-device-height: 659px) {
   #title_slogan {
-    margin: -3vh 0 0 0;
+    margin: 0 0 0 0;
+  }
+}
+@media (orientation: landscape) and (min-device-height: 768px) {
+  #title_slogan {
+    margin: 0 0 0 0;
+  }
+}
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
+  #title_slogan {
+    margin: -5% 0 0 0;
+    font-size: 160%;
   }
 }

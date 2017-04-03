@@ -28,19 +28,25 @@
     height: 85vh;
   }
 }
-@media (orientation: landscape) and (max-device-height: 375px) {
+@media (orientation: landscape) {
   #mid_about_container {
     height: 90vh;
   }
 }
-@media (orientation: landscape) and (max-device-height: 420px) {
+@media (orientation: landscape) and (min-device-height: 414px) {
   #mid_about_container {
     height: 75vh;
   }
 }
-@media (orientation: landscape) and (max-device-height: 1024px) {
+@media (orientation: landscape) and (min-device-width: 1024px) {
   #mid_about_container {
-    height: 77vh;
+    height: 80vh;
+  }
+}
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
+  #mid_about_container {
+    height: 60vh;
+    margin: 0 0 0 0;
   }
 }
 
@@ -77,6 +83,11 @@
   }
 }
 @media (orientation: landscape) and (max-device-height: 375px) {
+  .about_heading {
+    margin: -20px 0 40px 0;
+  }
+}
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
   .about_heading {
     margin: -20px 0 40px 0;
   }
@@ -127,6 +138,12 @@
     margin: 1vh 2vw 15px 1vw;
   }
 }
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
+  .about_image {
+    width: 30vw;
+    height: 30vh;
+  }
+}
 
 .about_text {
   width: 100%;
@@ -168,19 +185,24 @@
     margin: 0;
   }
 }
-@media (orientation: landscape) and (max-device-height: 375px) {
+@media (orientation: landscape) {
   .about_link {
     margin: -15px 0 0 0;
   }
 }
-@media (orientation: landscape) and (max-device-height: 420px) {
+@media (orientation: landscape) and (min-device-height: 414px) {
   .about_link {
     margin: -50px 0 0 0;
   }
 }
-@media (orientation: landscape) and (max-device-height: 768px) {
+@media (orientation: landscape) and (min-device-height: 768px) {
   .about_link {
     margin: 10px 0 0 0;
+  }
+}
+@media (min-device-width: 1800px) and (min-device-height: 800px) {
+  .about_link {
+    margin: -5vh 0 0 0;
   }
 }
 
