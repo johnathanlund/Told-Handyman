@@ -186,7 +186,9 @@ logout() {
     updateGallery(gallery) {
       if (this.imageName.length > 0) {
         gallery.galleryImage = this.imageName;
+        console.log("Gallery Update in Admin, galleryImage is: " + gallery.galleryImage);
       }
+      console.log("Past the Gallery Update If statement.");
       this.dataService.updateGallery(gallery).subscribe(
         res => {
           this.galleryIsEditing = false;

@@ -5,3 +5,8 @@
   background: linear-gradient(grey, white);
   /*background-color: green;*/
 }
+
+.review_card {
+  width: 80vw;
+  margin: 0 0 0 10vw;
+}

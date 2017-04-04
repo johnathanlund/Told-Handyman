@@ -39,10 +39,21 @@ module.exports = {
   },
 
   update: function(req,res, next) {
+    var delFile = '';
     ReviewModel.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
       if (err) {
         console.log("Update Review error just happened");
         res.status(500).send(err);
+      }
+      if (response.reviewImage) {
+        delFile = response.reviewImage;
+        console.log('THE delFile in Update is showing as: ' + delFile);
+        if (response.reviewImage != req.body.reviewImage) {
+          fs.unlinkSync('server/uploads/' + delFile, function (err) {
+            if (err) throw err;
+            console.log("Deletion of image file from the system server/uploads folder successfull for: " + delFile);
+          });
+        }
       }
       console.log("Update Review successfully worked");
       res.status(200).send(response);
@@ -55,18 +66,17 @@ module.exports = {
       if (err) { res.status(500).send(err);}
       delFile = response.reviewImage;
       console.log('THE delFile shows as: ' + delFile);
-    });
-    ReviewModel.findByIdAndRemove(req.params.id, function(err, response) {
-      if (err) {
-        console.log("Delete Review error just happened");
-        res.status(500).send(err);
-      }
-      // If the review has no image, then the below code will not need to execute.
       if (response.reviewImage) {
         fs.unlinkSync('server/uploads/' + delFile, function (err) {
           if (err) throw err;
           console.log("Deletion of image file from the system server/uploads folder successfull for: " + delFile);
         });
+      }
+    });
+    ReviewModel.findByIdAndRemove(req.params.id, function(err, response) {
+      if (err) {
+        console.log("Delete Review error just happened");
+        res.status(500).send(err);
       }
       console.log("Delete Review successfully worked");
       res.send(response);

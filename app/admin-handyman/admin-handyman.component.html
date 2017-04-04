@@ -101,7 +101,7 @@
 
                               </div><br>
 
-                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>
                         </tr>
@@ -255,7 +255,7 @@
 
                               </div><br>
 
-                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>
                         </tr>
@@ -369,7 +369,7 @@
 <div class="serviceList_section">
     <h3>Handyman Service List Items</h3>
 
-    <div class="card service_card" *ngIf="!serviceListIsLoading">
+    <div class="card serviceList_card" *ngIf="!serviceListIsLoading">
       <h4 class="card-header">Current Service List items ({{serviceLists.length}})</h4>
       <div class="card-block card_table_block">
         <table class="table table-bordered table-striped">
@@ -593,7 +593,7 @@
 
                               </div><br>
 
-                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>
                         </tr>

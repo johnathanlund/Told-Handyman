@@ -40,10 +40,21 @@ module.exports = {
   },
 
   update: function(req,res, next) {
+    var delFile = '';
     ServiceModel.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
       if (err) {
         console.log("Update Service error just happened");
         res.status(500).send(err);
+      }
+      if (response.serviceImage) {
+        delFile = response.serviceImage;
+        console.log('THE delFile in Update is showing as: ' + delFile);
+        if (response.serviceImage != req.body.serviceImage) {
+          fs.unlinkSync('server/uploads/' + delFile, function (err) {
+            if (err) throw err;
+            console.log("Deletion of image file from the system server/uploads folder successfull for: " + delFile);
+          });
+        }
       }
       console.log("Update Service successfully worked");
       res.status(200).send(response);
@@ -56,16 +67,18 @@ module.exports = {
       if (err) { res.status(500).send(err);}
       delFile = response.serviceImage;
       console.log('THE delFile shows as: ' + delFile);
+      if (response.serviceImage) {
+        fs.unlinkSync('server/uploads/' + delFile, function (err) {
+          if (err) throw err;
+          console.log("Deletion of image file from the system server/uploads folder successfull for: " + delFile);
+        });
+      }
     });
     ServiceModel.findByIdAndRemove(req.params.id, function(err, response) {
       if (err) {
         console.log("Delete Service error just happened");
         res.status(500).send(err);
       }
-      fs.unlinkSync('server/uploads/' + delFile, function (err) {
-        if (err) throw err;
-        console.log("Deletion of image file from the system server/uploads folder successfull for: " + delFile);
-      });
       console.log("Delete Service successfully worked");
       res.send(response);
     });
