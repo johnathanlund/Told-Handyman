@@ -24,7 +24,7 @@ var userCtrl = require('./controllers/userCtrl.js');
 // var passport = require('./services/passport.js');
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'Godaddy',
   auth: {
     user: config.nodemailer_user,
     pass: config.nodemailer_pass
@@ -143,6 +143,7 @@ app.post('/contactForm', function (req, res, next) {
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
+      console.log('An error occured sending contact form email.');
       return console.log(error);
     }
     console.log('Message %s sent: %s', info.messageId, info.response);
