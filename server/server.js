@@ -24,7 +24,7 @@ var userCtrl = require('./controllers/userCtrl.js');
 // var passport = require('./services/passport.js');
 
 var transporter = nodemailer.createTransport({
-  service: 'Godaddy',
+  service: 'gmail',
   auth: {
     user: config.nodemailer_user,
     pass: config.nodemailer_pass
