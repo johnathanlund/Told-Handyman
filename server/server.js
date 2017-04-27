@@ -209,6 +209,6 @@ mongoose.connect(mongoURI);
 mongoose.connection.once('open', function() {
   console.log('Connected to MongoDB at ', mongoURI);
   app.listen(config.PORT, function() {
-    console.log('Listening on port ', config.PORT);
+    console.log('Listening on port: ', config.PORT);
   });
 });
