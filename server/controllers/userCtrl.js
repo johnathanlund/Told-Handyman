@@ -20,9 +20,9 @@ router.post('/register', (req, res) => {
 
   process.nextTick( () => {
     User.findOne({ 'email': reqUser.email }, (err, user) => {
-      if(err)
+      if(err){
         return done(err);
-
+      }
       if(user){
         let content = {
           success: false,
