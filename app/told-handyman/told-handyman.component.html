@@ -30,7 +30,10 @@
         <div class="swiper-wrapper">
             <swiper [config]="config">
                 <div class="swiper-wrapper">
-                    <img class="swiper-slide" *ngFor="let gallery of gallerys" src="../server/uploads/{{gallery.galleryImage}}">
+                    <!-- <img class="swiper-slide" *ngFor="let gallery of gallerys" src="../server/uploads/{{gallery.galleryImage}}"> -->
+                    <div class="swiper-slide slide1"></div>
+                    <div class="swiper-slide slide2"></div>
+                    <div class="swiper-slide slide3"></div>
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -72,28 +75,118 @@
                 </div>
             </div>
             <div class="service_box_container">
-              <div class="service_box" *ngFor="let service of services">
-                  <div class="service_title">
-                      <h4>{{service.serviceName}}</h4>
-                  </div>
-                  <div class="service_title_mobile">
-                      <h4>{{service.serviceName}}</h4>
-                  </div>
+              <div class="service_box">
+                  <div class="service_title"><h4>REMODELS</h4></div>
+                  <div class="service_title_mobile"><h4>REMODELS</h4></div>
                   <div class="service_body">
-
                       <div class="service_image">
-                          <a class="zoom" (click)="myModal.open()">
-                              <img id="imageService" class="img-thumbnail" src="../server/uploads/{{service.serviceImage}}">
-                          </a>
-                          <modal #myModal class="modal_box service_image_Modal">
+                          <a class="zoom" (click)="myModal1.open()">
+                              <img id="imageService" class="img-thumbnail" src="http://hkremodel.com/wp-content/gallery/exterior-remodel/exterior-remodel-room-additions-hkc-v3.jpg"></a>
+                          <modal #myModal1 class="modal_box service_image_Modal">
                               <modal-content>
-                                  <img id="modalImage" class="img-resized" src="../server/uploads/{{service.serviceImage}}">
-                              </modal-content>
-                          </modal>
-                      </div>
-                      <div class="service_text">{{service.serviceDescription}}</div>
-                  </div>
-              </div>
+                                  <img id="modalImage" class="img-resized" src="http://hkremodel.com/wp-content/gallery/exterior-remodel/exterior-remodel-room-additions-hkc-v3.jpg">
+                              </modal-content></modal></div>
+                      <div class="service_text">A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+                    that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</div>
+                  </div></div>
+                  <div class="service_box">
+                      <div class="service_title"><h4>KITCHEN & BATHS</h4></div>
+                      <div class="service_title_mobile"><h4>KITCHEN & BATHS</h4></div>
+                      <div class="service_body">
+                          <div class="service_image">
+                              <a class="zoom" (click)="myModal2.open()">
+                                  <img id="imageService" class="img-thumbnail" src="http://i.vimeocdn.com/video/523141124_1280x720.jpg"></a>
+                              <modal #myModal2 class="modal_box service_image_Modal">
+                                  <modal-content>
+                                      <img id="modalImage" class="img-resized" src="http://i.vimeocdn.com/video/523141124_1280x720.jpg">
+                                  </modal-content></modal></div>
+                          <div class="service_text">A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+                        that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</div>
+                      </div></div>
+                      <div class="service_box">
+                          <div class="service_title"><h4>DECKS & PATIOS</h4></div>
+                          <div class="service_title_mobile"><h4>DECKS & PATIOS</h4></div>
+                          <div class="service_body">
+                              <div class="service_image">
+                                  <a class="zoom" (click)="myModal3.open()">
+                                      <img id="imageService" class="img-thumbnail" src="https://s-media-cache-ak0.pinimg.com/originals/05/0a/a1/050aa1bfd4390f63da02e234454b0da2.jpg"></a>
+                                  <modal #myModal3 class="modal_box service_image_Modal">
+                                      <modal-content>
+                                          <img id="modalImage" class="img-resized" src="https://s-media-cache-ak0.pinimg.com/originals/05/0a/a1/050aa1bfd4390f63da02e234454b0da2.jpg">
+                                      </modal-content></modal></div>
+                              <div class="service_text">A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+                            that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</div>
+                          </div></div>
+                          <div class="service_box">
+                              <div class="service_title"><h4>DRYWALL REPAIR</h4></div>
+                              <div class="service_title_mobile"><h4>DRYWALL REPAIR</h4></div>
+                              <div class="service_body">
+                                  <div class="service_image">
+                                      <a class="zoom" (click)="myModal4.open()">
+                                          <img id="imageService" class="img-thumbnail" src="https://s-media-cache-ak0.pinimg.com/originals/46/05/98/460598c1f2170daf64208dbc8549ac2c.jpg"></a>
+                                      <modal #myModal4 class="modal_box service_image_Modal">
+                                          <modal-content>
+                                              <img id="modalImage" class="img-resized" src="https://s-media-cache-ak0.pinimg.com/originals/46/05/98/460598c1f2170daf64208dbc8549ac2c.jpg">
+                                          </modal-content></modal></div>
+                                  <div class="service_text">A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+                                that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</div>
+                              </div></div>
+                              <div class="service_box">
+                                  <div class="service_title"><h4>CUSTOM WALK-IN CLOSETS</h4></div>
+                                  <div class="service_title_mobile"><h4>CUSTOM WALK-IN CLOSETS</h4></div>
+                                  <div class="service_body">
+                                      <div class="service_image">
+                                          <a class="zoom" (click)="myModal5.open()">
+                                              <img id="imageService" class="img-thumbnail" src="http://hgtvhome.sndimg.com/content/dam/images/hgrm/fullset/2011/9/13/8/RX-Press-Kits_Wellborn-Cabinets-closet-island_s4x3.jpg.rend.hgtvcom.1280.960.jpeg"></a>
+                                          <modal #myModal5 class="modal_box service_image_Modal">
+                                              <modal-content>
+                                                  <img id="modalImage" class="img-resized" src="http://hgtvhome.sndimg.com/content/dam/images/hgrm/fullset/2011/9/13/8/RX-Press-Kits_Wellborn-Cabinets-closet-island_s4x3.jpg.rend.hgtvcom.1280.960.jpeg">
+                                              </modal-content></modal></div>
+                                      <div class="service_text">A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+                                    that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</div>
+                                  </div></div>
+                                  <div class="service_box">
+                                      <div class="service_title"><h4>CUSTOM DOORS</h4></div>
+                                      <div class="service_title_mobile"><h4>CUSTOM DOORS</h4></div>
+                                      <div class="service_body">
+                                          <div class="service_image">
+                                              <a class="zoom" (click)="myModal6.open()">
+                                                  <img id="imageService" class="img-thumbnail" src="https://img1.etsystatic.com/032/0/8403700/il_fullxfull.567254271_miof.jpg"></a>
+                                              <modal #myModal6 class="modal_box service_image_Modal">
+                                                  <modal-content>
+                                                      <img id="modalImage" class="img-resized" src="https://img1.etsystatic.com/032/0/8403700/il_fullxfull.567254271_miof.jpg">
+                                                  </modal-content></modal></div>
+                                          <div class="service_text">A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+                                        that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</div>
+                                      </div></div>
+                                      <div class="service_box">
+                                          <div class="service_title"><h4>HOME TO DO LISTS</h4></div>
+                                          <div class="service_title_mobile"><h4>HOME TO DO LISTS</h4></div>
+                                          <div class="service_body">
+                                              <div class="service_image">
+                                                  <a class="zoom" (click)="myModal7.open()">
+                                                      <img id="imageService" class="img-thumbnail" src="http://21243-presscdn.pagely.netdna-cdn.com/wp-content/uploads/2017/01/List-of-the-Best-Home-Repair-in-Dubai.jpg"></a>
+                                                  <modal #myModal7 class="modal_box service_image_Modal">
+                                                      <modal-content>
+                                                          <img id="modalImage" class="img-resized" src="http://21243-presscdn.pagely.netdna-cdn.com/wp-content/uploads/2017/01/List-of-the-Best-Home-Repair-in-Dubai.jpg">
+                                                      </modal-content></modal></div>
+                                              <div class="service_text">A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+                                            that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</div>
+                                          </div></div>
+                                          <div class="service_box">
+                                              <div class="service_title"><h4>PAINTING</h4></div>
+                                              <div class="service_title_mobile"><h4>PAINTING</h4></div>
+                                              <div class="service_body">
+                                                  <div class="service_image">
+                                                      <a class="zoom" (click)="myModal8.open()">
+                                                          <img id="imageService" class="img-thumbnail" src="https://s-media-cache-ak0.pinimg.com/originals/40/ad/fb/40adfb3d964c9760307e973639ca300c.jpg"></a>
+                                                      <modal #myModal8 class="modal_box service_image_Modal">
+                                                          <modal-content>
+                                                              <img id="modalImage" class="img-resized" src="https://s-media-cache-ak0.pinimg.com/originals/40/ad/fb/40adfb3d964c9760307e973639ca300c.jpg">
+                                                          </modal-content></modal></div>
+                                                  <div class="service_text">A handyman is a person who is very good with their hands. Their job description covers a variety of duties
+                                                that involve fixing and repairing of things both indoor and outdoor in their organizations to make them look good.</div>
+                                              </div></div>
             </div>
         </div>
         <!--This ends the class grid-container -->
@@ -105,9 +198,28 @@
                 </modal-header>
                 <modal-content>
                     <tbody>
-                        <tr *ngFor="let serviceList of serviceLists">
+                        <tr>
                             <td>
-                                <li>{{serviceList.serviceListName}}</li>
+                                <li>Remodels</li>
+                                <li>Home Repairs</li>
+                                <li>Kitchen & Bath Remodels</li>
+                                <li>Custom Doors</li>
+                                <li>Drywall Repairs</li>
+                                <li>Painting</li>
+                                <li>Custom Decks & Patios</li>
+                                <li>Roofing</li>
+                                <li>Fencing</li>
+                                <li>Yard Projects</li>
+                                <li>Swamp Coolers</li>
+                                <li>Sprinkler Repairs</li>
+                                <li>Home Fix It Lists</li>
+                                <li>Garage Floor Epoxy</li>
+                                <li>Closet Organization</li>
+                                <li>Caulking</li>
+                                <li>Furnace Filters</li>
+                                <li>Property Maintenace</li>
+                                <li>Utility Servicing</li>
+                                <li>Electrical & Lighting</li>
                             </td>
                         </tr>
                     </tbody>
@@ -152,10 +264,26 @@
                 <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0"><h4>Scrolling</h4></label>
                 <div class="tab-content" id="tab-content1" role="tabpanel" aria-labelledby="Movie Credit Reviews" aria-hidden="false">
                     <div class="reviews_credits_container">
-                        <div class="reviews_wrapper" *ngFor="let review of reviews">
-                            <div class="review_author">
+                        <div class="reviews_wrapper">
+                            <!-- <div class="review_author">
                                 <h4>{{review.reviewAuthor}}<p>{{review.reviewLocation}}</p></h4><img class="review_image" *ngIf="review.reviewImage" src="../server/uploads/{{review.reviewImage}}"></div>
-                            <div class="work_review">{{review.reviewMessage}}</div>
+                            <div class="work_review">{{review.reviewMessage}}</div> -->
+                            <div class="review_author"><h4>John Doe <p>Provo, UT</p></h4><img class="review_image" src="https://s-media-cache-ak0.pinimg.com/originals/39/05/5f/39055f54c07cb561fd1b6cf43824f6a1.jpg"></div>
+            <div class="work_review">"Marlin is awesome. He really knows his stuff. We had a few different things for him, like our new outdoor kitchen, and he was clearly very experienced with all of them. We know who we will be hiring next time we need Handyman services; Marlin!"</div>
+            <div class="review_author"><h4>Jane Doe <p>Herriman, UT</p></h4></div>
+            <div class="work_review">Works fast and efficiently. Very good handyman. Sticks to his bid.</div>
+            <div class="review_author"><h4>Grayson Tarzan <p>Midway, UT</p></h4></div>
+            <div class="work_review">Marlin was very prompt, professional and courteous. I would highly recommend him to my friends and plan on using his services again.</div>
+            <div class="review_author"><h4>Robin Hood <p>Draper, UT</p></h4></div>
+            <div class="work_review">Marlin knew exactly what needed to be done and went to work an fixed it high above my expectations. I would refer Marlin to my friends!</div>
+            <div class="review_author"><h4>Jane Tarzan <p>Heber, UT</p></h4><img class="review_image" src="http://www.centraloregongaragedoor.com/wp-content/gallery/gerage-doors/garage-door-custom-barn-2.JPG"></div>
+            <div class="work_review">Great guy. Right on time, fast, cleaned up. Great job. I would highly recommend him and will use his services again.</div>
+            <div class="review_author"><h4>Gary Smith <p>SLC, UT</p></h4></div>
+            <div class="work_review">Marlin is very knowledgeable and was flexible with the stages of the job and worked around other contractors changing timelines.</div>
+            <div class="review_author"><h4>Roger Snow <p>Alpine, UT</p></h4></div>
+            <div class="work_review">He saved me a lot of money! He was just one of those people that is always there and performed 100% and just a great person to work with! I cant say enough how much money he saved me.</div>
+            <div class="review_author"><h4>Mick White <p>Wolf Creek, UT</p></h4></div>
+            <div class="work_review">One of the best guys there is!! Top of the line handyman.</div>
 
                         </div>
                     </div>
@@ -166,11 +294,42 @@
                 <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0"><h4 id="tab-content2-name">Normal View</h4></label>
                 <div class="tab-content" id="tab-content2" role="tabpanel" aria-labelledby="normal reviews" aria-hidden="true">
                     <div class="reviews_normal_container">
-                        <div class="reviews_normal_wrapper" *ngFor="let review of reviews">
-                            <div class="review_author">
+                        <div class="reviews_normal_wrapper">
+                            <!-- <div class="review_author">
                                 <h4>{{review.reviewAuthor}}<p>{{review.reviewLocation}}</p></h4><img class="review_image" *ngIf="review.reviewImage" src="../server/uploads/{{review.reviewImage}}"></div>
-                            <div class="work_review">{{review.reviewMessage}}</div>
-
+                            <div class="work_review">{{review.reviewMessage}}</div> -->
+                            <div class="review_author"><h4>John Doe <p>Provo, UT</p></h4>
+                              <img class="review_image" src="https://s-media-cache-ak0.pinimg.com/originals/39/05/5f/39055f54c07cb561fd1b6cf43824f6a1.jpg">
+                              <!-- <a class="zoom" (click)="myModal2.open()">
+                                  <img id="imageService" class="review_image" src="https://s-media-cache-ak0.pinimg.com/originals/39/05/5f/39055f54c07cb561fd1b6cf43824f6a1.jpg"></a>
+                              <modal #myModal2 class="modal_box">
+                                  <modal-content>
+                                      <img id="modalImage" class="img-resized" src="https://s-media-cache-ak0.pinimg.com/originals/39/05/5f/39055f54c07cb561fd1b6cf43824f6a1.jpg">
+                                  </modal-content></modal> -->
+                                </div>
+                            <div class="work_review">"Marlin is awesome. He really knows his stuff. We had a few different things for him, like our new outdoor kitchen, and he was clearly very experienced with all of them. We know who we will be hiring next time we need Handyman services; Marlin!"</div>
+                            <div class="review_author"><h4>Jane Doe <p>Herriman, UT</p></h4></div>
+                            <div class="work_review">Works fast and efficiently. Very good handyman. Sticks to his bid.</div>
+                            <div class="review_author"><h4>Grayson Tarzan <p>Midway, UT</p></h4></div>
+                            <div class="work_review">Marlin was very prompt, professional and courteous. I would highly recommend him to my friends and plan on using his services again.</div>
+                            <div class="review_author"><h4>Robin Hood <p>Draper, UT</p></h4></div>
+                            <div class="work_review">Marlin knew exactly what needed to be done and went to work an fixed it high above my expectations. I would refer Marlin to my friends!</div>
+                            <div class="review_author"><h4>Jane Tarzan <p>Heber, UT</p></h4>
+                              <img class="review_image" src="http://www.centraloregongaragedoor.com/wp-content/gallery/gerage-doors/garage-door-custom-barn-2.JPG">
+                              <!-- <a class="zoom" (click)="myModal2.open()">
+                                  <img id="imageService" class="review_image" src="http://www.centraloregongaragedoor.com/wp-content/gallery/gerage-doors/garage-door-custom-barn-2.JPG"></a>
+                              <modal #myModal2 class="modal_box">
+                                  <modal-content>
+                                      <img id="modalImage" class="img-resized" src="http://www.centraloregongaragedoor.com/wp-content/gallery/gerage-doors/garage-door-custom-barn-2.JPG">
+                                  </modal-content></modal> -->
+                                </div>
+                            <div class="work_review">Great guy. Right on time, fast, cleaned up. Great job. I would highly recommend him and will use his services again.</div>
+                            <div class="review_author"><h4>Gary Smith <p>SLC, UT</p></h4></div>
+                            <div class="work_review">Marlin is very knowledgeable and was flexible with the stages of the job and worked around other contractors changing timelines.</div>
+                            <div class="review_author"><h4>Roger Snow <p>Alpine, UT</p></h4></div>
+                            <div class="work_review">He saved me a lot of money! He was just one of those people that is always there and performed 100% and just a great person to work with! I cant say enough how much money he saved me.</div>
+                            <div class="review_author"><h4>Mick White <p>Wolf Creek, UT</p></h4></div>
+                            <div class="work_review">One of the best guys there is!! Top of the line handyman.</div>
                         </div>
                     </div>
                 </div>

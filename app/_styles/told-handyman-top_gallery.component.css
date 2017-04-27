@@ -60,7 +60,8 @@ swiper {
     text-align: center;
     font: bold 18px/1 sans-serif;
     background: #f0f0f0;
-    background-size: 100%;
+    /*background-size: 100%;*/
+    background-position: center;
     align-items: center;
     cursor: pointer;
 }

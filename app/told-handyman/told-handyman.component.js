@@ -33,6 +33,9 @@ var ToldHandymanComponent = (function () {
             nextButton: '.swiper-button-next',
             prevButton: '.swiper-button-prev',
             spaceBetween: 30,
+            loop: true,
+            // This adds autoplay option to the gallery
+            autoplay: 4500,
         };
         this.gallerys = [];
         this.galleryIsLoading = true;

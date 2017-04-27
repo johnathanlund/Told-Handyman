@@ -45,9 +45,9 @@ phoneCombined: string = '';
           nextButton: '.swiper-button-next',
           prevButton: '.swiper-button-prev',
           spaceBetween: 30,
-          // loop: true,
+          loop: true,
           // This adds autoplay option to the gallery
-          // autoplay: 4500,
+          autoplay: 4500,
           // autoplayDisableOnInteraction: false
   };
 
