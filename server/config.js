@@ -7,9 +7,9 @@ module.exports = {
   // MONGO_URI: 'mongodb://<username>:<password>@192.169.144.25:27017/admin',
   // MONGO_URI: 'mongodb://<username>:<password>@192.169.144.25:27017/toldhandyman?authSource=admin',
   SESSION_SECRET: 'asalsdkjfidasufoianlfidsaufiodsnflasjdlkj007',
-  nodemailer_user: '<email username>',
-  nodemailer_pass: '<email password>',
-  nodemailer_recipient: '<email recipient(s)',
+  nodemailer_user: 'jalshield@gmail.com',
+  nodemailer_pass: 'sheath22',
+  nodemailer_recipient: 'johnathanlund@gmail.com',
     // nodemailer_recipient: 'jalshield@gmail.com, "jalshield" <johnathanlund@gmail.com>, "johnathanlund"',
   jwt_secret: 'iodsjfm699sudfisdf007hflkhlsa13jjj',
 };

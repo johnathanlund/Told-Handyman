@@ -204,11 +204,15 @@ app.delete('/review/:id', reviewCtrl.delete);
 var mongoURI = config.MONGO_URI;
 var port = config.PORT;
 
-mongoose.connect(mongoURI);
+app.listen(config.PORT, function() {
+     console.log('Listening on port: ', config.PORT);
+   });
 
-mongoose.connection.once('open', function() {
-  console.log('Connected to MongoDB at ', mongoURI);
-  app.listen(config.PORT, function() {
-    console.log('Listening on port: ', config.PORT);
-  });
-});
+// mongoose.connect(mongoURI);
+//
+// mongoose.connection.once('open', function() {
+//   console.log('Connected to MongoDB at ', mongoURI);
+//   app.listen(config.PORT, function() {
+//     console.log('Listening on port: ', config.PORT);
+//   });
+// });

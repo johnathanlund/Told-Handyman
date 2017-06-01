@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable }     from 'rxjs/observable';
+import { Observable } from 'rxjs/observable';
 import { User } from '../_models/user';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
