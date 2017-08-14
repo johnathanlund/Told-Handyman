@@ -9,6 +9,8 @@ var nodemailer = require('nodemailer');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var User = require('./models/UserModel.js');
+var mysql = require('mysql');
+var http = require('http');
 
 // CONFIG
 var config = require('./config');
@@ -201,14 +203,43 @@ app.delete('/review/:id', reviewCtrl.delete);
 
 // CONNECTIONS
 // var port: number = process.env.PORT || 8000;
-var mongoURI = config.MONGO_URI;
-var port = config.PORT;
+// var mongoURI = config.MONGO_URI;
+// var port = config.PORT;
+//
+// mongoose.connect(mongoURI);
+//
+// mongoose.connection.once('open', function() {
+//   console.log('Connected to MongoDB at ', mongoURI);
+//   app.listen(config.PORT, function() {
+//     console.log('Listening on port ', config.PORT);
+//   });
+// });
 
-mongoose.connect(mongoURI);
+// Database Connection
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'jal',
+//   password : '',
+//   database : 'told_handyman'
+// });
+// try {
+// 	connection.connect();
+//
+// } catch(e) {
+// 	console.log('Database Connetion failed:' + e);
+// }
 
-mongoose.connection.once('open', function() {
-  console.log('Connected to MongoDB at ', mongoURI);
-  app.listen(config.PORT, function() {
-    console.log('Listening on port ', config.PORT);
-  });
+// Setup express
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
+app.set('port', process.env.PORT || 5000);
+
+// Set default route
+app.get('/', function (req, res) {
+	res.send('<html><body><p>Welcome to the Told Handyman App</p></body></html>');
+});
+
+// Create server
+http.createServer(app).listen(app.get('port'), function(){
+	console.log('Server listening on port ' + app.get('port'));
 });
