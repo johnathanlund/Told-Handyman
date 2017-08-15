@@ -58,7 +58,7 @@ var upload = multer({storage: storage}).single('photo');
 // EXPRESS
 var app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // app.use(cors());
 // app.use(express.static(__dirname + './../public'));
@@ -230,8 +230,8 @@ app.delete('/review/:id', reviewCtrl.delete);
 // }
 
 // Setup express
-app.use(parser.json());
-app.use(parser.urlencoded({ extended: true }));
+// app.use(parse.json());
+// app.use(parse.urlencoded({ extended: true }));
 app.set('port', process.env.PORT || 5000);
 
 // Set default route

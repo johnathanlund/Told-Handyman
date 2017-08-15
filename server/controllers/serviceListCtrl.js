@@ -7,10 +7,13 @@ var db = require('../dbconnection');
 var serviceListCtrl = {
 
   read:function(callback){
+    console.log('Reading all of Service List.');
   return db.query("Select * from servicelist",callback);
+  console.log('Return from DB shows callback: ' + callback);
   },
 
   readById:function(id,callback) {
+    console.log("Reading serviceList by ID");
     return db.query("Select * from servicelist where Id=?",[id],callback);
   },
 
