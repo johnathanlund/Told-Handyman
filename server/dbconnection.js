@@ -4,7 +4,7 @@ var connection=mysql.createPool({
   host     : 'localhost',
   user     : 'jal',
   // password : 'root',
-  database : 'node_shop'
+  database : 'told_handyman'
 
 
 });

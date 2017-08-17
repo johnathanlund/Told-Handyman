@@ -177,29 +177,271 @@ app.post('/upload', function (req, res, next) {
 
 
 //===========Gallery Endpoints=========================================
-app.post('/gallery', galleryCtrl.create);
-app.get('/gallerys', galleryCtrl.read);
-app.get('/gallery/:id', galleryCtrl.readById);
-app.put('/gallery/:id', galleryCtrl.update);
-app.delete('/gallery/:id', galleryCtrl.delete);
+// app.post('/gallery', galleryCtrl.create);
+app.post('/gallery', function(req, res, next) {
+  console.log("Gallery Create shows req.body: " + JSON.stringify(req.body) + ' and that id is: ' + JSON.stringify(req.params.id));
+  galleryCtrl.create(req.body, function(err, rows) {
+    if (err) {
+      console.log("Error in server.js for galleryCtrl Create.");
+      res.json(err);
+    } else {
+      console.log("Success in server.js for galleryCtrl Create.");
+      res.json(rows);
+    }
+  });
+});
+// app.get('/gallerys', galleryCtrl.read);
+app.get('/gallerys', function(req, res, next) {
+  galleryCtrl.read(function(err, rows) {
+    if (err) {
+      console.log("error occured server.js for galleryCtrl read.");
+      res.json(err);
+    } else {
+      console.log("Success at server.js for galleryCtrl read.");
+      res.json(rows);
+    }
+  });
+});
+// app.get('/gallery/:id', galleryCtrl.readById);
+app.get('/gallery/:id', function(req,res,next) {
+  if (req.params.id) {
+    galleryCtrl.readById(req.params.id, function(err, rows) {
+      if (err) {
+        console.log("error occured server.js for galleryCtrl readById.");
+        res.json(err);
+      } else {
+        console.log("Success at server.js for galleryCtrl readById.");
+        res.json(rows);
+      }
+    });
+  }
+});
+// app.put('/gallery/:id', galleryCtrl.update);
+app.put('/gallery/:id', function(req, res, next) {
+  console.log("Gallery Update shows req.body: " + JSON.stringify(req.body));
+  galleryCtrl.update(req.params.id,req.body, function(err, rows) {
+    if (err) {
+      console.log("Error in server.js for galleryCtrl Update.");
+      res.json(err);
+    } else {
+      console.log("Success in server.js for galleryCtrl Update.");
+      res.json(rows);
+    }
+  });
+});
+// app.delete('/gallery/:id', galleryCtrl.delete);
+app.delete('/gallery/:id', function(req,res,next) {
+  if (req.params.id) {
+    galleryCtrl.delete(req.params.id, function(err, rows) {
+      if (err) {
+        console.log("Error occured server.js for galleryCtrl Delete.");
+        res.json(err);
+      } else {
+        console.log("Success at server.js for galleryCtrl Delete.");
+        res.json(rows);
+      }
+    });
+  }
+});
 //===========Service Endpoints========================================
-app.post('/service', serviceCtrl.create);
-app.get('/services', serviceCtrl.read);
-app.get('/service/:id', serviceCtrl.readById);
-app.put('/service/:id', serviceCtrl.update);
-app.delete('/service/:id', serviceCtrl.delete);
+// app.post('/service', serviceCtrl.create);
+app.post('/service', function(req, res, next) {
+  console.log("Service Create shows req.body: " + JSON.stringify(req.body) + ' and that id is: ' + JSON.stringify(req.params.id));
+  serviceCtrl.create(req.body, function(err, rows) {
+    if (err) {
+      console.log("Error in server.js for serviceCtrl Create.");
+      res.json(err);
+    } else {
+      console.log("Success in server.js for serviceCtrl Create.");
+      res.json(rows);
+    }
+  });
+});
+// app.get('/services', serviceCtrl.read);
+app.get('/services', function(req, res, next) {
+  serviceCtrl.read(function(err, rows) {
+    if (err) {
+      console.log("error occured server.js for serviceCtrl read.");
+      res.json(err);
+    } else {
+      console.log("Success at server.js for serviceCtrl read.");
+      res.json(rows);
+    }
+  });
+});
+// app.get('/service/:id', serviceCtrl.readById);
+app.get('/service/:id', function(req,res,next) {
+  if (req.params.id) {
+    serviceCtrl.readById(req.params.id, function(err, rows) {
+      if (err) {
+        console.log("error occured server.js for serviceCtrl readById.");
+        res.json(err);
+      } else {
+        console.log("Success at server.js for serviceCtrl readById.");
+        res.json(rows);
+      }
+    });
+  }
+});
+// app.put('/service/:id', serviceCtrl.update);
+app.put('/service/:id', function(req, res, next) {
+  console.log("Service Update shows req.body: " + JSON.stringify(req.body));
+  serviceCtrl.update(req.params.id,req.body, function(err, rows) {
+    if (err) {
+      console.log("Error in server.js for serviceCtrl Update.");
+      res.json(err);
+    } else {
+      console.log("Success in server.js for serviceCtrl Update.");
+      res.json(rows);
+    }
+  });
+});
+// app.delete('/service/:id', serviceCtrl.delete);
+app.delete('/service/:id', function(req,res,next) {
+  if (req.params.id) {
+    serviceCtrl.delete(req.params.id, function(err, rows) {
+      if (err) {
+        console.log("Error occured server.js for serviceCtrl Delete.");
+        res.json(err);
+      } else {
+        console.log("Success at server.js for serviceCtrl Delete.");
+        res.json(rows);
+      }
+    });
+  }
+});
 //===========Service List Endpoints===================================
-app.post('/serviceList', serviceListCtrl.create);
-app.get('/serviceLists', serviceListCtrl.read);
-app.get('/serviceList/:id', serviceListCtrl.readById);
-app.put('/serviceList/:id', serviceListCtrl.update);
-app.delete('/serviceList/:id', serviceListCtrl.delete);
+// app.post('/serviceList', serviceListCtrl.create);
+app.post('/serviceList', function(req, res, next) {
+  console.log("ServiceList Create shows req.body: " + JSON.stringify(req.body) + ' and that id is: ' + JSON.stringify(req.params.id));
+  serviceListCtrl.create(req.body, function(err, rows) {
+    if (err) {
+      console.log("Error in server.js for serviceListCtrl Create.");
+      res.json(err);
+    } else {
+      console.log("Success in server.js for serviceListCtrl Create.");
+      res.json(rows);
+    }
+  });
+});
+// app.get('/serviceLists', serviceListCtrl.read);
+app.get('/serviceLists', function(req, res, next) {
+  serviceListCtrl.read(function(err, rows) {
+    if (err) {
+      console.log("error occured server.js for serviceListCtrl read.");
+      res.json(err);
+    } else {
+      console.log("Success at server.js for serviceListCtrl read.");
+      res.json(rows);
+    }
+  });
+});
+// app.get('/serviceList/:id', serviceListCtrl.readById);
+app.get('/serviceList/:id', function(req,res,next) {
+  if (req.params.id) {
+    serviceListCtrl.readById(req.params.id, function(err, rows) {
+      if (err) {
+        console.log("error occured server.js for serviceListCtrl readById.");
+        res.json(err);
+      } else {
+        console.log("Success at server.js for serviceListCtrl readById.");
+        res.json(rows);
+      }
+    });
+  }
+});
+app.put('/serviceList/:id', function(req, res, next) {
+  console.log("ServiceList Update shows req.body: " + JSON.stringify(req.body));
+  serviceListCtrl.update(req.params.id,req.body, function(err, rows) {
+    if (err) {
+      console.log("Error in server.js for serviceListCtrl Update.");
+      res.json(err);
+    } else {
+      console.log("Success in server.js for serviceListCtrl Update.");
+      res.json(rows);
+    }
+  });
+});
+app.delete('/serviceList/:id', function(req,res,next) {
+  if (req.params.id) {
+    serviceListCtrl.delete(req.params.id, function(err, rows) {
+      if (err) {
+        console.log("Error occured server.js for serviceListCtrl Delete.");
+        res.json(err);
+      } else {
+        console.log("Success at server.js for serviceListCtrl Delete.");
+        res.json(rows);
+      }
+    });
+  }
+});
 //===========Review Endpoints=========================================
-app.post('/review', reviewCtrl.create);
-app.get('/reviews', reviewCtrl.read);
-app.get('/review/:id', reviewCtrl.readById);
-app.put('/review/:id', reviewCtrl.update);
-app.delete('/review/:id', reviewCtrl.delete);
+// app.post('/review', reviewCtrl.create);
+app.post('/review', function(req, res, next) {
+  console.log("Review Create shows req.body: " + JSON.stringify(req.body) + ' and that id is: ' + JSON.stringify(req.params.id));
+  reviewCtrl.create(req.body, function(err, rows) {
+    if (err) {
+      console.log("Error in server.js for reviewCtrl Create.");
+      res.json(err);
+    } else {
+      console.log("Success in server.js for reviewCtrl Create.");
+      res.json(rows);
+    }
+  });
+});
+// app.get('/reviews', reviewCtrl.read);
+app.get('/reviews', function(req, res, next) {
+  reviewCtrl.read(function(err, rows) {
+    if (err) {
+      console.log("error occured server.js for reviewCtrl read.");
+      res.json(err);
+    } else {
+      console.log("Success at server.js for reviewCtrl read.");
+      res.json(rows);
+    }
+  });
+});
+// app.get('/review/:id', reviewCtrl.readById);
+app.get('/review/:id', function(req,res,next) {
+  if (req.params.id) {
+    reviewCtrl.readById(req.params.id, function(err, rows) {
+      if (err) {
+        console.log("error occured server.js for reviewCtrl readById.");
+        res.json(err);
+      } else {
+        console.log("Success at server.js for reviewCtrl readById.");
+        res.json(rows);
+      }
+    });
+  }
+});
+// app.put('/review/:id', reviewCtrl.update);
+app.put('/review/:id', function(req, res, next) {
+  console.log("Review Update shows req.body: " + JSON.stringify(req.body));
+  reviewCtrl.update(req.params.id,req.body, function(err, rows) {
+    if (err) {
+      console.log("Error in server.js for reviewCtrl Update.");
+      res.json(err);
+    } else {
+      console.log("Success in server.js for reviewCtrl Update.");
+      res.json(rows);
+    }
+  });
+});
+// app.delete('/review/:id', reviewCtrl.delete);
+app.delete('/review/:id', function(req,res,next) {
+  if (req.params.id) {
+    reviewCtrl.delete(req.params.id, function(err, rows) {
+      if (err) {
+        console.log("Error occured server.js for reviewCtrl Delete.");
+        res.json(err);
+      } else {
+        console.log("Success at server.js for reviewCtrl Delete.");
+        res.json(rows);
+      }
+    });
+  }
+});
 
 // CONNECTIONS
 // var port: number = process.env.PORT || 8000;

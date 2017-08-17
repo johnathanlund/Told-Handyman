@@ -9,26 +9,26 @@ var serviceListCtrl = {
   read:function(callback){
     console.log('Reading all of Service List.');
   return db.query("Select * from servicelist",callback);
-  console.log('Return from DB shows callback: ' + callback);
   },
 
   readById:function(id,callback) {
     console.log("Reading serviceList by ID");
-    return db.query("Select * from servicelist where Id=?",[id],callback);
+    return db.query("Select * from servicelist where id=?",[id],callback);
   },
 
   create:function(req,callback){
-    console.log('Inside serviceListCtrl');
-    console.log('ID shows: ' +req.body.name + ': ' + req.params.id);
-    return db.query("Insert into servicelist values(?,?)", [req.body.name,req.body.description], callback);
+    console.log('Inside serviceListCtrl for Create: ' + JSON.stringify(req.serviceListName));
+    return db.query("Insert into servicelist (serviceListName, serviceListDescription) values(?,?)", [req.serviceListName,req.serviceListDescription], callback);
   },
 
   update:function(id,req,callback) {
-    return db.query("update servicelist set serviceListName=?,serviceListDescription=? where Id=?",[req.body.name,req.body.description,id],callback);
+    console.log('Inside serviceListCtrl for Update');
+    return db.query("update servicelist set serviceListName=?,serviceListDescription=? where id=?",[req.serviceListName,req.serviceListDescription,id],callback);
   },
 
   delete:function(id,callback){
-    return db.query("delete from servicelist where Id=?",[id],callback);
+    console.log('Inside serviceListCtrl for Delete');
+    return db.query("delete from servicelist where id=?",[id],callback);
   }
 
 };
