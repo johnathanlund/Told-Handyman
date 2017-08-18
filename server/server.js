@@ -102,9 +102,10 @@ app.use(permitCrossDomainRequests);
 //     res.json(req.decoded);
 // });
 //-----------------User Login Methods------------------
-// app.use('/api/user', userCtrl);
-app.post('/register', User.register);
-app.post('/login', User.login);
+app.use('/api/user', userCtrl);
+// app.post('/register', User.register);
+// app.post('/login', User.login);
+
 // app.post('/register', function(req, res, next) {
 //  console.log('running endpoint');
 //  next();

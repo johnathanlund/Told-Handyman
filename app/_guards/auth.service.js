@@ -12,13 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
+var app_config_1 = require("../app.config");
 var Subject_1 = require("rxjs/Subject");
 require("rxjs/add/operator/map");
 var AuthService = (function () {
-    function AuthService(http, router) {
+    function AuthService(http, router, config) {
         this.http = http;
         this.router = router;
-        this.base_url = 'http://127.0.0.1:8000/api/user';
+        this.config = config;
         this.userSource = new Subject_1.Subject();
         this.user$ = this.userSource.asObservable();
     }
@@ -31,7 +32,7 @@ var AuthService = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.base_url + "/register", body, options).map(function (res) { return _this.setToken(res); });
+        return this.http.post(this.config.apiUrl + "/api/user/register", body, options).map(function (res) { return _this.setToken(res); });
     };
     AuthService.prototype.loginUser = function (user) {
         var _this = this;
@@ -39,7 +40,7 @@ var AuthService = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.base_url + "/login", body, options).map(function (res) { return _this.setToken(res); });
+        return this.http.post(this.config.apiUrl + "/api/user/login", body, options).map(function (res) { return _this.setToken(res); });
     };
     AuthService.prototype.logout = function () {
         this.token = null;
@@ -51,7 +52,7 @@ var AuthService = (function () {
         var token = (currUser && 'token' in currUser) ? currUser.token : this.token;
         var headers = new http_1.Headers({ 'x-access-token': token });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.get(this.base_url + "/check-state", options).map(function (res) { return _this.parseRes(res); });
+        return this.http.get(this.config.apiUrl + "/api/user/check-state", options).map(function (res) { return _this.parseRes(res); });
     };
     AuthService.prototype.setToken = function (res) {
         var body = JSON.parse(res['_body']);
@@ -83,7 +84,7 @@ var AuthService = (function () {
 }());
 AuthService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, router_1.Router])
+    __metadata("design:paramtypes", [http_1.Http, router_1.Router, app_config_1.AppConfig])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

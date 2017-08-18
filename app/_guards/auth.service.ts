@@ -3,19 +3,20 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable }     from 'rxjs/observable';
 import { User } from '../_models/user';
+import { AppConfig } from '../app.config';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService implements CanActivate {
 
-  private base_url = 'http://127.0.0.1:8000/api/user';
+  // private base_url = '${this.app_config}/api/user';
   // private base_url = 'http://www.toldhandyman.com/api/user';
   token: string;
   private userSource = new Subject<User>();
   user$ = this.userSource.asObservable();
 
-  constructor(public http: Http, private router: Router) { }
+  constructor(public http: Http, private router: Router, private config: AppConfig) { }
 
   setUser(user: User) {
     this.userSource.next(user);
@@ -26,7 +27,7 @@ export class AuthService implements CanActivate {
     let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(`${this.base_url}/register`, body, options).map( (res) => this.setToken(res) );
+    return this.http.post(this.config.apiUrl + `/api/user/register`, body, options).map( (res) => this.setToken(res) );
   }
 
   loginUser(user): Observable<Object> {
@@ -35,7 +36,7 @@ export class AuthService implements CanActivate {
 		headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(`${this.base_url}/login`, body, options).map( (res) => this.setToken(res) );
+    return this.http.post(this.config.apiUrl + `/api/user/login`, body, options).map( (res) => this.setToken(res) );
   }
 
   logout() {
@@ -49,7 +50,7 @@ export class AuthService implements CanActivate {
     let token = ( currUser && 'token' in currUser) ? currUser.token : this.token;
     let headers = new Headers({ 'x-access-token': token });
     let options = new RequestOptions({ headers: headers });
-    return this.http.get(`${this.base_url}/check-state`, options).map( res => this.parseRes(res) );
+    return this.http.get(this.config.apiUrl + `/api/user/check-state`, options).map( res => this.parseRes(res) );
 
   }
 
