@@ -1,31 +1,89 @@
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-var Schema = mongoose.Schema;
+var db = require('../dbconnection');
+// var Schema = mongoose.Schema;
 
-var User = new Schema({
-  name: {type: String},
-  email: {type: String, unique: true, required: true},
-  password: {type: String},
+var User = {
+
+  register:function(req,res) {
+    var today = new Date();
+    var users = {
+      "name":req.body.name,
+      "email":req.body.email,
+      "password":req.body.password,
+      "created":today,
+      "modified":today
+    };
+    console.log('Inside UserModel for register: ' + JSON.stringify(users));
+    db.query('insert into users set ?',users, function (error, results, fields) {
+      if (error) {
+    console.log("error ocurred",error);
+    res.send({
+      "code":400,
+      "failed":"error ocurred"
+    })
+  }else{
+    console.log('The solution is: ', results);
+    res.send({
+      "code":200,
+      "success":"user registered sucessfully"
+        });
+  }
+    });
+    // return db.query("Insert into gallery (galleryName, galleryDescription, galleryImage) values(?,?,?)", [req.galleryName, req.galleryDescription, req.galleryImage], callback);
+},
+
+  login:function(req,res) {
+    var email= req.body.email;
+  var password = req.body.password;
+  db.query('SELECT * FROM users WHERE email = ?',[email], function (error, results, fields) {
+  if (error) {
+    // console.log("error ocurred",error);
+    res.send({
+      "code":400,
+      "failed":"error ocurred"
+    })
+  }else{
+    // console.log('The solution is: ', results);
+    if(results.length >0){
+      if([0].password == password){
+        res.send({
+          "code":200,
+          "success":"login sucessfull"
+            });
+      }
+      else{
+        res.send({
+          "code":204,
+          "success":"Email and password does not match"
+        });
+    }
+  }
+  else{
+    res.send({
+      "code":204,
+      "success":"Email does not exits"
+        });
+  }
+}
 });
+}
+  };
 
-User.methods.generateHash = function( password ) {
-  console.log('In UserModel, generateHash');
-    return bcrypt.hashSync( password, bcrypt.genSaltSync(8), null);
-};
-User.methods.validPassword = function( password, res, err ) {
-  console.log('Password has been verified, in UserModel.');
-    return bcrypt.compareSync( password, this.password );
-};
-//////////?//////////////////
-// User.pre('save', function(next){
-//   console.log('In UserModel user.pre');
-// var user = this;
-// console.log('In UserModel user.pre, past var user.');
-// if(!user.isModified('loginPassword')) return next();
-// console.log('In UserModel user.pre, past if statement');
-// user.loginPassword = User.methods.generateHash(user.loginPassword);
-// console.log('In UserModel user.pre, past user.loginPassword');
-// next();
+// User.methods.generateHash = function( password ) {
+//   console.log('In UserModel, generateHash');
+//     return bcrypt.hashSync( password, bcrypt.genSaltSync(8), null);
+// };
+// User.methods.validPassword = function( password, res, err ) {
+//   console.log('Password has been verified, in UserModel.');
+//     return bcrypt.compareSync( password, this.password );
+// };
+
+
+module.exports = User;
+
+// var User = new Schema({
+//   name: {type: String},
+//   email: {type: String, unique: true, required: true},
+//   password: {type: String},
 // });
-
-module.exports = mongoose.model('User', User);

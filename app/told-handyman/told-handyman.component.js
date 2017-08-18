@@ -91,7 +91,9 @@ var ToldHandymanComponent = (function () {
     };
     ToldHandymanComponent.prototype.readServiceLists = function () {
         var _this = this;
-        this.dataService.readServiceLists().subscribe(function (data) { return _this.serviceLists = data; }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
+        this.dataService.readServiceLists().subscribe(
+        // console.log('Reading ServiceList from T-H.component.');
+        function (data) { return _this.serviceLists = data; }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
     };
     ToldHandymanComponent.prototype.readReviews = function () {
         var _this = this;

@@ -22,6 +22,8 @@ var serviceListCtrl = require('./controllers/serviceListCtrl.js');
 var reviewCtrl = require('./controllers/reviewCtrl.js');
 var userCtrl = require('./controllers/userCtrl.js');
 
+var User = require('./models/UserModel.js');
+
 // SERVICES
 // var passport = require('./services/passport.js');
 
@@ -100,7 +102,9 @@ app.use(permitCrossDomainRequests);
 //     res.json(req.decoded);
 // });
 //-----------------User Login Methods------------------
-app.use('/api/user', userCtrl);
+// app.use('/api/user', userCtrl);
+app.post('/register', User.register);
+app.post('/login', User.login);
 // app.post('/register', function(req, res, next) {
 //  console.log('running endpoint');
 //  next();

@@ -133,6 +133,7 @@ phoneCombined: string = '';
   }
   readServiceLists() {
     this.dataService.readServiceLists().subscribe(
+      // console.log('Reading ServiceList from T-H.component.');
       data => this.serviceLists = data,
       error => console.log(error),
       () => this.isLoading = false
