@@ -1,7 +1,7 @@
 var ReviewModel = require('../models/ReviewModel.js');
 var express = require('express');
 var router = express.Router();
-
+var fs = require('fs');
 var db = require('../dbconnection');
 
 var reviewCtrl = {
@@ -26,8 +26,20 @@ var reviewCtrl = {
     return db.query("update review set reviewAuthor=?,reviewLocation=?,reviewMessage=?,reviewImage=? where id=?",[req.reviewAuthor,req.reviewLocation,req.reviewMessage,req.reviewImage,id],callback);
   },
 
+  // delete:function(id,callback){
+  //   console.log('Inside reviewCtrl for Delete');
+  //   return db.query("delete from review where id=?",[id],callback);
+  // }
+
   delete:function(id,callback){
-    console.log('Inside reviewCtrl for Delete');
+    var delFile = '';
+    db.query("Select * from review where id=?",[id], function(err, rows, fields) {
+      delFile = rows[0].reviewImage;
+        fs.unlinkSync('server/uploads/'+ delFile, function (err) {
+          if (err) throw err;
+          console.log('DELETION of image file from  the system server/uploads folder successful for: ' + delFile);
+        });
+    });
     return db.query("delete from review where id=?",[id],callback);
   }
 

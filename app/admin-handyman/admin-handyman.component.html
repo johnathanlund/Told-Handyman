@@ -83,7 +83,7 @@
 
                               <div class="form-group">
                                 <h5>Image File Upload:  </h5>
-                                <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
+                                <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader" (change)="$event.target.value = ''"/>
                                 <div>
                                   <h5>Current Image:</h5>
                                   <img class="img-thumbnail img-responsive edit_Image" src="../server/uploads/{{gallery.galleryImage}}"><br><br>
@@ -101,14 +101,14 @@
 
                               </div><br>
 
-                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (submit)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>
                         </tr>
                       </tbody>
                     </modal-content>
                     <modal-footer>
-                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelGalleryEditing()">Cancel</button>
+                        <button class="btn btn-primary" (submit)="myModal.close()" (click)="cancelGalleryEditing()">Cancel</button>
                     </modal-footer>
                 </modal>
                 </div>
@@ -146,7 +146,7 @@
                   <h5>Image File Upload:  </h5>
                   <!-- <upload-image>Loading.....image uploader.....</upload-image> -->
 
-                  <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader"/>
+                  <input type="file" class="form-control" name="photo" ng2FileSelect [uploader]="uploader" (change)="$event.target.value = ''"/>
                   <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" (change)="fileEvent($event)"/> -->
                   <p>Items in the queue: {{uploader.queue.length}}</p>
                   <div *ngFor="let item of uploader.queue" class="media">
@@ -162,7 +162,7 @@
 
                 </div><br>
 
-                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addGalleryForm.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addGalleryForm.valid" (click)="uploader.uploadAll()"><i class="fa fa-floppy-o"></i> Add</button>
                 <button class="btn btn-primary" type="button" name="button" (click)="clearGalleryForm()"><i class="fa fa-floppy-o"></i>Reset</button>
                 </form>
             </div>
@@ -255,14 +255,14 @@
 
                               </div><br>
 
-                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (submit)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>
                         </tr>
                       </tbody>
                     </modal-content>
                     <modal-footer>
-                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelEditing()">Cancel</button>
+                        <button class="btn btn-primary" (submit)="myModal.close()" (click)="cancelEditing()">Cancel</button>
                     </modal-footer>
                 </modal>
                 </div>
@@ -350,7 +350,7 @@
 
                 </div><br>
 
-                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addServiceForm.valid" (click)="uploader.uploadAll()" (submit)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
                 <button class="btn btn-primary" type="button" name="button" (click)="clearServiceForm()"><i class="fa fa-floppy-o"></i>Reset</button>
                 </form>
             </div>
@@ -408,7 +408,7 @@
                               <div class="form-group">
                                 <h5>Service List Description:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="serviceListDescription" [(ngModel)]="serviceList.serviceListDescription" placeholder="Description" required></textarea>
                               </div>
-                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (submit)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>
                         </tr>
@@ -424,14 +424,14 @@
                               <div class="form-group">
                                 <h5>Service Description:  </h5><textarea rows="4" cols="70" class="form-control" type="text" name="serviceDescription" [(ngModel)]="service.serviceDescription" placeholder="Description" required></textarea>
                               </div>
-                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (submit)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>
                         </tr>
                       </tbody> -->
                     </modal-content>
                     <modal-footer>
-                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelServiceListEditing()">Cancel</button>
+                        <button class="btn btn-primary" (submit)="myModal.close()" (click)="cancelServiceListEditing()">Cancel</button>
                     </modal-footer>
                 </modal>
                 </div>
@@ -497,7 +497,7 @@
                 <!-- <input class="form-control" type="text" name="description" formControlName="serviceListDescription" placeholder="Description"> -->
                 <textarea rows="2" cols="30" class="form-control" type="text" name="serviceListDescription" formControlName="serviceListDescription" [(ngModel)]="serviceList.serviceListDescription" placeholder="Description" required></textarea>
               </div><br>
-              <button class="btn btn-primary" type="submit" [disabled]="!addServiceListForm.valid" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+              <button class="btn btn-primary" type="submit" [disabled]="!addServiceListForm.valid" (submit)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
             </form>
           </div>
         </modal-content>
@@ -593,14 +593,14 @@
 
                               </div><br>
 
-                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
+                              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid" (click)="uploader.uploadAll()" (submit)="myModal.close()"><i class="fa fa-floppy-o"></i> Save</button>
                             </form>
                           </td>
                         </tr>
                       </tbody>
                     </modal-content>
                     <modal-footer>
-                        <button class="btn btn-primary" (click)="myModal.close()" (click)="cancelReviewEditing()">Cancel</button>
+                        <button class="btn btn-primary" (submit)="myModal.close()" (click)="cancelReviewEditing()">Cancel</button>
                     </modal-footer>
                 </modal>
                 </div>
@@ -655,7 +655,7 @@
 
                 </div><br>
 
-                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addReviewForm.valid" (click)="uploader.uploadAll()" (click)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
+                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addReviewForm.valid" (click)="uploader.uploadAll()" (submit)="myModal.close()"><i class="fa fa-floppy-o"></i> Add</button>
                 <button class="btn btn-primary" type="button" name="button" (click)="clearReviewForm()"><i class="fa fa-floppy-o"></i>Reset</button>
                 </form>
             </div>

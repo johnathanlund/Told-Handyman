@@ -47,11 +47,11 @@ var DataService = (function () {
     };
     DataService.prototype.updateGallery = function (gallery) {
         console.log("Update gallery successfull at data.service");
-        return this.http.put(this.config.apiUrl + '/gallery/' + gallery._id, JSON.stringify(gallery), this.options);
+        return this.http.put(this.config.apiUrl + '/gallery/' + gallery.id, JSON.stringify(gallery), this.options);
     };
     DataService.prototype.deleteGallery = function (gallery) {
         console.log("Delete gallery successfull at data.service");
-        return this.http.delete(this.config.apiUrl + '/gallery/' + gallery._id, this.options);
+        return this.http.delete(this.config.apiUrl + '/gallery/' + gallery.id, this.options);
     };
     //=============Service Connections=============================================
     DataService.prototype.createService = function (service) {
@@ -66,11 +66,11 @@ var DataService = (function () {
     };
     DataService.prototype.updateService = function (service) {
         console.log("Update service successfull at data.service");
-        return this.http.put(this.config.apiUrl + '/service/' + service._id, JSON.stringify(service), this.options);
+        return this.http.put(this.config.apiUrl + '/service/' + service.id, JSON.stringify(service), this.options);
     };
     DataService.prototype.deleteService = function (service) {
         console.log("Delete service successfull at data.service");
-        return this.http.delete(this.config.apiUrl + '/service/' + service._id, this.options);
+        return this.http.delete(this.config.apiUrl + '/service/' + service.id, this.options);
     };
     //==============Service List Connections=======================================
     DataService.prototype.createServiceList = function (serviceList) {
@@ -84,12 +84,12 @@ var DataService = (function () {
         // console.log('Read read please reeeeeaaaaaad.....');
     };
     DataService.prototype.updateServiceList = function (serviceList) {
-        console.log("Update service list successfull at data.service");
-        return this.http.put(this.config.apiUrl + '/serviceList/' + serviceList._id, JSON.stringify(serviceList), this.options);
+        console.log("Update service list successfull at data.service: ", serviceList);
+        return this.http.put(this.config.apiUrl + '/serviceList/' + serviceList.id, JSON.stringify(serviceList), this.options);
     };
     DataService.prototype.deleteServiceList = function (serviceList) {
-        console.log("Delete service list successfull at data.service");
-        return this.http.delete(this.config.apiUrl + '/serviceList/' + serviceList._id, this.options);
+        console.log("Delete service list successfull at data.service: ", serviceList);
+        return this.http.delete(this.config.apiUrl + '/serviceList/' + serviceList.id, this.options);
     };
     //=============Review Connections=============================================
     DataService.prototype.createReview = function (review) {
@@ -104,11 +104,11 @@ var DataService = (function () {
     };
     DataService.prototype.updateReview = function (review) {
         console.log("Update review successfull at data.service");
-        return this.http.put(this.config.apiUrl + '/review/' + review._id, JSON.stringify(review), this.options);
+        return this.http.put(this.config.apiUrl + '/review/' + review.id, JSON.stringify(review), this.options);
     };
     DataService.prototype.deleteReview = function (review) {
         console.log("Delete review successfull at data.service");
-        return this.http.delete(this.config.apiUrl + '/review/' + review._id, this.options);
+        return this.http.delete(this.config.apiUrl + '/review/' + review.id, this.options);
     };
     return DataService;
 }());

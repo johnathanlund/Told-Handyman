@@ -44,12 +44,12 @@ export class DataService {
 
   updateGallery(gallery): Observable<any> {
     console.log("Update gallery successfull at data.service");
-    return this.http.put(this.config.apiUrl + '/gallery/' + gallery._id, JSON.stringify(gallery), this.options);
+    return this.http.put(this.config.apiUrl + '/gallery/' + gallery.id, JSON.stringify(gallery), this.options);
   }
 
   deleteGallery(gallery): Observable<any> {
     console.log("Delete gallery successfull at data.service");
-    return this.http.delete(this.config.apiUrl + '/gallery/' + gallery._id, this.options);
+    return this.http.delete(this.config.apiUrl + '/gallery/' + gallery.id, this.options);
   }
 
   //=============Service Connections=============================================
@@ -68,12 +68,12 @@ export class DataService {
 
   updateService(service): Observable<any> {
     console.log("Update service successfull at data.service");
-    return this.http.put(this.config.apiUrl + '/service/' + service._id, JSON.stringify(service), this.options);
+    return this.http.put(this.config.apiUrl + '/service/' + service.id, JSON.stringify(service), this.options);
   }
 
   deleteService(service): Observable<any> {
     console.log("Delete service successfull at data.service");
-    return this.http.delete(this.config.apiUrl + '/service/' + service._id, this.options);
+    return this.http.delete(this.config.apiUrl + '/service/' + service.id, this.options);
   }
 
   //==============Service List Connections=======================================
@@ -91,13 +91,13 @@ export class DataService {
   }
 
   updateServiceList(serviceList): Observable<any> {
-    console.log("Update service list successfull at data.service");
-    return this.http.put(this.config.apiUrl + '/serviceList/' + serviceList._id, JSON.stringify(serviceList), this.options);
+    console.log("Update service list successfull at data.service: ",serviceList);
+    return this.http.put(this.config.apiUrl + '/serviceList/' + serviceList.id, JSON.stringify(serviceList), this.options);
   }
 
   deleteServiceList(serviceList): Observable<any> {
-    console.log("Delete service list successfull at data.service");
-    return this.http.delete(this.config.apiUrl + '/serviceList/' + serviceList._id, this.options);
+    console.log("Delete service list successfull at data.service: ",serviceList);
+    return this.http.delete(this.config.apiUrl + '/serviceList/' + serviceList.id, this.options);
   }
 
   //=============Review Connections=============================================
@@ -116,12 +116,12 @@ export class DataService {
 
   updateReview(review): Observable<any> {
     console.log("Update review successfull at data.service");
-    return this.http.put(this.config.apiUrl + '/review/' + review._id, JSON.stringify(review), this.options);
+    return this.http.put(this.config.apiUrl + '/review/' + review.id, JSON.stringify(review), this.options);
   }
 
   deleteReview(review): Observable<any> {
     console.log("Delete review successfull at data.service");
-    return this.http.delete(this.config.apiUrl + '/review/' + review._id, this.options);
+    return this.http.delete(this.config.apiUrl + '/review/' + review.id, this.options);
   }
 
 }

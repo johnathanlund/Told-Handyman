@@ -1,7 +1,7 @@
 var ServiceModel = require('../models/ServiceModel.js');
 var express = require('express');
 var router = express.Router();
-
+var fs = require('fs');
 var db = require('../dbconnection');
 
 var serviceCtrl = {
@@ -26,8 +26,20 @@ var serviceCtrl = {
     return db.query("update service set serviceName=?,serviceDescription=?,serviceImage=? where id=?",[req.serviceName,req.serviceDescription,req.serviceImage,id],callback);
   },
 
+  // delete:function(id,callback){
+  //   console.log('Inside serviceCtrl for Delete');
+  //   return db.query("delete from service where id=?",[id],callback);
+  // }
+
   delete:function(id,callback){
-    console.log('Inside serviceCtrl for Delete');
+    var delFile = '';
+    db.query("Select * from service where id=?",[id], function(err, rows, fields) {
+      delFile = rows[0].serviceImage;
+        fs.unlinkSync('server/uploads/'+ delFile, function (err) {
+          if (err) throw err;
+          console.log('DELETION of image file from  the system server/uploads folder successful for: ' + delFile);
+        });
+    });
     return db.query("delete from service where id=?",[id],callback);
   }
 

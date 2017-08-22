@@ -11,27 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var app_config_1 = require("../app.config");
 // Does this line below work without angular-cli?
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var UploadService = (function () {
-    function UploadService(http) {
+    function UploadService(http, config) {
         this.http = http;
+        this.config = config;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=UTF-8' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
-        this._adminUrl = 'http://localhost:8000';
     }
+    // private _adminUrl = 'http://localhost:8000'
     UploadService.prototype.upload = function (fileToUpload) {
         var input = new FormData();
         input.append("file", fileToUpload);
         return this.http
-            .post("http://localhost:8000/upload", input);
+            .post(this.config.apiUrl + "/upload", input);
     };
     return UploadService;
 }());
 UploadService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, app_config_1.AppConfig])
 ], UploadService);
 exports.UploadService = UploadService;
 //# sourceMappingURL=upload.service.js.map

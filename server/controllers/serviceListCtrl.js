@@ -1,7 +1,7 @@
 var ServiceListModel = require('../models/ServiceListModel.js');
 var express = require('express');
 var router = express.Router();
-
+// var fs = require('fs');
 var db = require('../dbconnection');
 
 var serviceListCtrl = {
@@ -30,6 +30,18 @@ var serviceListCtrl = {
     console.log('Inside serviceListCtrl for Delete');
     return db.query("delete from servicelist where id=?",[id],callback);
   }
+
+  // delete:function(id,callback){
+  //   var delFile = '';
+  //   db.query("Select * from serviceList where id=?",[id], function(err, rows, fields) {
+  //     delFile = rows[0].serviceListImage;
+  //       fs.unlinkSync('server/uploads/'+ delFile, function (err) {
+  //         if (err) throw err;
+  //         console.log('DELETION of image file from  the system server/uploads folder successful for: ' + delFile);
+  //       });
+  //   });
+  //   return db.query("delete from serviceList where id=?",[id],callback);
+  // }
 
 };
 

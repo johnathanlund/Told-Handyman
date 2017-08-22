@@ -1,7 +1,7 @@
 var GalleryModel = require('../models/GalleryModel.js');
 var express = require('express');
 var router = express.Router();
-
+var fs = require('fs');
 var db = require('../dbconnection');
 
 var galleryCtrl = {
@@ -27,7 +27,14 @@ var galleryCtrl = {
   },
 
   delete:function(id,callback){
-    console.log('Inside galleryCtrl for Delete');
+    var delFile = '';
+    db.query("Select * from gallery where id=?",[id], function(err, rows, fields) {
+      delFile = rows[0].galleryImage;
+        fs.unlinkSync('server/uploads/'+ delFile, function (err) {
+          if (err) throw err;
+          console.log('DELETION of image file from  the system server/uploads folder successful for: ' + delFile);
+        });
+    });
     return db.query("delete from gallery where id=?",[id],callback);
   }
 

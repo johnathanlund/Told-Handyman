@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ElementRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
@@ -7,12 +7,11 @@ import { DataService }  from '../_services/data.service';
 import { AuthService } from '../_guards/auth.service';
 import { User } from '../_models/user';
 import { Subscription }   from 'rxjs/Subscription';
-// import { FileUploadComponent }  from './fileUpload.component';
-// import { UploadService }  from './services/upload.service';
-// import { DropzoneModule }         from 'angular2-dropzone-wrapper';
-// import { DropzoneComponent }  from './dropzone.component';
-const URL = 'http://localhost:8000/upload';
-// var imageName = '';
+import { AppConfig } from '../app.config';
+import { MyModalService } from '../_services/myModal.service';
+const URL = 'http://localhost:5000/upload';
+
+
 
 @Component ({
   moduleId: module.id,
@@ -34,6 +33,8 @@ export class AdminHandymanComponent implements OnInit, OnDestroy  {
    user: User;
    message: String;
    subscription: Subscription;
+
+   modalName: string = '';
 
   imageName: string = '';
 
@@ -84,11 +85,20 @@ export class AdminHandymanComponent implements OnInit, OnDestroy  {
               private router: Router,
               private dataService: DataService,
               private authService: AuthService,
+              private modalService: MyModalService,
+              private config: AppConfig,
               private formBuilder: FormBuilder) {
                 this.articles = [];
 
                  this.subscription = authService.user$.subscribe( (user) => this.user = user )
               }
+
+  @ViewChild('myModal') el:ElementRef;
+
+  ngAfterViewInit(){
+    // this.modalName = document.getElementById('myModal');
+    console.log('FROM NGAFTERVIEWINIT SHOWS: ' + document.getElementById('myModal'));
+  }
 
   ngOnInit() {
 
@@ -106,8 +116,10 @@ export class AdminHandymanComponent implements OnInit, OnDestroy  {
     //overide the onCompleteItem property of the uploader so we are
     //able to deal with the server response.
       this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+            console.log("ImageUpload in QUEUE SHOWS: " + this.uploader.queue[0]);
             console.log("ImageUpload:uploaded:", item, " Thats the item. ", status, " Thats the status. ", response, " THats the response.", item.file.name );
             this.uploader.queue.length = 0;
+            // this.uploader.queue[0].remove();
             console.log('What is in the uploader.queue is: ' + this.uploader.queue.length);
         };
 
@@ -157,11 +169,20 @@ logout() {
         res => {
           let newGallery = res.json();
           this.gallerys.push(newGallery);
+          console.log('CREATE GALLERY IS SHOWING GETELEMENT AS: ' + document.getElementById('myModal'));
+          console.log('CREATE GALLERY IS SHOWING GETELEMENT AS: ' + JSON.stringify(document.getElementById('myModal')));
           console.log('Create gallery successfull at Admin-Handyman.component');
           this.addGalleryForm.reset();
+          // this.modalService.close(document.getElementById('myModal'));
+          this.readGallerys();
         },
         error => console.log('Create gallery error at Admin-handyman.component. error:  ' + error)
       );
+    }
+
+    clearGalleryForm() {
+      this.addGalleryForm.reset();
+      this.cancelUploaderAll();
     }
 
     readGallerys() {
@@ -194,6 +215,7 @@ logout() {
           this.galleryIsEditing = false;
           this.gallery = gallery;
           console.log('Update gallery successfull at Admin-Handyman.component, gallery:  ' + JSON.stringify(this.gallery));
+          this.readGallerys();
         },
         error => console.log('Update gallery Failed at Admin-Handyman.component. error: '+ error + "THIS IS THE Gallery:  " + + JSON.stringify(this.gallery))
       );
@@ -205,7 +227,8 @@ logout() {
           res => {
             console.log('Delete gallery successfull at Admin-Handyman.component.');
             let pos = this.gallerys.map(elem => { return elem._id; }).indexOf(gallery._id);
-            this.gallerys.splice(pos, 1);
+            // this.gallerys.splice(pos, 1);
+            this.readGallerys();
           },
           error => console.log('Delete gallery Failed at Admin-Handyman.component. error: '+ error)
         );
@@ -221,6 +244,7 @@ logout() {
         this.services.push(newService);
         console.log('Create service successfull at Admin-Handyman.component');
         this.addServiceForm.reset();
+        this.readServices();
       },
       error => console.log('Create error at Admin-handyman.component. error:  ' + error)
     );
@@ -254,6 +278,7 @@ logout() {
         this.isEditing = false;
         this.service = service;
         console.log('Update service successfull at Admin-Handyman.component, service:  ' + JSON.stringify(this.service));
+        this.readServices();
       },
       error => console.log('Update service Failed at Admin-Handyman.component. error: '+ error + "THIS IS THE SERVICE:  " + + JSON.stringify(this.service))
     );
@@ -266,6 +291,7 @@ logout() {
           console.log('Delete service successfull at Admin-Handyman.component.');
           let pos = this.services.map(elem => { return elem._id; }).indexOf(service._id);
           this.services.splice(pos, 1);
+          this.readServices();
         },
         error => console.log('Delete service Failed at Admin-Handyman.component. error: '+ error)
       );
@@ -280,6 +306,7 @@ createServiceList() {
       console.log("AdminHandymanComponent new service list is: " + JSON.stringify(newServiceList));
       this.serviceLists.push(newServiceList);
       console.log('Create service list successfull at Admin-Handyman.component');
+      this.readServiceLists();
     },
     error => console.log('Create error at service list in Admin-handyman.component. error:  ' + error)
   );
@@ -316,6 +343,7 @@ updateServiceList(serviceList) {
       this.serviceListIsEditing = false;
       this.serviceList = serviceList;
       console.log('Update service list successfull at Admin-Handyman.component, service:  ' + JSON.stringify(this.serviceList));
+      this.readServiceLists();
     },
     error => console.log('Update service list Failed at Admin-Handyman.component. error: '+ error + "THIS IS THE SERVICE:  " + + JSON.stringify(this.serviceList))
   );
@@ -328,6 +356,7 @@ deleteServiceList(serviceList) {
         console.log('Delete service list successfull at Admin-Handyman.component.');
         let pos = this.serviceLists.map(elem => { return elem._id; }).indexOf(serviceList._id);
         this.serviceLists.splice(pos, 1);
+        this.readServiceLists();
       },
       error => console.log('Delete service list Failed at Admin-Handyman.component. error: '+ error)
     );
@@ -343,6 +372,7 @@ deleteServiceList(serviceList) {
         this.reviews.push(newReview);
         console.log('Create review successfull at Admin-Handyman.component');
         this.addReviewForm.reset();
+        this.readReviews();
       },
       error => console.log('Create review error at Admin-handyman.component. error:  ' + error)
     );
@@ -376,6 +406,7 @@ deleteServiceList(serviceList) {
         this.reviewIsEditing = false;
         this.review = review;
         console.log('Update review successfull at Admin-Handyman.component, review:  ' + JSON.stringify(this.review));
+        this.readReviews();
       },
       error => console.log('Update review Failed at Admin-Handyman.component. error: '+ error + "THIS IS THE REVIEW:  " + + JSON.stringify(this.review))
     );
@@ -388,6 +419,7 @@ deleteServiceList(serviceList) {
           console.log('Delete review successfull at Admin-Handyman.component.');
           let pos = this.reviews.map(elem => { return elem._id; }).indexOf(review._id);
           this.reviews.splice(pos, 1);
+          this.readReviews();
         },
         error => console.log('Delete review Failed at Admin-Handyman.component. error: '+ error)
       );

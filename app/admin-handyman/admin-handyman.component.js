@@ -16,20 +16,20 @@ var forms_1 = require("@angular/forms");
 var ng2_file_upload_1 = require("ng2-file-upload/ng2-file-upload");
 var data_service_1 = require("../_services/data.service");
 var auth_service_1 = require("../_guards/auth.service");
-// import { FileUploadComponent }  from './fileUpload.component';
-// import { UploadService }  from './services/upload.service';
-// import { DropzoneModule }         from 'angular2-dropzone-wrapper';
-// import { DropzoneComponent }  from './dropzone.component';
-var URL = 'http://localhost:8000/upload';
-// var imageName = '';
+var app_config_1 = require("../app.config");
+var myModal_service_1 = require("../_services/myModal.service");
+var URL = 'http://localhost:5000/upload';
 var AdminHandymanComponent = (function () {
-    function AdminHandymanComponent(http, router, dataService, authService, formBuilder) {
+    function AdminHandymanComponent(http, router, dataService, authService, modalService, config, formBuilder) {
         var _this = this;
         this.http = http;
         this.router = router;
         this.dataService = dataService;
         this.authService = authService;
+        this.modalService = modalService;
+        this.config = config;
         this.formBuilder = formBuilder;
+        this.modalName = '';
         this.imageName = '';
         this.gallerys = [];
         this.galleryIsLoading = true;
@@ -60,6 +60,10 @@ var AdminHandymanComponent = (function () {
         this.articles = [];
         this.subscription = authService.user$.subscribe(function (user) { return _this.user = user; });
     }
+    AdminHandymanComponent.prototype.ngAfterViewInit = function () {
+        // this.modalName = document.getElementById('myModal');
+        console.log('FROM NGAFTERVIEWINIT SHOWS: ' + document.getElementById('myModal'));
+    };
     AdminHandymanComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -76,8 +80,10 @@ var AdminHandymanComponent = (function () {
         //overide the onCompleteItem property of the uploader so we are
         //able to deal with the server response.
         this.uploader.onCompleteItem = function (item, response, status, headers) {
+            console.log("ImageUpload in QUEUE SHOWS: " + _this.uploader.queue[0]);
             console.log("ImageUpload:uploaded:", item, " Thats the item. ", status, " Thats the status. ", response, " THats the response.", item.file.name);
             _this.uploader.queue.length = 0;
+            // this.uploader.queue[0].remove();
             console.log('What is in the uploader.queue is: ' + _this.uploader.queue.length);
         };
         this.readGallerys();
@@ -122,9 +128,17 @@ var AdminHandymanComponent = (function () {
         this.dataService.createGallery(this.addGalleryForm.value).subscribe(function (res) {
             var newGallery = res.json();
             _this.gallerys.push(newGallery);
+            console.log('CREATE GALLERY IS SHOWING GETELEMENT AS: ' + document.getElementById('myModal'));
+            console.log('CREATE GALLERY IS SHOWING GETELEMENT AS: ' + JSON.stringify(document.getElementById('myModal')));
             console.log('Create gallery successfull at Admin-Handyman.component');
             _this.addGalleryForm.reset();
+            // this.modalService.close(document.getElementById('myModal'));
+            _this.readGallerys();
         }, function (error) { return console.log('Create gallery error at Admin-handyman.component. error:  ' + error); });
+    };
+    AdminHandymanComponent.prototype.clearGalleryForm = function () {
+        this.addGalleryForm.reset();
+        this.cancelUploaderAll();
     };
     AdminHandymanComponent.prototype.readGallerys = function () {
         var _this = this;
@@ -150,6 +164,7 @@ var AdminHandymanComponent = (function () {
             _this.galleryIsEditing = false;
             _this.gallery = gallery;
             console.log('Update gallery successfull at Admin-Handyman.component, gallery:  ' + JSON.stringify(_this.gallery));
+            _this.readGallerys();
         }, function (error) { return console.log('Update gallery Failed at Admin-Handyman.component. error: ' + error + "THIS IS THE Gallery:  " + +JSON.stringify(_this.gallery)); });
     };
     AdminHandymanComponent.prototype.deleteGallery = function (gallery) {
@@ -158,7 +173,8 @@ var AdminHandymanComponent = (function () {
             this.dataService.deleteGallery(gallery).subscribe(function (res) {
                 console.log('Delete gallery successfull at Admin-Handyman.component.');
                 var pos = _this.gallerys.map(function (elem) { return elem._id; }).indexOf(gallery._id);
-                _this.gallerys.splice(pos, 1);
+                // this.gallerys.splice(pos, 1);
+                _this.readGallerys();
             }, function (error) { return console.log('Delete gallery Failed at Admin-Handyman.component. error: ' + error); });
         }
     };
@@ -171,6 +187,7 @@ var AdminHandymanComponent = (function () {
             _this.services.push(newService);
             console.log('Create service successfull at Admin-Handyman.component');
             _this.addServiceForm.reset();
+            _this.readServices();
         }, function (error) { return console.log('Create error at Admin-handyman.component. error:  ' + error); });
     };
     AdminHandymanComponent.prototype.readServices = function () {
@@ -195,6 +212,7 @@ var AdminHandymanComponent = (function () {
             _this.isEditing = false;
             _this.service = service;
             console.log('Update service successfull at Admin-Handyman.component, service:  ' + JSON.stringify(_this.service));
+            _this.readServices();
         }, function (error) { return console.log('Update service Failed at Admin-Handyman.component. error: ' + error + "THIS IS THE SERVICE:  " + +JSON.stringify(_this.service)); });
     };
     AdminHandymanComponent.prototype.deleteService = function (service) {
@@ -204,6 +222,7 @@ var AdminHandymanComponent = (function () {
                 console.log('Delete service successfull at Admin-Handyman.component.');
                 var pos = _this.services.map(function (elem) { return elem._id; }).indexOf(service._id);
                 _this.services.splice(pos, 1);
+                _this.readServices();
             }, function (error) { return console.log('Delete service Failed at Admin-Handyman.component. error: ' + error); });
         }
     };
@@ -215,6 +234,7 @@ var AdminHandymanComponent = (function () {
             console.log("AdminHandymanComponent new service list is: " + JSON.stringify(newServiceList));
             _this.serviceLists.push(newServiceList);
             console.log('Create service list successfull at Admin-Handyman.component');
+            _this.readServiceLists();
         }, function (error) { return console.log('Create error at service list in Admin-handyman.component. error:  ' + error); });
         // readServiceLists();
         this.addServiceListForm.reset();
@@ -243,6 +263,7 @@ var AdminHandymanComponent = (function () {
             _this.serviceListIsEditing = false;
             _this.serviceList = serviceList;
             console.log('Update service list successfull at Admin-Handyman.component, service:  ' + JSON.stringify(_this.serviceList));
+            _this.readServiceLists();
         }, function (error) { return console.log('Update service list Failed at Admin-Handyman.component. error: ' + error + "THIS IS THE SERVICE:  " + +JSON.stringify(_this.serviceList)); });
     };
     AdminHandymanComponent.prototype.deleteServiceList = function (serviceList) {
@@ -252,6 +273,7 @@ var AdminHandymanComponent = (function () {
                 console.log('Delete service list successfull at Admin-Handyman.component.');
                 var pos = _this.serviceLists.map(function (elem) { return elem._id; }).indexOf(serviceList._id);
                 _this.serviceLists.splice(pos, 1);
+                _this.readServiceLists();
             }, function (error) { return console.log('Delete service list Failed at Admin-Handyman.component. error: ' + error); });
         }
     };
@@ -264,6 +286,7 @@ var AdminHandymanComponent = (function () {
             _this.reviews.push(newReview);
             console.log('Create review successfull at Admin-Handyman.component');
             _this.addReviewForm.reset();
+            _this.readReviews();
         }, function (error) { return console.log('Create review error at Admin-handyman.component. error:  ' + error); });
     };
     AdminHandymanComponent.prototype.readReviews = function () {
@@ -288,6 +311,7 @@ var AdminHandymanComponent = (function () {
             _this.reviewIsEditing = false;
             _this.review = review;
             console.log('Update review successfull at Admin-Handyman.component, review:  ' + JSON.stringify(_this.review));
+            _this.readReviews();
         }, function (error) { return console.log('Update review Failed at Admin-Handyman.component. error: ' + error + "THIS IS THE REVIEW:  " + +JSON.stringify(_this.review)); });
     };
     AdminHandymanComponent.prototype.deleteReview = function (review) {
@@ -297,6 +321,7 @@ var AdminHandymanComponent = (function () {
                 console.log('Delete review successfull at Admin-Handyman.component.');
                 var pos = _this.reviews.map(function (elem) { return elem._id; }).indexOf(review._id);
                 _this.reviews.splice(pos, 1);
+                _this.readReviews();
             }, function (error) { return console.log('Delete review Failed at Admin-Handyman.component. error: ' + error); });
         }
     };
@@ -317,6 +342,10 @@ var AdminHandymanComponent = (function () {
     };
     return AdminHandymanComponent;
 }());
+__decorate([
+    core_1.ViewChild('myModal'),
+    __metadata("design:type", core_1.ElementRef)
+], AdminHandymanComponent.prototype, "el", void 0);
 AdminHandymanComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
@@ -335,6 +364,8 @@ AdminHandymanComponent = __decorate([
         router_1.Router,
         data_service_1.DataService,
         auth_service_1.AuthService,
+        myModal_service_1.MyModalService,
+        app_config_1.AppConfig,
         forms_1.FormBuilder])
 ], AdminHandymanComponent);
 exports.AdminHandymanComponent = AdminHandymanComponent;
