@@ -162,7 +162,7 @@
 
                 </div><br>
 
-                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addGalleryForm.valid" (click)="uploader.uploadAll()"><i class="fa fa-floppy-o"></i> Add</button>
+                <button id="submitForm" class="btn btn-primary" type="submit" [disabled]="!addGalleryForm.valid" (click)="uploader.uploadAll()&&myModal.close()" ><i class="fa fa-floppy-o"></i> Add</button>
                 <button class="btn btn-primary" type="button" name="button" (click)="clearGalleryForm()"><i class="fa fa-floppy-o"></i>Reset</button>
                 </form>
             </div>

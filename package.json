@@ -4,7 +4,8 @@
   "author": "Johnathan Lund",
   "description": "Told Hanyman single page website.",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "tsc -w",
+    "startTwo": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
