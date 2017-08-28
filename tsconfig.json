@@ -8,6 +8,7 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
+    "noStrictGenericChecks": true,
     "lib": ["es2017", "dom"]
   }
 }

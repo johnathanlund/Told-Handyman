@@ -25,15 +25,15 @@ var ImagePreview = (function () {
             return reader.readAsDataURL(this.image);
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], ImagePreview.prototype, "image", void 0);
+    ImagePreview = __decorate([
+        core_1.Directive({ selector: 'img[imgPreview]' }),
+        __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
+    ], ImagePreview);
     return ImagePreview;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], ImagePreview.prototype, "image", void 0);
-ImagePreview = __decorate([
-    core_1.Directive({ selector: 'img[imgPreview]' }),
-    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
-], ImagePreview);
 exports.ImagePreview = ImagePreview;
 //# sourceMappingURL=image-preview.directive.js.map

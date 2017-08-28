@@ -340,33 +340,33 @@ var AdminHandymanComponent = (function () {
         this.uploader.clearQueue();
         console.log("Uploader.queue has been cleared.");
     };
+    __decorate([
+        core_1.ViewChild('myModal'),
+        __metadata("design:type", core_1.ElementRef)
+    ], AdminHandymanComponent.prototype, "el", void 0);
+    AdminHandymanComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'my-admin',
+            templateUrl: 'admin-handyman.component.html',
+            styleUrls: [
+                '../_styles/admin-handyman.component.css',
+                '../_styles/admin-handyman-top_title.component.css',
+                '../_styles/admin-handyman-admin_top_gallery.component.css',
+                '../_styles/admin-handyman-admin_services.component.css',
+                '../_styles/admin-handyman-admin_reviews.component.css',
+                '../_styles/uploadImage.component.css',
+            ],
+        }),
+        __metadata("design:paramtypes", [http_1.Http,
+            router_1.Router,
+            data_service_1.DataService,
+            auth_service_1.AuthService,
+            myModal_service_1.MyModalService,
+            app_config_1.AppConfig,
+            forms_1.FormBuilder])
+    ], AdminHandymanComponent);
     return AdminHandymanComponent;
 }());
-__decorate([
-    core_1.ViewChild('myModal'),
-    __metadata("design:type", core_1.ElementRef)
-], AdminHandymanComponent.prototype, "el", void 0);
-AdminHandymanComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'my-admin',
-        templateUrl: 'admin-handyman.component.html',
-        styleUrls: [
-            '../_styles/admin-handyman.component.css',
-            '../_styles/admin-handyman-top_title.component.css',
-            '../_styles/admin-handyman-admin_top_gallery.component.css',
-            '../_styles/admin-handyman-admin_services.component.css',
-            '../_styles/admin-handyman-admin_reviews.component.css',
-            '../_styles/uploadImage.component.css',
-        ],
-    }),
-    __metadata("design:paramtypes", [http_1.Http,
-        router_1.Router,
-        data_service_1.DataService,
-        auth_service_1.AuthService,
-        myModal_service_1.MyModalService,
-        app_config_1.AppConfig,
-        forms_1.FormBuilder])
-], AdminHandymanComponent);
 exports.AdminHandymanComponent = AdminHandymanComponent;
 //# sourceMappingURL=admin-handyman.component.js.map

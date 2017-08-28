@@ -56,17 +56,17 @@ var UploadImageComponent = (function () {
         this.uploader.clearQueue();
         console.log("Uploader.queue has been cleared.");
     };
+    UploadImageComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            //define the element to be selected from the html structure.
+            selector: 'upload-image',
+            //location of our template rather than writing in-line templates.
+            templateUrl: './uploadImage.component.html',
+            styleUrls: ['../_styles/uploadImage.component.css']
+        })
+    ], UploadImageComponent);
     return UploadImageComponent;
 }());
-UploadImageComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        //define the element to be selected from the html structure.
-        selector: 'upload-image',
-        //location of our template rather than writing in-line templates.
-        templateUrl: './uploadImage.component.html',
-        styleUrls: ['../_styles/uploadImage.component.css']
-    })
-], UploadImageComponent);
 exports.UploadImageComponent = UploadImageComponent;
 //# sourceMappingURL=uploadImage.component.js.map

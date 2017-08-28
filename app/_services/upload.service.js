@@ -29,11 +29,11 @@ var UploadService = (function () {
         return this.http
             .post(this.config.apiUrl + "/upload", input);
     };
+    UploadService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http, app_config_1.AppConfig])
+    ], UploadService);
     return UploadService;
 }());
-UploadService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, app_config_1.AppConfig])
-], UploadService);
 exports.UploadService = UploadService;
 //# sourceMappingURL=upload.service.js.map

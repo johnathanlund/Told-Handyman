@@ -107,29 +107,29 @@ var ToldHandymanComponent = (function () {
     ToldHandymanComponent.prototype.closeMyModal = function (id) {
         this.myModalService.close(id);
     };
+    ToldHandymanComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'my-handyman',
+            templateUrl: 'told-handyman.component.html',
+            styleUrls: [
+                '../_styles/told-handyman.component.css',
+                '../_styles/told-handyman-top_title.component.css',
+                '../_styles/told-handyman-top_menu.component.css',
+                '../_styles/told-handyman-top_gallery.component.css',
+                '../_styles/told-handyman-mid_services.component.css',
+                '../_styles/told-handyman-mid_about.component.css',
+                '../_styles/told-handyman-mid_reviews.component.css',
+                '../_styles/told-handyman-bottom_contact.component.css',
+                '../_styles/told-handyman-bottom_footer.component.css',
+            ]
+        }),
+        __metadata("design:paramtypes", [http_1.Http,
+            data_service_1.DataService,
+            forms_1.FormBuilder,
+            myModal_service_1.MyModalService])
+    ], ToldHandymanComponent);
     return ToldHandymanComponent;
 }());
-ToldHandymanComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'my-handyman',
-        templateUrl: 'told-handyman.component.html',
-        styleUrls: [
-            '../_styles/told-handyman.component.css',
-            '../_styles/told-handyman-top_title.component.css',
-            '../_styles/told-handyman-top_menu.component.css',
-            '../_styles/told-handyman-top_gallery.component.css',
-            '../_styles/told-handyman-mid_services.component.css',
-            '../_styles/told-handyman-mid_about.component.css',
-            '../_styles/told-handyman-mid_reviews.component.css',
-            '../_styles/told-handyman-bottom_contact.component.css',
-            '../_styles/told-handyman-bottom_footer.component.css',
-        ]
-    }),
-    __metadata("design:paramtypes", [http_1.Http,
-        data_service_1.DataService,
-        forms_1.FormBuilder,
-        myModal_service_1.MyModalService])
-], ToldHandymanComponent);
 exports.ToldHandymanComponent = ToldHandymanComponent;
 //# sourceMappingURL=told-handyman.component.js.map

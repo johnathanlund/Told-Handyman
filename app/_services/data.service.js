@@ -110,11 +110,11 @@ var DataService = (function () {
         console.log("Delete review successfull at data.service");
         return this.http.delete(this.config.apiUrl + '/review/' + review.id, this.options);
     };
+    DataService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http, app_config_1.AppConfig])
+    ], DataService);
     return DataService;
 }());
-DataService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, app_config_1.AppConfig])
-], DataService);
 exports.DataService = DataService;
 //# sourceMappingURL=data.service.js.map

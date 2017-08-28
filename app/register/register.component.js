@@ -32,15 +32,15 @@ var RegisterComponent = (function () {
             }
         });
     };
+    RegisterComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'app-register',
+            templateUrl: './register.component.html',
+        }),
+        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+    ], RegisterComponent);
     return RegisterComponent;
 }());
-RegisterComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'app-register',
-        templateUrl: './register.component.html',
-    }),
-    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
-], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map

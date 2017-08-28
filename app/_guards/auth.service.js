@@ -80,11 +80,11 @@ var AuthService = (function () {
         console.log('User is not logged in. Routing back to login page.');
         return false;
     };
+    AuthService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http, router_1.Router, app_config_1.AppConfig])
+    ], AuthService);
     return AuthService;
 }());
-AuthService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, router_1.Router, app_config_1.AppConfig])
-], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

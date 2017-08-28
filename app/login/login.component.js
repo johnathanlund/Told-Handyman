@@ -32,15 +32,15 @@ var LoginComponent = (function () {
             }
         });
     };
+    LoginComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'app-login',
+            templateUrl: './login.component.html',
+        }),
+        __metadata("design:paramtypes", [router_1.Router, auth_service_1.AuthService])
+    ], LoginComponent);
     return LoginComponent;
 }());
-LoginComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'app-login',
-        templateUrl: './login.component.html',
-    }),
-    __metadata("design:paramtypes", [router_1.Router, auth_service_1.AuthService])
-], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

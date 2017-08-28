@@ -43,43 +43,43 @@ var angular2_useful_swiper_1 = require("angular2-useful-swiper");
 var AppModule = (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
+                app_routing_module_1.AppRoutingModule,
+                http_1.HttpModule,
+                ng2_page_scroll_1.Ng2PageScrollModule.forRoot(),
+                angular2_useful_swiper_1.SwiperModule,
+                file_upload_module_1.FileUploadModule,
+                ng2_modal_1.ModalModule,
+                common_1.CommonModule,
+            ],
+            declarations: [
+                app_component_1.AppComponent,
+                told_handyman_component_1.ToldHandymanComponent,
+                admin_handyman_component_1.AdminHandymanComponent,
+                login_component_1.LoginComponent,
+                register_component_1.RegisterComponent,
+                uploadImage_component_1.UploadImageComponent,
+                myModal_component_1.MyModalComponent,
+                image_preview_directive_1.ImagePreview,
+            ],
+            providers: [
+                data_service_1.DataService,
+                app_config_1.AppConfig,
+                auth_service_1.AuthService,
+                authentication_service_1.AuthenticationService,
+                user_service_1.UserService,
+                myModal_service_1.MyModalService,
+            ],
+            schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
+            bootstrap: [app_component_1.AppComponent],
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [
-            platform_browser_1.BrowserModule,
-            forms_1.FormsModule,
-            forms_1.ReactiveFormsModule,
-            app_routing_module_1.AppRoutingModule,
-            http_1.HttpModule,
-            ng2_page_scroll_1.Ng2PageScrollModule.forRoot(),
-            angular2_useful_swiper_1.SwiperModule,
-            file_upload_module_1.FileUploadModule,
-            ng2_modal_1.ModalModule,
-            common_1.CommonModule,
-        ],
-        declarations: [
-            app_component_1.AppComponent,
-            told_handyman_component_1.ToldHandymanComponent,
-            admin_handyman_component_1.AdminHandymanComponent,
-            login_component_1.LoginComponent,
-            register_component_1.RegisterComponent,
-            uploadImage_component_1.UploadImageComponent,
-            myModal_component_1.MyModalComponent,
-            image_preview_directive_1.ImagePreview,
-        ],
-        providers: [
-            data_service_1.DataService,
-            app_config_1.AppConfig,
-            auth_service_1.AuthService,
-            authentication_service_1.AuthenticationService,
-            user_service_1.UserService,
-            myModal_service_1.MyModalService,
-        ],
-        schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
-        bootstrap: [app_component_1.AppComponent],
-    })
-], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

@@ -52,19 +52,19 @@ var MyModalComponent = (function () {
         this.element.hide();
         $('body').removeClass('myModal-open');
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], MyModalComponent.prototype, "id", void 0);
+    MyModalComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'myModal',
+            template: '<ng-content></ng-content>'
+        }),
+        __metadata("design:paramtypes", [myModal_service_1.MyModalService, core_1.ElementRef])
+    ], MyModalComponent);
     return MyModalComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], MyModalComponent.prototype, "id", void 0);
-MyModalComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'myModal',
-        template: '<ng-content></ng-content>'
-    }),
-    __metadata("design:paramtypes", [myModal_service_1.MyModalService, core_1.ElementRef])
-], MyModalComponent);
 exports.MyModalComponent = MyModalComponent;
 //# sourceMappingURL=myModal.component.js.map
