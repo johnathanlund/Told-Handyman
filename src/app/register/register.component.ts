@@ -15,7 +15,7 @@ export class RegisterComponent {
   user: User;
   message: string = '';
 
-  constructor(private authService: AuthService, private router: Router ) {
+  constructor(public authService: AuthService, public router: Router ) {
     this.user = new User;
   }
 

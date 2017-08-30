@@ -81,13 +81,13 @@ export class AdminHandymanComponent implements OnInit, OnDestroy  {
 
    public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 
-  constructor(private http: Http,
-              private router: Router,
-              private dataService: DataService,
-              private authService: AuthService,
-              private modalService: MyModalService,
-              private config: AppConfig,
-              private formBuilder: FormBuilder) {
+  constructor(public http: Http,
+              public router: Router,
+              public dataService: DataService,
+              public authService: AuthService,
+              public modalService: MyModalService,
+              public config: AppConfig,
+              public formBuilder: FormBuilder) {
                 this.articles = [];
 
                  this.subscription = authService.user$.subscribe( (user) => this.user = user )

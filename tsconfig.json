@@ -10,5 +10,13 @@
     "noImplicitAny": false,
     "noStrictGenericChecks": true,
     "lib": ["es2017", "dom"]
-  }
+  },
+  "exclude": [
+    "src/app/main.ts",
+    "aot/"
+  ],
+  "include": [
+    "src/app/app.module.ts",
+    "src/app/main-jit.ts"
+  ]
 }

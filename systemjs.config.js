@@ -1,3 +1,16 @@
+// "dependencies": {
+//   "@angular/common": "^2.4.10",
+//   "@angular/compiler": "^2.4.10",
+//   "@angular/compiler-cli": "^4.3.6",
+//   "@angular/core": "^2.4.10",
+//   "@angular/forms": "~2.4.5",
+//   "@angular/http": "~2.4.5",
+//   "@angular/platform-browser": "^2.4.10",
+//   "@angular/platform-browser-dynamic": "~2.4.5",
+//   "@angular/platform-server": "^4.3.6",
+//   "@angular/router": "~3.4.5",
+//   "@angular/upgrade": "~2.4.5",
+
 /**
  * System configuration for Angular samples
  * Adjust as necessary for your application needs.

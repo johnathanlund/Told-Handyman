@@ -75,10 +75,10 @@ phoneCombined: string = '';
   review = {};
   reviewIsEditing = false;
 
-  constructor(private http: Http,
-              private dataService: DataService,
-              private formBuilder: FormBuilder,
-              private myModalService: MyModalService
+  constructor(public http: Http,
+              public dataService: DataService,
+              public formBuilder: FormBuilder,
+              public myModalService: MyModalService
             ){ }
 
   ngOnInit() {
