@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,16 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
-var forms_1 = require("@angular/forms");
-var ng2_file_upload_1 = require("ng2-file-upload/ng2-file-upload");
-var data_service_1 = require("../_services/data.service");
-var auth_service_1 = require("../_guards/auth.service");
-var app_config_1 = require("../app.config");
-var myModal_service_1 = require("../_services/myModal.service");
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Http } from '@angular/http';
+import { Router } from '@angular/router';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { DataService } from '../_services/data.service';
+import { AuthService } from '../_guards/auth.service';
+import { AppConfig } from '../app.config';
+import { MyModalService } from '../_services/myModal.service';
 var URL = 'http://localhost:5000/upload';
 var AdminHandymanComponent = (function () {
     function AdminHandymanComponent(http, router, dataService, authService, modalService, config, formBuilder) {
@@ -35,28 +33,28 @@ var AdminHandymanComponent = (function () {
         this.galleryIsLoading = true;
         this.gallery = {};
         this.galleryIsEditing = false;
-        this.galleryName = new forms_1.FormControl('', forms_1.Validators.required);
-        this.galleryDescription = new forms_1.FormControl('', forms_1.Validators.required);
+        this.galleryName = new FormControl('', Validators.required);
+        this.galleryDescription = new FormControl('', Validators.required);
         this.services = [];
         this.isLoading = true;
         this.service = {};
         this.isEditing = false;
-        this.serviceName = new forms_1.FormControl('', forms_1.Validators.required);
-        this.serviceDescription = new forms_1.FormControl('', forms_1.Validators.required);
+        this.serviceName = new FormControl('', Validators.required);
+        this.serviceDescription = new FormControl('', Validators.required);
         this.serviceLists = [];
         this.serviceListIsLoading = true;
         this.serviceList = {};
         this.serviceListIsEditing = false;
-        this.serviceListName = new forms_1.FormControl('', forms_1.Validators.required);
-        this.serviceListDescription = new forms_1.FormControl('', forms_1.Validators.required);
+        this.serviceListName = new FormControl('', Validators.required);
+        this.serviceListDescription = new FormControl('', Validators.required);
         this.reviews = [];
         this.reviewIsLoading = true;
         this.review = {};
         this.reviewIsEditing = false;
-        this.reviewAuthor = new forms_1.FormControl('', forms_1.Validators.required);
-        this.reviewLocation = new forms_1.FormControl('', forms_1.Validators.required);
-        this.reviewMessage = new forms_1.FormControl('', forms_1.Validators.required);
-        this.uploader = new ng2_file_upload_1.FileUploader({ url: URL, itemAlias: 'photo' });
+        this.reviewAuthor = new FormControl('', Validators.required);
+        this.reviewLocation = new FormControl('', Validators.required);
+        this.reviewMessage = new FormControl('', Validators.required);
+        this.uploader = new FileUploader({ url: URL, itemAlias: 'photo' });
         this.articles = [];
         this.subscription = authService.user$.subscribe(function (user) { return _this.user = user; });
     }
@@ -341,11 +339,11 @@ var AdminHandymanComponent = (function () {
         console.log("Uploader.queue has been cleared.");
     };
     __decorate([
-        core_1.ViewChild('myModal'),
-        __metadata("design:type", core_1.ElementRef)
+        ViewChild('myModal'),
+        __metadata("design:type", ElementRef)
     ], AdminHandymanComponent.prototype, "el", void 0);
     AdminHandymanComponent = __decorate([
-        core_1.Component({
+        Component({
             moduleId: module.id,
             selector: 'my-admin',
             templateUrl: 'admin-handyman.component.html',
@@ -358,15 +356,15 @@ var AdminHandymanComponent = (function () {
                 '../_styles/uploadImage.component.css',
             ],
         }),
-        __metadata("design:paramtypes", [http_1.Http,
-            router_1.Router,
-            data_service_1.DataService,
-            auth_service_1.AuthService,
-            myModal_service_1.MyModalService,
-            app_config_1.AppConfig,
-            forms_1.FormBuilder])
+        __metadata("design:paramtypes", [Http,
+            Router,
+            DataService,
+            AuthService,
+            MyModalService,
+            AppConfig,
+            FormBuilder])
     ], AdminHandymanComponent);
     return AdminHandymanComponent;
 }());
-exports.AdminHandymanComponent = AdminHandymanComponent;
+export { AdminHandymanComponent };
 //# sourceMappingURL=admin-handyman.component.js.map

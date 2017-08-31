@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,17 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var user_1 = require("../_models/user");
-var auth_service_1 = require("../_guards/auth.service");
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../_models/user';
+import { AuthService } from '../_guards/auth.service';
 var RegisterComponent = (function () {
     function RegisterComponent(authService, router) {
         this.authService = authService;
         this.router = router;
         this.message = '';
-        this.user = new user_1.User;
+        this.user = new User;
     }
     RegisterComponent.prototype.registerUser = function (user) {
         var _this = this;
@@ -33,14 +31,14 @@ var RegisterComponent = (function () {
         });
     };
     RegisterComponent = __decorate([
-        core_1.Component({
+        Component({
             moduleId: module.id,
             selector: 'app-register',
             templateUrl: './register.component.html',
         }),
-        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+        __metadata("design:paramtypes", [AuthService, Router])
     ], RegisterComponent);
     return RegisterComponent;
 }());
-exports.RegisterComponent = RegisterComponent;
+export { RegisterComponent };
 //# sourceMappingURL=register.component.js.map

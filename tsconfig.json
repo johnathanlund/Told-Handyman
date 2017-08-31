@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
@@ -11,12 +11,22 @@
     "noStrictGenericChecks": true,
     "lib": ["es2017", "dom"]
   },
+
   "exclude": [
-    "src/app/main.ts",
-    "aot/"
+    "aot/src/app/_directives",
+    "aot/src/app/_guards",
+    "aot/src/app/_models",
+    "aot/src/app/_services",
+    "aot/src/app/_styles",
+    "aot/src/app/admin-handyman",
+    "aot/src/app/login",
+    "aot/src/app/register",
+    "aot/src/app/told-handyman",
+    "aot/src/app/UploadImage"
   ],
+
   "include": [
     "src/app/app.module.ts",
-    "src/app/main-jit.ts"
+    "src/app/main.ts"
   ]
 }

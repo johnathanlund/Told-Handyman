@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var app_config_1 = require("../app.config");
+import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { AppConfig } from '../app.config';
 var UserService = (function () {
     function UserService(http, config) {
         this.http = http;
@@ -37,15 +35,15 @@ var UserService = (function () {
         // create authorization header with jwt token
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
-            var headers = new http_1.Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            return new http_1.RequestOptions({ headers: headers });
+            var headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+            return new RequestOptions({ headers: headers });
         }
     };
     UserService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http, app_config_1.AppConfig])
+        Injectable(),
+        __metadata("design:paramtypes", [Http, AppConfig])
     ], UserService);
     return UserService;
 }());
-exports.UserService = UserService;
+export { UserService };
 //# sourceMappingURL=user.service.js.map

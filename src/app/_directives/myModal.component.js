@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var $ = require("jquery");
-var myModal_service_1 = require("../_services/myModal.service");
+import { Component, ElementRef, Input } from '@angular/core';
+import * as $ from 'jquery';
+import { MyModalService } from '../_services/myModal.service';
 var MyModalComponent = (function () {
     function MyModalComponent(myModalService, el) {
         this.myModalService = myModalService;
@@ -53,18 +51,18 @@ var MyModalComponent = (function () {
         $('body').removeClass('myModal-open');
     };
     __decorate([
-        core_1.Input(),
+        Input(),
         __metadata("design:type", String)
     ], MyModalComponent.prototype, "id", void 0);
     MyModalComponent = __decorate([
-        core_1.Component({
+        Component({
             moduleId: module.id.toString(),
             selector: 'myModal',
             template: '<ng-content></ng-content>'
         }),
-        __metadata("design:paramtypes", [myModal_service_1.MyModalService, core_1.ElementRef])
+        __metadata("design:paramtypes", [MyModalService, ElementRef])
     ], MyModalComponent);
     return MyModalComponent;
 }());
-exports.MyModalComponent = MyModalComponent;
+export { MyModalComponent };
 //# sourceMappingURL=myModal.component.js.map

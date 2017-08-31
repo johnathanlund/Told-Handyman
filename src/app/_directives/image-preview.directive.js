@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
+import { Directive, ElementRef, Input, Renderer } from '@angular/core';
 var ImagePreview = (function () {
     function ImagePreview(el, renderer) {
         this.el = el;
@@ -26,14 +24,14 @@ var ImagePreview = (function () {
         }
     };
     __decorate([
-        core_1.Input(),
+        Input(),
         __metadata("design:type", Object)
     ], ImagePreview.prototype, "image", void 0);
     ImagePreview = __decorate([
-        core_1.Directive({ selector: 'img[imgPreview]' }),
-        __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
+        Directive({ selector: 'img[imgPreview]' }),
+        __metadata("design:paramtypes", [ElementRef, Renderer])
     ], ImagePreview);
     return ImagePreview;
 }());
-exports.ImagePreview = ImagePreview;
+export { ImagePreview };
 //# sourceMappingURL=image-preview.directive.js.map

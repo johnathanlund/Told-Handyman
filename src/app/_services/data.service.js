@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,20 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var app_config_1 = require("../app.config");
-var Rx_1 = require("rxjs/Rx");
+import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { AppConfig } from '../app.config';
+import { Observable } from 'rxjs/Rx';
 // Does this line below work without angular-cli?
-require("rxjs/add/operator/map");
-require("rxjs/add/operator/catch");
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 var DataService = (function () {
     function DataService(http, config) {
         this.http = http;
         this.config = config;
-        this.headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=UTF-8' });
-        this.options = new http_1.RequestOptions({ headers: this.headers });
+        this.headers = new Headers({ 'Content-Type': 'application/json;charset=UTF-8' });
+        this.options = new RequestOptions({ headers: this.headers });
     }
     //=============User Login Connections==========================================
     // login(user): Observable<any> {
@@ -43,7 +41,7 @@ var DataService = (function () {
     DataService.prototype.readGallerys = function () {
         console.log("Starting to Read gallery successfull at data.service");
         return this.http.get(this.config.apiUrl + '/gallerys').timeout(2000).map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
+            .catch(function (error) { return Observable.throw(error.json().error || 'Server Error'); });
     };
     DataService.prototype.updateGallery = function (gallery) {
         console.log("Update gallery successfull at data.service");
@@ -61,7 +59,7 @@ var DataService = (function () {
     DataService.prototype.readServices = function () {
         console.log("Starting to Read service successfull at data.service");
         return this.http.get(this.config.apiUrl + '/services').timeout(2000).map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
+            .catch(function (error) { return Observable.throw(error.json().error || 'Server Error'); });
         // console.log('Read read please reeeeeaaaaaad.....');
     };
     DataService.prototype.updateService = function (service) {
@@ -80,7 +78,7 @@ var DataService = (function () {
     DataService.prototype.readServiceLists = function () {
         console.log("Starting to Read service list successfull at data.service");
         return this.http.get(this.config.apiUrl + '/serviceLists').map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
+            .catch(function (error) { return Observable.throw(error.json().error || 'Server Error'); });
         // console.log('Read read please reeeeeaaaaaad.....');
     };
     DataService.prototype.updateServiceList = function (serviceList) {
@@ -99,7 +97,7 @@ var DataService = (function () {
     DataService.prototype.readReviews = function () {
         console.log("Starting to Read review successfull at data.service");
         return this.http.get(this.config.apiUrl + '/reviews').timeout(2000).map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server Error'); });
+            .catch(function (error) { return Observable.throw(error.json().error || 'Server Error'); });
         // console.log('Read read please reeeeeaaaaaad.....');
     };
     DataService.prototype.updateReview = function (review) {
@@ -111,10 +109,10 @@ var DataService = (function () {
         return this.http.delete(this.config.apiUrl + '/review/' + review.id, this.options);
     };
     DataService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http, app_config_1.AppConfig])
+        Injectable(),
+        __metadata("design:paramtypes", [Http, AppConfig])
     ], DataService);
     return DataService;
 }());
-exports.DataService = DataService;
+export { DataService };
 //# sourceMappingURL=data.service.js.map

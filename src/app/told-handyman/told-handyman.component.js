@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,24 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var forms_1 = require("@angular/forms");
-var http_1 = require("@angular/http");
-var data_service_1 = require("../_services/data.service");
-var myModal_service_1 = require("../_services/myModal.service");
+import { Component } from '@angular/core';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Http } from '@angular/http';
+import { DataService } from '../_services/data.service';
+import { MyModalService } from '../_services/myModal.service';
 var ToldHandymanComponent = (function () {
     function ToldHandymanComponent(http, dataService, formBuilder, myModalService) {
         this.http = http;
         this.dataService = dataService;
         this.formBuilder = formBuilder;
         this.myModalService = myModalService;
-        this.contactName = new forms_1.FormControl('', forms_1.Validators.required);
-        this.contactEmail = new forms_1.FormControl('', forms_1.Validators.required);
-        this.contactPhone1of3 = new forms_1.FormControl('', forms_1.Validators.required);
-        this.contactPhone2of3 = new forms_1.FormControl('', forms_1.Validators.required);
-        this.contactPhone3of3 = new forms_1.FormControl('', forms_1.Validators.required);
-        this.contactMessage = new forms_1.FormControl('', forms_1.Validators.required);
+        this.contactName = new FormControl('', Validators.required);
+        this.contactEmail = new FormControl('', Validators.required);
+        this.contactPhone1of3 = new FormControl('', Validators.required);
+        this.contactPhone2of3 = new FormControl('', Validators.required);
+        this.contactPhone3of3 = new FormControl('', Validators.required);
+        this.contactMessage = new FormControl('', Validators.required);
         this.phoneCombined = '';
         this.config = {
             pagination: '.swiper-pagination',
@@ -108,7 +106,7 @@ var ToldHandymanComponent = (function () {
         this.myModalService.close(id);
     };
     ToldHandymanComponent = __decorate([
-        core_1.Component({
+        Component({
             moduleId: module.id,
             selector: 'my-handyman',
             templateUrl: 'told-handyman.component.html',
@@ -124,12 +122,12 @@ var ToldHandymanComponent = (function () {
                 '../_styles/told-handyman-bottom_footer.component.css',
             ]
         }),
-        __metadata("design:paramtypes", [http_1.Http,
-            data_service_1.DataService,
-            forms_1.FormBuilder,
-            myModal_service_1.MyModalService])
+        __metadata("design:paramtypes", [Http,
+            DataService,
+            FormBuilder,
+            MyModalService])
     ], ToldHandymanComponent);
     return ToldHandymanComponent;
 }());
-exports.ToldHandymanComponent = ToldHandymanComponent;
+export { ToldHandymanComponent };
 //# sourceMappingURL=told-handyman.component.js.map

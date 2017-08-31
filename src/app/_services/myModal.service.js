@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var _ = require("underscore");
+import * as _ from 'underscore';
 var MyModalService = (function () {
     function MyModalService() {
         this.modals = [];
@@ -26,5 +24,5 @@ var MyModalService = (function () {
     };
     return MyModalService;
 }());
-exports.MyModalService = MyModalService;
+export { MyModalService };
 //# sourceMappingURL=myModal.service.js.map
